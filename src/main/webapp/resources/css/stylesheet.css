@@ -1,0 +1,25 @@
+#container{
+	width: 1024px;
+	margin: 0 auto;
+}
+
+nav ul{
+	padding-left: 0px;
+}
+nav ul li{
+	display: inline-block;
+	margin-left: 15px;
+}
+
+nav ul li:first-child{
+	margin-left: 0px !important;
+}
+
+nav a {
+ color: red;
+}
+
+footer p {
+	font-size: 8;
+	color: red;
+}
