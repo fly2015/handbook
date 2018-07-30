@@ -9,5 +9,5 @@ import java.util.List;
 import handbook.dto.Question;
 
 public interface QuestionSearch {
-	List<Question> searchQuestions(int projectId, List<Integer> tagIds, String keyword);
+	List<Question> searchQuestions(List<Integer> tagIds, String keyword);
 }
