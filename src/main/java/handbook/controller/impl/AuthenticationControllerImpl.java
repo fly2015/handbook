@@ -37,6 +37,8 @@ public class AuthenticationControllerImpl implements AuthenticationController {
 			HttpServletRequest request) {
 		
 		User user = authenticationService.login(username, password);
+		user.setUsername("admin");
+		user.setUserId(1);
 		
 		request.getSession().invalidate();
 		request.getSession().setAttribute("user", user);

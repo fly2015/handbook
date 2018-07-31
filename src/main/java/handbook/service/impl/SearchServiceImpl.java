@@ -4,8 +4,7 @@
  */
 package handbook.service.impl;
 
-import handbook.dto.User;
 
-public class QuestionSearchImpl {
+public class SearchServiceImpl {
 	
 }

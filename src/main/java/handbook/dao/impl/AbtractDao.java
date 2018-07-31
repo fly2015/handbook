@@ -4,6 +4,10 @@
  */
 package handbook.dao.impl;
 
-public class AbtractDao {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcOperations;
 
+public class AbtractDao {
+	@Autowired
+	protected JdbcOperations jdbc;
 }

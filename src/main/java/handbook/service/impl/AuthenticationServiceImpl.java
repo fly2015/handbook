@@ -17,7 +17,7 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 	 */
 	@Override
 	public User login(String username, String password) {
-		return null;
+		return new User();
 	}
 
 }
