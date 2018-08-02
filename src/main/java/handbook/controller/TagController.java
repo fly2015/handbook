@@ -10,6 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 
-public interface HelperController {
-	String findHelper(Model model, HttpServletRequest request);
+public interface TagController {
+	String readListTag(Model model, HttpServletRequest request);
 }

@@ -14,21 +14,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import handbook.controller.HelperController;
+import handbook.controller.TagController;
 import handbook.dto.Tag;
 import handbook.service.TagService;
 @Controller
-public class HelperControllerImpl implements HelperController{
+public class TagControllerImpl implements TagController{
 	@Autowired
 	private TagService tagService;
 
 	@Override
-	@RequestMapping(method = RequestMethod.GET, value = { "/help" })
-	public String findHelper(Model model, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+	@RequestMapping(method = RequestMethod.GET, value = { "/tag" })
+	public String readListTag(Model model, HttpServletRequest request) {
 		List<Tag> readTagList = tagService.readTagList();
 		model.addAttribute("tagList", readTagList);
-		return "help";
+		return "tagList";
 	}
 
 }

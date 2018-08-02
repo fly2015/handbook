@@ -16,7 +16,7 @@
 					<li><a href="<% out.print(request.getContextPath());%>/">Home</a></li>
 					<li><a href="<% out.print(request.getContextPath());%>/login">Login</a></li>
 					<li><a href="<% out.print(request.getContextPath());%>/">Register</a></li>
-					<li><a href="<% out.print(request.getContextPath());%>/help">Find help	</a></li>
+					<li><a href="<% out.print(request.getContextPath());%>/tag">Find help	</a></li>
 				</ul>
 			</nav>
 		</header>
