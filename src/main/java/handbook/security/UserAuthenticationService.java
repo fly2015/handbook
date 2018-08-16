@@ -1,7 +1,9 @@
 package handbook.security;
 
-import handbook.dto.User;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import handbook.exception.EntityNotFoundException;
 
 public interface UserAuthenticationService {
-	User loadUserByUsername(String username);
+	UserDetails loadUserByUsername(String username) throws EntityNotFoundException;
 }

@@ -4,9 +4,14 @@
  */
 package handbook.dao;
 
+import java.util.List;
+
+import handbook.dto.Role;
 import handbook.dto.User;
 
 public interface UserDao {
-	boolean login(String username, String password);
+	User authenticate(String username, String password);
 	User readUser(int userId); 
+	User readUserByUserName(String username);
+	List<Role> readRoleList(String username);
 }
