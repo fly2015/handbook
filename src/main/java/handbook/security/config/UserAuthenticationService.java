@@ -1,4 +1,4 @@
-package handbook.security.impl;
+package handbook.security.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,20 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import handbook.dao.UserDao;
 import handbook.dto.Role;
 import handbook.dto.User;
-import handbook.exception.EntityNotFoundException;
-import handbook.security.UserAuthenticationService;
 
-public class UserAuthenticationServiceImpl implements UserAuthenticationService{
+public class UserAuthenticationService implements UserDetailsService{
 	@Autowired
 	private UserDao userDao;
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws EntityNotFoundException {
+	public UserDetails loadUserByUsername(String username) {
 		User user = userDao.readUserByUserName(username);
 		if(user != null)
 		{
