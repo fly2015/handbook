@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,9 +15,13 @@ import handbook.dto.Role;
 import handbook.dto.User;
 
 public class UserAuthenticationService implements UserDetailsService{
-	@Autowired
-	private UserDao userDao;
+
+	private final UserDao userDao;
 	
+	public UserAuthenticationService(UserDao userDao) {
+		this.userDao = userDao;
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		User user = userDao.readUserByUserName(username);

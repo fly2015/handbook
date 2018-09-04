@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="  <% out.print(request.getContextPath());%>/resources/css/stylesheet.css">
+<link href="<c:url value="/resources/css/stylesheet.css"/> ">
 <title>Insert title here</title>
 </head>
 <body>

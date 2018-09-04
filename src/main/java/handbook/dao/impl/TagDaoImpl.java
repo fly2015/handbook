@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Component;
 
 
@@ -16,7 +18,8 @@ import handbook.dto.Tag;
 
 @Component
 public class TagDaoImpl extends AbtractDao implements TagDao{
-	
+	@Autowired
+	protected JdbcOperations jdbc;
 	/* 
 	 * @see handbook.dao.TagDao#readListTag()
 	 */
