@@ -17,7 +17,6 @@ import handbook.dao.UserDao;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
 	@Autowired
 	private UserDao dao;
 	@Override
@@ -29,7 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/resources/**").permitAll().anyRequest().permitAll()
 		.antMatchers("/login").permitAll()
 		//.anyRequest().authenticated()
 		.antMatchers("/tag").access("hasRole('ADMIN')")
@@ -45,12 +43,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	/* 
 	 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.WebSecurity)
 	 */
-/*	@Override
+	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web
         .ignoring()
         .antMatchers("/resources/**");
-	}*/
+	}
 	
 	
 }

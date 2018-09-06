@@ -3,8 +3,13 @@
 	margin: 0 auto;
 }
 
+nav {
+	height: 20px;
+	padding-top: 5px;
+}
 nav ul{
 	padding-left: 0px;
+	margin: 0px;
 }
 nav ul li{
 	display: inline-block;
@@ -22,4 +27,27 @@ nav a {
 footer p {
 	font-size: 8;
 	color: red;
+}
+
+.nav-left
+{
+	width: 20%;
+	float: left;
+}
+
+.nav-middle
+{
+	width: 50%;
+	float: left;
+}
+
+.nav-right
+{
+	width: 30%;
+	float: right;
+}
+
+.nav-right ul
+{
+	float: right;
 }
