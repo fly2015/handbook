@@ -18,7 +18,7 @@ import handbook.dto.Role;
 import handbook.dto.User;
 
 @Component
-public class UserDaoImpl extends AbtractDao implements UserDao{
+public class UserDaoImpl extends AbstractDao implements UserDao{
 	@Autowired
 	protected JdbcOperations jdbc;
 	/* 

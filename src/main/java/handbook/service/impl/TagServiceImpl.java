@@ -19,23 +19,7 @@ public class TagServiceImpl implements TagService {
 	private TagDao tagDao;
 
 	@Override
-	public List<Tag> readTagList() {
-		List<Tag> readListTag = tagDao.readListTag();
-		Tag tag = new Tag();
-		tag.setTagName("Tag 1");
-		tag.setTagNameSlug("tag-1");
-		readListTag.add(tag);
-
-		tag = new Tag();
-		tag.setTagName("Tag 2");
-		tag.setTagNameSlug("tag-1");
-		readListTag.add(tag);
-
-		tag = new Tag();
-		tag.setTagName("Tag 3");
-		tag.setTagNameSlug("tag-3");
-		readListTag.add(tag);
-		
-		return readListTag;
+	public List<Tag> readTagList(int startPosition, int numberOfItem) {
+		return tagDao.readListTag(startPosition, numberOfItem);
 	}
 }

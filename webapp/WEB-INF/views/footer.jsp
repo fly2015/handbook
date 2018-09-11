@@ -1,6 +1,6 @@
 		<footer>
 			<hr>
-			<p>2018@hng - make life easier</p>
+			<p></p>
 		</footer>
 	</div>
 </body>

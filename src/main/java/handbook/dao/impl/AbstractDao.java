@@ -6,7 +6,10 @@ package handbook.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.stereotype.Component;
 
-public class AbtractDao {
-	
+@Component
+public abstract class AbstractDao {
+	@Autowired
+	protected JdbcOperations jdbc;
 }

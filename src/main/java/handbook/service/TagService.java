@@ -9,5 +9,5 @@ import java.util.List;
 import handbook.dto.Tag;
 
 public interface TagService {
-	List<Tag> readTagList();
+	List<Tag> readTagList(int startPosition, int numberOfItem);
 }

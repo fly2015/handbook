@@ -1,7 +1,7 @@
 <%@include file="header.jsp" %>
 
 <div class="main-contain">
-	<p>Welcome to visit my site !</p>
+	<p>Let's make game harder ! </p>
 </div>
 
 <%@include file="footer.jsp" %>

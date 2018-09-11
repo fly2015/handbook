@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Component;
 
 
@@ -17,17 +15,24 @@ import handbook.dao.TagDao;
 import handbook.dto.Tag;
 
 @Component
-public class TagDaoImpl extends AbtractDao implements TagDao{
-	@Autowired
-	protected JdbcOperations jdbc;
-	/* 
-	 * @see handbook.dao.TagDao#readListTag()
-	 */
+public class TagDaoImpl extends AbstractDao implements TagDao{
 	@Override
-	public List<Tag> readListTag() {
-		// TODO Auto-generated method stub
-		List<Map<String, Object>> queryForList = jdbc.queryForList("select * from tag");
-		return new ArrayList<Tag>();
+	public List<Tag> readListTag(int startPosition, int numberOfItem) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select * from tag limit ?, ?");
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
+		
+		List<Tag> tags = new ArrayList<Tag>();
+		for (Map<String, Object> map : queryForList) {
+			Tag tag = new Tag();
+			tag.setTagId(Integer.valueOf(map.get("tag_id").toString()));
+			tag.setTagNameSlug(map.get("tag_name_slug").toString());
+			tag.setTagName(map.get("tag_name").toString());
+			
+			tags.add(tag);
+		}
+		
+		return tags;
 	}
 
 	/* 

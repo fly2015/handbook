@@ -3,14 +3,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div class="main-contain">
-	<h4>Login Form</h4>
+	<h4>Register Form</h4>
 
-	<spring:url value="/login" var="loginUrl" />
-	<form method="post" action="${loginUrl}">
+	<spring:url value="/register" var="registerUrl" />
+	<form method="post" action="${registerUrl}">
 		<table>
 		  <tr>
 		    <td>Username: </td>
 		    <td><input type="text" name="username" value=""/></td>
+		  </tr>
+		  <tr>
+		    <td>Email: </td>
+		    <td><input type="text" name="email" value=""/></td>
 		  </tr>
 		  <tr>
 		  	<td>Password: </td>
@@ -19,7 +23,7 @@
 		  </tr>
 		  
 		  <tr>
-		    <td colspan="2" align="right"><input type="submit" value="Login"/></td>
+		    <td colspan="2" align="right"><input type="submit" value="Register"/></td>
 		    
 		  </tr>
 		</table>

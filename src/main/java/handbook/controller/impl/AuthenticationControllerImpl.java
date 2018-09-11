@@ -5,8 +5,11 @@
 package handbook.controller.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,20 +17,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import handbook.controller.AuthenticationController;
-import handbook.dto.User;
-import handbook.service.AuthenticationService;
 
 @Controller
 public class AuthenticationControllerImpl implements AuthenticationController {
-	@Autowired
-	private AuthenticationService authenticationService;
-	
 	@Override
-	@RequestMapping(method = RequestMethod.GET, value = { "/login", "" })
+	@RequestMapping(method = RequestMethod.GET, value = { "/login"})
 	public String login() {
 		return "login";
 	}
 
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = { "/logout"})
+	public String logout(HttpServletRequest request, HttpServletResponse response) 
+	{
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		
+		return "redirect:/login?logout";
+	}
+
+	
+	/* * 
+	 * For none sercurity login. It is disabled when spring security is on
+	 * */
 	@Override
 	@RequestMapping(method = RequestMethod.POST, value = { "/login" })
 	public String login(
@@ -36,13 +50,19 @@ public class AuthenticationControllerImpl implements AuthenticationController {
 			Model model, 
 			HttpServletRequest request) {
 		
-		User user = authenticationService.login(username, password);
+		/*User user = authenticationService.login(username, password);
 		user.setUsername("admin");
 		user.setUserId(1);
 		
 		request.getSession().invalidate();
-		request.getSession().setAttribute("user", user);
+		request.getSession().setAttribute("user", user);*/
 		
+		return null;
+	}
+
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = { "/home","/" })
+	public String home() {
 		return "home";
 	}
 

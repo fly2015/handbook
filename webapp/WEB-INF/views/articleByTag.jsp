@@ -3,10 +3,13 @@
 <div class="main-contain">
 	<h3>List Article By Tag</h3>
 	
-	<c:forEach items="${articleList}" var="article">
-		<a href="<% out.print(request.getContextPath());%>/article/${article.articleTitleSlug}"><c:out value="${article.articleTitle}"></c:out></a>
-		<br>
-	</c:forEach>
+	<div>
+		<ul>
+			<c:forEach items="${articleList}" var="article">
+				<li><a href="<c:url value="/article/${article.articleTitleSlug}"/> "><c:out value="${article.articleTitle}"></c:out></a></li>
+			</c:forEach>	
+		</ul>
+	</div>
 </div>
 
 <%@include file="footer.jsp" %>

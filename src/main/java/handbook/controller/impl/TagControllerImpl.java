@@ -23,9 +23,9 @@ public class TagControllerImpl implements TagController{
 	private TagService tagService;
 
 	@Override
-	@RequestMapping(method = RequestMethod.GET, value = { "/tag" })
+	@RequestMapping(method = RequestMethod.GET, value = { "/tags" })
 	public String readListTag(Model model, HttpServletRequest request) {
-		List<Tag> readTagList = tagService.readTagList();
+		List<Tag> readTagList = tagService.readTagList(0, 50);
 		model.addAttribute("tagList", readTagList);
 		return "tagList";
 	}

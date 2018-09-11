@@ -9,9 +9,9 @@ import java.util.List;
 import handbook.dto.Article;
 
 public interface ArticleDao {
-	Article read(int answerId);
-	Article read(String answerSlug);
-	List<Article> readList();
+	//Article readArticle(int answerId);
+	Article readArticleBySlug(String answerSlug);
+	List<Article> readArticleListByTagSlug(String tagSlug);
 	
-	int write(Article answer);
+	//int write(Article answer);
 }

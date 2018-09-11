@@ -2,11 +2,14 @@
 
 <div class="main-contain">
 	<h3>List Tag</h3>
-	<c:forEach items="${tagList}" var="tag">
-		<a href="<% out.print(request.getContextPath());%>/tag/${tag.tagNameSlug}"><c:out value="${tag.tagName}"></c:out></a>
-		<br>
-	</c:forEach>
-		
+	
+	<div>
+		<ul>
+			<c:forEach items="${tagList}" var="tag">
+				<li class="tag"><a href="<c:url value="/tag/${tag.tagNameSlug}" />"><c:out value="${tag.tagName}"></c:out></a></li>
+			</c:forEach>
+		</ul>
+	</div>
 </div>
 
 <%@include file="footer.jsp" %>
