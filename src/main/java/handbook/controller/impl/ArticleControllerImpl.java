@@ -34,4 +34,10 @@ public class ArticleControllerImpl implements ArticleController{
 		model.addAttribute(article);
 		return "articleDetail";
 	}
+
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = { "/article/add" })
+	public String callAddNewArticleForm() {
+		return "addNewArticle";
+	}
 }

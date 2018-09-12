@@ -30,4 +30,10 @@ public class TagControllerImpl implements TagController{
 		return "tagList";
 	}
 
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = { "/tag/add" })
+	public String callAddNewTagForm() {
+		return "addNewTag";
+	}
+
 }

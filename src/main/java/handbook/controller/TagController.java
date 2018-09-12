@@ -12,4 +12,5 @@ import org.springframework.ui.Model;
 
 public interface TagController {
 	String readListTag(Model model, HttpServletRequest request);
+	String callAddNewTagForm();
 }

@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<% out.print(request.getContextPath());%>/resources/css/stylesheet.css">
 <title>Insert title here</title>
 <c:set var="pageUrl" value="${pageContext.request.contextPath}"></c:set>
+
 </head>
 <body>
 	<div id="container">
@@ -20,8 +21,8 @@
 						<li><a href="<c:url value="/" />">Home</a></li>
 						<li><a href="<c:url value="/tags" />">Tags</a></li>
 						<sec:authorize access="hasRole('ADMIN')">
-						 	<li><a href="<c:url value="/addNewTag" />">New tag</a></li>
-						 	<li><a href="<c:url value="/addNewTag" />">New article</a></li>
+						 	<li><a href="<c:url value="/tag/add" />">New tag</a></li>
+						 	<li><a href="<c:url value="/article/add" />">New article</a></li>
 						</sec:authorize>
 					</ul>
 				</div>
