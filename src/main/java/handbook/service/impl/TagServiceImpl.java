@@ -22,4 +22,9 @@ public class TagServiceImpl implements TagService {
 	public List<Tag> readTagList(int startPosition, int numberOfItem) {
 		return tagDao.readListTag(startPosition, numberOfItem);
 	}
+
+	@Override
+	public void addNewtagList(Tag tag) throws Exception {
+		tagDao.writeTag(tag);
+	}
 }

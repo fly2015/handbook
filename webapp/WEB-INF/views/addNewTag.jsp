@@ -6,6 +6,9 @@
 	<h4>Add New Tag Form</h4>
 
 	<spring:url value="/tag/add" var="actionUrl" />
+	<p style="color: red">
+		<c:out value="${message}"></c:out>
+	</p>
 	<form method="post" action="${actionUrl}">
 		<table>
 		  <tr>
@@ -15,8 +18,10 @@
 		  <tr>
 		    <td>Status: </td>
 		    <td>
-		    	<select name="status">
-		    		<option value="">1</option>
+		    	<select name="statusId">
+		    		<c:forEach items="${statusList}" var="status">
+		    			<option value="${status.statusId}">${status.statusName}</option>
+		    		</c:forEach>
 		    	</select>
 		    </td>
 		  </tr>

@@ -53,4 +53,13 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 		return null;
 	}
 
+	@Override
+	public void writeTag(Tag tag) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO tag(tag_name, tag_name_slug, status_id, created_by_user, last_modified_by_user) ");
+		sql.append("VALUES (?, ?, ?, ?, ?)");
+		jdbc.update(sql.toString(), tag.getTagName(), tag.getTagNameSlug(), tag.getStatus().getStatusId(),
+				tag.getCreatedByUser().getUserId(), tag.getLastModifiedUser().getUserId());
+	}
+
 }

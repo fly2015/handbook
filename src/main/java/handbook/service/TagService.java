@@ -10,4 +10,5 @@ import handbook.dto.Tag;
 
 public interface TagService {
 	List<Tag> readTagList(int startPosition, int numberOfItem);
+	void addNewtagList(Tag tag) throws Exception;
 }
