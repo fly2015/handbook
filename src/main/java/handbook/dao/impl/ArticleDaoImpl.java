@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import handbook.dao.ArticleDao;
 import handbook.dto.Article;
+import handbook.dto.Tag;
+import handbook.exception.ProcessException;
 
 @Component
 public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
@@ -49,6 +51,33 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 			articles.add(article);
 		}
 		return articles;
+	}
+
+	@Override
+	public void writeArticle(Article article) throws ProcessException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("insert into article(article_title, article_title_slug, article_content, status_id, created_by_user, last_modified_by_user) ");
+		sql.append("values(?, ?, ?, ?, ?, ?)");
+		
+		Object[] args = new Object[6];
+		args[0] = article.getArticleTitle();
+		args[1] = article.getArticleTitleSlug();
+		args[2] = article.getArticleContent();
+		args[3] = article.getStatus().getStatusId();
+		args[4] = article.getCreatedByUser().getUserId();
+		args[5] = article.getLastModifiedUser().getUserId();
+		jdbc.update(sql.toString(), args);
+	}
+
+	@Override
+	public void writeRelationArticleAndTags(Article article) throws ProcessException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("insert into tag_article(tag_id, article_id) ");
+		sql.append("values(?, ?)");
+		
+		for (Tag tag : article.getTags()) {
+			jdbc.update(sql.toString(), tag.getTagId(), article.getArticleId());
+		}
 	}
 
 }

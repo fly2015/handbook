@@ -4,11 +4,22 @@
  */
 package handbook.dto;
 
+import java.util.Set;
+
 public class Article extends AbstractDto {
 	private int articleId;
 	private String articleTitle;
 	private String articleTitleSlug;
 	private String articleContent;
+	private Set<Tag> tags;	
+
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
 
 	public int getArticleId() {
 		return articleId;

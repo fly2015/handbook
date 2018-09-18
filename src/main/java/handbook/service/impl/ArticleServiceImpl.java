@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import handbook.dao.ArticleDao;
 import handbook.dto.Article;
+import handbook.exception.ProcessException;
 import handbook.service.ArticleService;
 
 @Service
@@ -21,5 +22,13 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public Article readArticle(String articleTitleSlug) {
 		return dao.readArticleBySlug(articleTitleSlug);
+	}
+
+	@Override
+	public void addArticle(Article article) throws ProcessException {
+		dao.writeArticle(article);
+		Article insertedArticle = dao.readArticleBySlug(article.getArticleTitleSlug());
+		insertedArticle.setTags(article.getTags());
+		dao.writeRelationArticleAndTags(insertedArticle);
 	}
 }

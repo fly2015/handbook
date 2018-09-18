@@ -20,18 +20,20 @@
 		  		Tags:
 		  	</td>
 		    <td>
-   				<input type="checkbox" name="tagIds" value=""/>
-   				<label>tag-1</label>
-   				
-   				<input type="checkbox" name="tagIds" value=""/>
-   				<label>tag-2</label>
+			    <c:forEach items="${tagList}" var="tag">
+			    	<input type="checkbox" name="tagIds" value='<c:out value="${tag.tagId}"></c:out>'/>
+   					<label>${tag.tagName}</label>
+			    </c:forEach>
+   			</td>
 		  </tr>
 		  
 		  <tr>
 		    <td>Status: </td>
 		    <td>
-		    	<select name="status">
-		    		<option value="">1</option>
+		    	<select name="statusId">
+		    		<c:forEach items="${statusList}" var="status">
+		    			<option value="${status.statusId}">${status.statusName}</option>
+		    		</c:forEach>
 		    	</select>
 		    </td>
 		  </tr>

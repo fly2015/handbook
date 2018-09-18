@@ -1,23 +1,42 @@
 package handbook.controller.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.ValidationException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import hanbook.validation.ArticleValidation;
 import handbook.controller.ArticleController;
 import handbook.dto.Article;
+import handbook.dto.Status;
+import handbook.dto.Tag;
+import handbook.dto.User;
+import handbook.exception.ProcessException;
 import handbook.service.ArticleService;
+import handbook.service.StatusService;
+import handbook.service.TagService;
 
 @Controller
 public class ArticleControllerImpl implements ArticleController{
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private StatusService statusService;
+	@Autowired
+	private TagService tagService;
+	@Autowired
+	private ArticleValidation articleValidation;
 	
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tag/{tagSlug}" })
@@ -37,7 +56,77 @@ public class ArticleControllerImpl implements ArticleController{
 
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/article/add" })
-	public String callAddNewArticleForm() {
-		return "addNewArticle";
+	public ModelAndView initAddNewArticleForm() {
+		List<Status> statusList = statusService.readStatusList(1);
+		List<Tag> tagList = tagService.readTagList(0, 50);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("addNewArticle");
+		modelAndView.addObject("statusList", statusList);
+		modelAndView.addObject("tagList", tagList);
+		return modelAndView;
+	}
+
+	@Override
+	@RequestMapping(method = RequestMethod.POST, value = { "/article/add" })
+	public ModelAndView addNewArticle(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Article article = buildArticleData(request);
+		try {
+			articleValidation.validateForm(article);
+			articleService.addArticle(article);
+		} 
+		catch (ValidationException e1)
+		{
+			modelAndView.addObject("message", e1.getMessage());
+		}
+		catch (ProcessException e) 
+		{
+			modelAndView.addObject("message", "Unsuccessful !");
+		}
+		
+		modelAndView.addObject("message", "Create successful !");
+		
+		//init form
+		List<Status> statusList = statusService.readStatusList(1);
+		List<Tag> tagList = tagService.readTagList(0, 50);
+		modelAndView.setViewName("addNewArticle");
+		modelAndView.addObject("statusList", statusList);
+		modelAndView.addObject("tagList", tagList);
+		
+		return modelAndView;
+	}
+
+	private Article buildArticleData(HttpServletRequest request) {
+		Article article = new Article();
+		article.setArticleTitle(request.getParameter("articleTitle"));
+		
+		String slug = StringUtils.replaceAll(request.getParameter("articleTitle"), " ", "-");
+		article.setArticleTitleSlug(slug);
+		
+		article.setArticleContent(request.getParameter("articleContent"));
+		
+		User user = new User();
+		user.setUserId(1);
+		article.setCreatedByUser(user);
+		article.setLastModifiedUser(user);
+		
+		Set<Tag> tags = new HashSet<>();
+		String[] tagIds = request.getParameterValues("tagIds");
+		for (int i = 0; i < tagIds.length; i++) {
+			int tagId = Integer.valueOf(tagIds[i]);
+			
+			Tag tag = new Tag();
+			tag.setTagId(tagId);
+			
+			tags.add(tag);
+		}
+
+		article.setTags(tags);
+		
+		Status status = new Status();
+		status.setStatusId(Integer.valueOf(request.getParameter("statusId")));
+		article.setStatus(status );
+		return article;
 	}
 }

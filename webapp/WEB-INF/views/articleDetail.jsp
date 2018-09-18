@@ -1,5 +1,4 @@
 <%@include file="header.jsp" %>
-
 <div class="main-contain">
 	<h3>Article Detail</h3>
 	
