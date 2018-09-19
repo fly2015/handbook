@@ -18,15 +18,18 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 	public Article readArticleBySlug(String articleSlug) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("select * from article where article_title_slug = ?");
-		Map<String, Object> map = jdbc.queryForMap(stringBuilder.toString(), articleSlug);
+		Map<String, Object> map = null;
+		try {
+			map = jdbc.queryForMap(stringBuilder.toString(), articleSlug);
+		} 
+		catch (Exception e) {
+			// TODO: handle exception
+		}	
 		
-		Article article = new Article();
-		if (!map.isEmpty())
+		Article article = null;
+		if (map != null && !map.isEmpty())
 		{
-			article.setArticleId(Integer.valueOf(map.get("article_id").toString()));
-			article.setArticleTitle(map.get("article_title").toString());
-			article.setArticleTitleSlug(map.get("article_title_slug").toString());
-			article.setArticleContent(map.get("article_content").toString());
+			article = buildArticleData(map);
 		}
 		
 		return article;
@@ -38,19 +41,9 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		stringBuilder.append("select * from article a, tag t, tag_article ta ");
 		stringBuilder.append("where a.article_id = ta.article_id and t.tag_id = ta.tag_id ");
 		stringBuilder.append("and t.tag_name_slug = ?");
-
-		List<Article> articles = new ArrayList<Article>();
-		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), tagSlug);
 		
-		for (Map<String, Object> map : queryForList) {
-			Article article = new Article();
-			article.setArticleId(Integer.valueOf(map.get("article_id").toString()));
-			article.setArticleTitle(map.get("article_title").toString());
-			article.setArticleTitleSlug(map.get("article_title_slug").toString());
-			article.setArticleContent(map.get("article_content").toString());
-			articles.add(article);
-		}
-		return articles;
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), tagSlug);
+		return buildArticleListData(queryForList);
 	}
 
 	@Override
@@ -80,4 +73,33 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		}
 	}
 
+	@Override
+	public List<Article> readArticleListByTitle(String keyword) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select DISTINCT(a.article_id), a.article_title, a.article_title_slug, a.article_content from article a, tag t, tag_article ta ");
+		stringBuilder.append("where a.article_id = ta.article_id and t.tag_id = ta.tag_id ");
+		stringBuilder.append("and a.article_title like ?");
+
+		
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), "%" + keyword + "%");
+		return buildArticleListData(queryForList);
+	}
+
+	private List<Article> buildArticleListData(List<Map<String, Object>> queryForList) {
+		List<Article> articles = new ArrayList<Article>();
+		for (Map<String, Object> map : queryForList) {
+			Article article = buildArticleData(map);
+			articles.add(article);
+		}
+		return articles;
+	}
+
+	private Article buildArticleData(Map<String, Object> map) {
+		Article article = new Article();
+		article.setArticleId(Integer.valueOf(map.get("article_id").toString()));
+		article.setArticleTitle(map.get("article_title").toString());
+		article.setArticleTitleSlug(map.get("article_title_slug").toString());
+		article.setArticleContent(map.get("article_content").toString());
+		return article;
+	}
 }

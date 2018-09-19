@@ -27,9 +27,10 @@
 					</ul>
 				</div>
 				<div class="nav-middle">
-					<form action="header_submit" method="get" accept-charset="utf-8">
-						<input size="40" type="text" value="">
-						<input type="button" name="Search" value="Search">
+					<c:url var="actionUrl" value="/search"></c:url>
+					<form action="${actionUrl}" method="get" accept-charset="utf-8">
+						<input size="40" type="text" name="keyword">
+						<input type="submit" value="Search">
 					</form>			
 				</div>
 				<div class="nav-right">

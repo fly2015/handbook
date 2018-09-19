@@ -51,6 +51,11 @@ nav a {
 	
 }
 
+.message
+{
+	color: red;
+}
+
 footer
 {
 	margin-top: 20px;

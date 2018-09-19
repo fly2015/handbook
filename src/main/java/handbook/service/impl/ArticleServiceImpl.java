@@ -26,9 +26,22 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public void addArticle(Article article) throws ProcessException {
+		String requestArticleSlug = article.getArticleTitleSlug();
+		Article selectedArticle = dao.readArticleBySlug(requestArticleSlug);
+		if (selectedArticle != null && article.getArticleId() > 0)
+		{
+			String newArticleSlug = requestArticleSlug + "-" + selectedArticle.getArticleId();
+			article.setArticleTitleSlug(newArticleSlug);
+		}
+		
 		dao.writeArticle(article);
 		Article insertedArticle = dao.readArticleBySlug(article.getArticleTitleSlug());
 		insertedArticle.setTags(article.getTags());
 		dao.writeRelationArticleAndTags(insertedArticle);
+	}
+
+	@Override
+	public List<Article> searchArticle(String keyword) {
+		return dao.readArticleListByTitle(keyword);
 	}
 }

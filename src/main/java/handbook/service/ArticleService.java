@@ -10,4 +10,5 @@ public interface ArticleService {
 	List<Article> readArticleListByTag(String tagSlug);
 	Article readArticle(String articleTitleSlug);
 	void addArticle(Article article) throws ProcessException;
+	List<Article> searchArticle(String keyword);
 }

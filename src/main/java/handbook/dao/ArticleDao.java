@@ -15,4 +15,5 @@ public interface ArticleDao {
 	List<Article> readArticleListByTagSlug(String tagSlug);
 	void writeArticle(Article article) throws ProcessException;
 	void writeRelationArticleAndTags(Article article) throws ProcessException;
+	List<Article> readArticleListByTitle(String keyword);
 }

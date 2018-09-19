@@ -1,5 +1,6 @@
 package handbook.controller.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import hanbook.validation.ArticleValidation;
 import handbook.controller.ArticleController;
 import handbook.dto.Article;
 import handbook.dto.Status;
@@ -26,6 +26,7 @@ import handbook.exception.ProcessException;
 import handbook.service.ArticleService;
 import handbook.service.StatusService;
 import handbook.service.TagService;
+import handbook.validation.ArticleValidation;
 
 @Controller
 public class ArticleControllerImpl implements ArticleController{
@@ -35,6 +36,7 @@ public class ArticleControllerImpl implements ArticleController{
 	private StatusService statusService;
 	@Autowired
 	private TagService tagService;
+	
 	@Autowired
 	private ArticleValidation articleValidation;
 	
@@ -75,6 +77,8 @@ public class ArticleControllerImpl implements ArticleController{
 		try {
 			articleValidation.validateForm(article);
 			articleService.addArticle(article);
+			
+			modelAndView.addObject("message", "Create successful !");
 		} 
 		catch (ValidationException e1)
 		{
@@ -84,8 +88,6 @@ public class ArticleControllerImpl implements ArticleController{
 		{
 			modelAndView.addObject("message", "Unsuccessful !");
 		}
-		
-		modelAndView.addObject("message", "Create successful !");
 		
 		//init form
 		List<Status> statusList = statusService.readStatusList(1);
@@ -113,14 +115,18 @@ public class ArticleControllerImpl implements ArticleController{
 		
 		Set<Tag> tags = new HashSet<>();
 		String[] tagIds = request.getParameterValues("tagIds");
-		for (int i = 0; i < tagIds.length; i++) {
-			int tagId = Integer.valueOf(tagIds[i]);
-			
-			Tag tag = new Tag();
-			tag.setTagId(tagId);
-			
-			tags.add(tag);
+		if (tagIds != null)
+		{
+			for (int i = 0; i < tagIds.length; i++) {
+				int tagId = Integer.valueOf(tagIds[i]);
+				
+				Tag tag = new Tag();
+				tag.setTagId(tagId);
+				
+				tags.add(tag);
+			}
 		}
+		
 
 		article.setTags(tags);
 		
@@ -128,5 +134,22 @@ public class ArticleControllerImpl implements ArticleController{
 		status.setStatusId(Integer.valueOf(request.getParameter("statusId")));
 		article.setStatus(status );
 		return article;
+	}
+
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = { "/search" })
+	public ModelAndView searchArticle(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		String keyword = request.getParameter("keyword");
+		
+		List<Article> articleList = new ArrayList<>();
+		if (StringUtils.isNotEmpty(keyword))
+		{
+			articleList = articleService.searchArticle(keyword);
+		}
+		
+		modelAndView.addObject("articleList", articleList);
+		modelAndView.setViewName("searchArticleResult");
+		return modelAndView;
 	}
 }

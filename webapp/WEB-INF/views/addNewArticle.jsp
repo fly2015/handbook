@@ -9,6 +9,7 @@
 	<h4>Add New Article Form</h4>
 
 	<spring:url value="/article/add" var="actionUrl" />
+	<p class="message"><c:out value="${message}"></c:out></p>
 	<form method="post" action="${actionUrl}">
 		<table>
 		  <tr>

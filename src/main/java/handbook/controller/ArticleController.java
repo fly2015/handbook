@@ -11,4 +11,5 @@ public interface ArticleController {
 	String readArticle(String articleTitleSlug, Model model);
 	ModelAndView initAddNewArticleForm();
 	ModelAndView addNewArticle(HttpServletRequest request);
+	ModelAndView searchArticle(HttpServletRequest request);
 }
