@@ -16,26 +16,20 @@ import org.springframework.stereotype.Component;
 import handbook.dao.UserDao;
 import handbook.dto.Role;
 import handbook.dto.User;
+import handbook.exception.ProcessException;
 
 @Component
 public class UserDaoImpl extends AbstractDao implements UserDao{
 	@Autowired
 	protected JdbcOperations jdbc;
-	/* 
-	 * @see handbook.dao.UserDao#login(java.lang.String, java.lang.String)
-	 */
+
 	@Override
 	public User authenticate(String username, String password) {
-		// TODO Auto-generated method stub
 		return new User();
 	}
 
-	/* 
-	 * @see handbook.dao.UserDao#readUser(int)
-	 */
 	@Override
 	public User readUser(int userId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -80,6 +74,24 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 		}
 		
 		return roles;
+	}
+
+	@Override
+	public void writeUser(User user) throws ProcessException
+	{
+		StringBuilder sql = new StringBuilder();
+		sql.append("insert into user (username, email, password, status_id, created_by_user, last_modified_by_user) ");
+		sql.append(" values(?, ?, ?, ?, ?, ?)");
+		
+		try 
+		{
+			jdbc.update(sql.toString(), user.getUsername(), user.getEmail(), user.getPassword(), 
+					user.getStatus().getStatusId(),  user.getCreatedByUser().getUserId(), user.getLastModifiedUser().getUserId());
+		} catch (Exception e) 
+		{
+			throw new ProcessException();
+		}
+		
 	}
 
 	

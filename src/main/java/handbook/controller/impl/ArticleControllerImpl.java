@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.ValidationException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +22,11 @@ import handbook.dto.Status;
 import handbook.dto.Tag;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
+import handbook.exception.ValidationException;
 import handbook.service.ArticleService;
 import handbook.service.StatusService;
 import handbook.service.TagService;
-import handbook.validation.ArticleValidation;
+import handbook.validation.ArticleFormValidation;
 
 @Controller
 public class ArticleControllerImpl implements ArticleController{
@@ -38,7 +38,7 @@ public class ArticleControllerImpl implements ArticleController{
 	private TagService tagService;
 	
 	@Autowired
-	private ArticleValidation articleValidation;
+	private ArticleFormValidation articleValidation;
 	
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tag/{tagSlug}" })
@@ -75,9 +75,8 @@ public class ArticleControllerImpl implements ArticleController{
 		
 		Article article = buildArticleData(request);
 		try {
-			articleValidation.validateForm(article);
-			articleService.addArticle(article);
-			
+			articleValidation.validate(article);
+			articleService.addArticle(article);			
 			modelAndView.addObject("message", "Create successful !");
 		} 
 		catch (ValidationException e1)

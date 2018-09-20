@@ -1,15 +1,20 @@
 package handbook.validation;
 
-import javax.xml.bind.ValidationException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import handbook.dto.AbstractDto;
 import handbook.dto.Article;
+import handbook.exception.ValidationException;
 
 @Component
-public class ArticleValidation {
-	public void validateForm(Article article) throws ValidationException {
+public class ArticleFormValidation implements Validation {
+
+	@Override
+	public <T extends AbstractDto> void validate(T t) throws ValidationException
+	{
+		Article article = (Article) t;
 		if (StringUtils.isEmpty(article.getArticleTitle()))
 		{
 			throw new ValidationException("Tilte must be entered !");
