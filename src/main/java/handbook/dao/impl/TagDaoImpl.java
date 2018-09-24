@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
 
 import handbook.dao.TagDao;
 import handbook.dto.Tag;
+import handbook.exception.ProcessException;
 
 @Component
 public class TagDaoImpl extends AbstractDao implements TagDao{
@@ -22,18 +24,9 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 		stringBuilder.append("select * from tag limit ?, ?");
 		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
 		
-		List<Tag> tags = new ArrayList<Tag>();
-		for (Map<String, Object> map : queryForList) {
-			Tag tag = new Tag();
-			tag.setTagId(Integer.valueOf(map.get("tag_id").toString()));
-			tag.setTagNameSlug(map.get("tag_name_slug").toString());
-			tag.setTagName(map.get("tag_name").toString());
-			
-			tags.add(tag);
-		}
-		
-		return tags;
+		return buildTagList(queryForList);
 	}
+
 
 	/* 
 	 * @see handbook.dao.TagDao#readTag(int)
@@ -48,18 +41,51 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 	 * @see handbook.dao.TagDao#readTag(java.lang.String)
 	 */
 	@Override
-	public Tag readTag(String tagSlug) {
-		// TODO Auto-generated method stub
+	public Tag readTagByTagSlug(String tagSlug) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select * from tag limit tag_name_slug = ?");
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), tagSlug);
+		if(CollectionUtils.isNotEmpty(queryForList))
+		{
+			return buidTag(queryForList.get(0));
+		}
+		
 		return null;
 	}
+	
+	private List<Tag> buildTagList(List<Map<String, Object>> queryForList) {
+		List<Tag> tags = new ArrayList<Tag>();
+		for (Map<String, Object> map : queryForList) {
+			Tag tag = buidTag(map);
+			tags.add(tag);
+		}
+		
+		return tags;
+	}
 
+
+	private Tag buidTag(Map<String, Object> map) {
+		Tag tag = new Tag();
+		tag.setTagId(Integer.valueOf(map.get("tag_id").toString()));
+		tag.setTagNameSlug(map.get("tag_name_slug").toString());
+		tag.setTagName(map.get("tag_name").toString());
+		return tag;
+	}
+	
 	@Override
-	public void writeTag(Tag tag) {
+	public void writeTag(Tag tag) throws ProcessException{
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO tag(tag_name, tag_name_slug, status_id, created_by_user, last_modified_by_user) ");
 		sql.append("VALUES (?, ?, ?, ?, ?)");
-		jdbc.update(sql.toString(), tag.getTagName(), tag.getTagNameSlug(), tag.getStatus().getStatusId(),
-				tag.getCreatedByUser().getUserId(), tag.getLastModifiedUser().getUserId());
+		try
+		{
+			jdbc.update(sql.toString(), tag.getTagName(), tag.getTagNameSlug(), tag.getStatus().getStatusId(),
+					tag.getCreatedByUser().getUserId(), tag.getLastModifiedUser().getUserId());
+		}
+		catch (Exception e) {
+			throw new ProcessException("Create tag fail");
+		}
+		
 	}
 
 }

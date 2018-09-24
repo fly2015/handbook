@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import handbook.dao.TagDao;
 import handbook.dto.Tag;
+import handbook.exception.ProcessException;
+import handbook.exception.ValidationException;
 import handbook.service.TagService;
 
 @Service
@@ -24,7 +26,12 @@ public class TagServiceImpl implements TagService {
 	}
 
 	@Override
-	public void addNewtagList(Tag tag) throws Exception {
+	public void addNewtagList(Tag tag) throws ProcessException, ValidationException {
+		Tag selectedTag = tagDao.readTagByTagSlug(tag.getTagNameSlug());
+		if (selectedTag != null)
+		{
+			throw new ValidationException("Tag is existing");
+		}
 		tagDao.writeTag(tag);
 	}
 }

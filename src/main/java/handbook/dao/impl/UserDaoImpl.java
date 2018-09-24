@@ -34,15 +34,16 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 	}
 
 	@Override
-	public User readUserByUserName(String username) {
+	public User readUserByUsername(String username) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("select * from User where username = ?");
 		builder.append(" AND status_id = 1");
 		
 		SqlRowSet queryForRowSet = jdbc.queryForRowSet(builder.toString(), username);
-		User user = new User();
+		User user = null;
 		if (queryForRowSet.first())
 		{
+			user = new User();
 			user.setUserId(queryForRowSet.getInt("user_id"));
 			user.setUsername(queryForRowSet.getString("username"));
 			user.setPassword(queryForRowSet.getString("password"));
@@ -89,7 +90,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 					user.getStatus().getStatusId(),  user.getCreatedByUser().getUserId(), user.getLastModifiedUser().getUserId());
 		} catch (Exception e) 
 		{
-			throw new ProcessException();
+			throw new ProcessException("Register fails");
 		}
 		
 	}

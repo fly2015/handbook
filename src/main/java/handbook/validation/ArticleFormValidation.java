@@ -17,23 +17,35 @@ public class ArticleFormValidation implements Validation {
 		Article article = (Article) t;
 		if (StringUtils.isEmpty(article.getArticleTitle()))
 		{
-			throw new ValidationException("Tilte must be entered !");
+			throw new ValidationException("Tilte must be entered");
 		}
 		
 		if (article.getTags().isEmpty() || article.getTags().iterator().next() == null
 				|| article.getTags().iterator().next().getTagId() <= 0)
 		{
-			throw new ValidationException("Tags must be selected !");
+			throw new ValidationException("Tags must be selected");
 		}
 		
 		if (article.getStatus() == null && article.getStatus().getStatusId() < 0)
 		{
-			throw new ValidationException("Status must be selected !");
+			throw new ValidationException("Status must be selected");
 		}
 		
 		if (StringUtils.isEmpty(article.getArticleContent() ))
 		{
-			throw new ValidationException("Content must be entered !");
+			throw new ValidationException("Content must be entered");
+		}
+		
+		if (article.getArticleTitle().length() > 500)
+		{
+			throw new ValidationException("Max length of title is 500");
+			
+		}
+		
+		if (article.getArticleContent().length() > 10024)
+		{
+			throw new ValidationException("Max length of content is 10M");
+			
 		}
 	}
 

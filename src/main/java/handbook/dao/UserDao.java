@@ -13,7 +13,7 @@ import handbook.exception.ProcessException;
 public interface UserDao {
 	User authenticate(String username, String password);
 	User readUser(int userId); 
-	User readUserByUserName(String username);
+	User readUserByUsername(String username);
 	List<Role> readRoleList(String username);
 	void writeUser(User user) throws ProcessException;
 }

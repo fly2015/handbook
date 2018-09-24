@@ -21,8 +21,11 @@ import handbook.controller.TagController;
 import handbook.dto.Status;
 import handbook.dto.Tag;
 import handbook.dto.User;
+import handbook.exception.ProcessException;
+import handbook.exception.ValidationException;
 import handbook.service.StatusService;
 import handbook.service.TagService;
+import handbook.validation.TagFormValidation;
 @Controller
 public class TagControllerImpl implements TagController{
 	final static Logger logger = Logger.getLogger(TagControllerImpl.class);
@@ -30,7 +33,8 @@ public class TagControllerImpl implements TagController{
 	private TagService tagService;
 	@Autowired
 	private StatusService statusService;
-	
+	@Autowired
+	private TagFormValidation validation;
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tags" })
 	public String readListTag(Model model, HttpServletRequest request) {
@@ -55,12 +59,19 @@ public class TagControllerImpl implements TagController{
 	public ModelAndView addNewTag(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		Tag tag = buildTagData(request);
-		try {
+		try
+		{
+			validation.validate(tag);
 			tagService.addNewtagList(tag);
-		} catch (Exception e) {
-			logger.error("Create new tag fail");
-			modelAndView.addObject("message", "Create new tag fail");
 		}
+		catch (ProcessException e)
+		{
+			modelAndView.addObject("message", e.getMessage());
+		}
+		catch (ValidationException e) {
+			modelAndView.addObject("message", e.getMessage());
+		}
+		
 		List<Status> statusList = statusService.readStatusList(1);
 		modelAndView.addObject("statusList", statusList);
 		
