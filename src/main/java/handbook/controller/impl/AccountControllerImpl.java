@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import handbook.controller.AccountController;
+import handbook.dto.Role;
 import handbook.dto.Status;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
@@ -34,6 +35,25 @@ public class AccountControllerImpl implements AccountController{
 	public ModelAndView register(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		
+		User user = buildUser(request);
+		try {
+			validation.validate(user);
+			accountService.register(user);
+			
+			modelAndView.addObject("message", "Register sucessfully. Please contact admin to active your account.");
+		} catch (ProcessException e) {
+			modelAndView.addObject("message", e.getMessage());
+		}
+		catch (ValidationException e) {
+			modelAndView.addObject("message", e.getMessage());
+		}
+		
+		
+		modelAndView.setViewName("register");
+		return modelAndView;
+	}
+
+	private User buildUser(HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
@@ -49,22 +69,12 @@ public class AccountControllerImpl implements AccountController{
 		createdUser.setUserId(0);
 		user.setCreatedByUser(createdUser);
 		user.setLastModifiedUser(createdUser);
-		try {
-			validation.validate(user);
-			accountService.register(user);
-			
-			modelAndView.addObject("message", "Register sucessfully. "
-					+ "Please contact admin to active your account.");
-		} catch (ProcessException e) {
-			modelAndView.addObject("message", e.getMessage());
-		}
-		catch (ValidationException e) {
-			modelAndView.addObject("message", e.getMessage());
-		}
 		
-		
-		modelAndView.setViewName("register");
-		return modelAndView;
+		//todo
+		Role role = new Role();
+		role.setRoleId(2);
+		user.setRole(role);
+		return user;
 	}
 
 }

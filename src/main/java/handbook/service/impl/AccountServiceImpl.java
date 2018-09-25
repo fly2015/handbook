@@ -16,12 +16,14 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public void register(User user) throws ProcessException, ValidationException {
 		User selectedUser = userDao.readUserByUsername(user.getUsername());
-		
 		if (selectedUser != null)
 		{
 			throw new ValidationException("Username is existing");
 		}
 		
 		userDao.writeUser(user);
+		User insertedUser = userDao.readUserByUsername(user.getUsername());
+		insertedUser.setRole(user.getRole());
+		userDao.writeRelationUserAndRole(insertedUser);
 	}
 }

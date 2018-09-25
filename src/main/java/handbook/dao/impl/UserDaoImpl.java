@@ -34,10 +34,29 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 	}
 
 	@Override
+	public User readUserByUsername(String username, int status_id) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("select * from User where username = ?");
+		builder.append(" AND status_id = ?");
+		
+		SqlRowSet queryForRowSet = jdbc.queryForRowSet(builder.toString(), username, status_id);
+		User user = null;
+		if (queryForRowSet.first())
+		{
+			user = new User();
+			user.setUserId(queryForRowSet.getInt("user_id"));
+			user.setUsername(queryForRowSet.getString("username"));
+			user.setPassword(queryForRowSet.getString("password"));
+			user.setEmail(queryForRowSet.getString("email"));
+		}
+		
+		return user;
+	}
+	
+	@Override
 	public User readUserByUsername(String username) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("select * from User where username = ?");
-		builder.append(" AND status_id = 1");
 		
 		SqlRowSet queryForRowSet = jdbc.queryForRowSet(builder.toString(), username);
 		User user = null;
@@ -52,7 +71,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 		
 		return user;
 	}
-
+	
 	@Override
 	public List<Role> readRoleList(String username) {
 		StringBuilder builder = new StringBuilder();
@@ -94,6 +113,24 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 		}
 		
 	}
+
+	@Override
+	public void writeRelationUserAndRole(User user) throws ProcessException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("insert into user_role (user_id, role_id) ");
+		sql.append(" values(?, ?)");
+		
+		try 
+		{
+			jdbc.update(sql.toString(), user.getUserId(), user.getRole().getRoleId());
+		} catch (Exception e) 
+		{
+			// log
+			throw new ProcessException("Technical error");
+		}
+	}
+
+	
 
 	
 }

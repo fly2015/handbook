@@ -35,6 +35,7 @@ public class TagControllerImpl implements TagController{
 	private StatusService statusService;
 	@Autowired
 	private TagFormValidation validation;
+	
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tags" })
 	public String readListTag(Model model, HttpServletRequest request) {

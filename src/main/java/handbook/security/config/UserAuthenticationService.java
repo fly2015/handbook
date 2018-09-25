@@ -24,7 +24,8 @@ public class UserAuthenticationService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
-		User user = userDao.readUserByUsername(username);
+		// todo status Utils
+		User user = userDao.readUserByUsername(username, 1);
 		if(user != null)
 		{
 			// read roles from db
