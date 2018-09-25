@@ -23,8 +23,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setPrefix("/WEB-INF/views_jsp/");
 		resolver.setSuffix(".jsp");
 		return resolver;*/
-
-		return new TilesViewResolver();
+		TilesViewResolver tilesViewResolver =  new TilesViewResolver();
+		return tilesViewResolver;
 	}
 	
 	@Bean
