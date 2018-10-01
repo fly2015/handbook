@@ -42,9 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 
-	/* 
-	 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.WebSecurity)
-	 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web

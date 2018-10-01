@@ -5,16 +5,16 @@
 package handbook.dto;
 
 public class Status extends AbstractDto {
-	private int statusId;
+	private Integer statusId;
 	private String statusName;
 	private String statusType;
-	private int isVisible;
+	private Integer isVisible;
 
-	public int getStatusId() {
+	public Integer getStatusId() {
 		return statusId;
 	}
 
-	public void setStatusId(int statusId) {
+	public void setStatusId(Integer statusId) {
 		this.statusId = statusId;
 	}
 
@@ -34,11 +34,11 @@ public class Status extends AbstractDto {
 		this.statusType = statusType;
 	}
 
-	public int getIsVisible() {
+	public Integer getIsVisible() {
 		return isVisible;
 	}
 
-	public void setIsVisible(int isVisible) {
+	public void setIsVisible(Integer isVisible) {
 		this.isVisible = isVisible;
 	}
 

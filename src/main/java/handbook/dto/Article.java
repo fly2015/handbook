@@ -7,7 +7,7 @@ package handbook.dto;
 import java.util.Set;
 
 public class Article extends AbstractDto {
-	private int articleId;
+	private Integer articleId;
 	private String articleTitle;
 	private String articleTitleSlug;
 	private String articleContent;
@@ -21,11 +21,11 @@ public class Article extends AbstractDto {
 		this.tags = tags;
 	}
 
-	public int getArticleId() {
+	public Integer getArticleId() {
 		return articleId;
 	}
 
-	public void setArticleId(int articleId) {
+	public void setArticleId(Integer articleId) {
 		this.articleId = articleId;
 	}
 

@@ -19,7 +19,7 @@ public class TagFormValidation implements Validation{
 			throw new ValidationException("Tag name must be entered");
 		}
 		
-		if (tag.getStatus() != null && tag.getStatus().getStatusId() >= 0)
+		if (tag.getStatus() == null || tag.getStatus().getStatusId() == null)
 		{
 			throw new ValidationException("Status must be entered");
 		}

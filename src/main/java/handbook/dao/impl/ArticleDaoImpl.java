@@ -19,7 +19,8 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("select * from article where article_title_slug = ?");
 		Map<String, Object> map = null;
-		try {
+		try 
+		{
 			map = jdbc.queryForMap(stringBuilder.toString(), articleSlug);
 		} 
 		catch (Exception e) {

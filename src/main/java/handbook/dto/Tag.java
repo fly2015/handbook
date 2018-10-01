@@ -5,15 +5,15 @@
 package handbook.dto;
 
 public class Tag extends AbstractDto {
-	private int tagId;
+	private Integer tagId;
 	private String tagName;
 	private String tagNameSlug;
 
-	public int getTagId() {
+	public Integer getTagId() {
 		return tagId;
 	}
 
-	public void setTagId(int tagId) {
+	public void setTagId(Integer tagId) {
 		this.tagId = tagId;
 	}
 

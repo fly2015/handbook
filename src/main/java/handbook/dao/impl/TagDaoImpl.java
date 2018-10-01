@@ -19,7 +19,7 @@ import handbook.exception.ProcessException;
 @Component
 public class TagDaoImpl extends AbstractDao implements TagDao{
 	@Override
-	public List<Tag> readListTag(int startPosition, int numberOfItem) {
+	public List<Tag> readListTag(Integer startPosition, Integer numberOfItem) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("select * from tag limit ?, ?");
 		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
@@ -27,19 +27,12 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 		return buildTagList(queryForList);
 	}
 
-
-	/* 
-	 * @see handbook.dao.TagDao#readTag(int)
-	 */
 	@Override
-	public Tag readTag(int tagId) {
+	public Tag readTag(Integer tagId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* 
-	 * @see handbook.dao.TagDao#readTag(java.lang.String)
-	 */
 	@Override
 	public Tag readTagByTagSlug(String tagSlug) {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -63,7 +56,6 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 		return tags;
 	}
 
-
 	private Tag buidTag(Map<String, Object> map) {
 		Tag tag = new Tag();
 		tag.setTagId(Integer.valueOf(map.get("tag_id").toString()));
@@ -73,7 +65,8 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 	}
 	
 	@Override
-	public void writeTag(Tag tag) throws ProcessException{
+	public void writeTag(Tag tag) throws ProcessException
+	{
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO tag(tag_name, tag_name_slug, status_id, created_by_user, last_modified_by_user) ");
 		sql.append("VALUES (?, ?, ?, ?, ?)");

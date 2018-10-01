@@ -12,8 +12,8 @@ import handbook.exception.ProcessException;
 
 public interface UserDao {
 	User authenticate(String username, String password);
-	User readUser(int userId); 
-	User readUserByUsername(String username, int status_id);
+	User readUser(Integer userId); 
+	User readUserByUsername(String username, Integer statusId);
 	User readUserByUsername(String username);
 	List<Role> readRoleList(String username);
 	void writeUser(User user) throws ProcessException;

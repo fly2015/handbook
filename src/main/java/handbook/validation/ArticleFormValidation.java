@@ -21,12 +21,12 @@ public class ArticleFormValidation implements Validation {
 		}
 		
 		if (article.getTags().isEmpty() || article.getTags().iterator().next() == null
-				|| article.getTags().iterator().next().getTagId() <= 0)
+				|| article.getTags().iterator().next().getTagId() == null)
 		{
 			throw new ValidationException("Tags must be selected");
 		}
 		
-		if (article.getStatus() == null && article.getStatus().getStatusId() < 0)
+		if (article.getStatus() == null && article.getStatus().getStatusId() == null)
 		{
 			throw new ValidationException("Status must be selected");
 		}

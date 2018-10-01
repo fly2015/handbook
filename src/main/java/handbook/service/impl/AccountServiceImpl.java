@@ -26,4 +26,9 @@ public class AccountServiceImpl implements AccountService{
 		insertedUser.setRole(user.getRole());
 		userDao.writeRelationUserAndRole(insertedUser);
 	}
+	@Override
+	public User readUserByUserName(String username, Integer statusId) {
+		// TODO Auto-generated method stub
+		return userDao.readUserByUsername(username, statusId);
+	}
 }

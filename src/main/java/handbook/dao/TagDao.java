@@ -10,8 +10,8 @@ import handbook.dto.Tag;
 import handbook.exception.ProcessException;
 
 public interface TagDao {
-	List<Tag> readListTag(int startPosition, int numberOfItem);
-	Tag readTag(int tagId);
+	List<Tag> readListTag(Integer startPosition, Integer numberOfItem);
+	Tag readTag(Integer tagId);
 	Tag readTagByTagSlug(String tagSlug);
 	void writeTag(Tag tag) throws ProcessException;
 }

@@ -5,15 +5,15 @@
 package handbook.dto;
 
 public class Role extends AbstractDto{
-	private int roleId;
+	private Integer roleId;
 	private String roleName;
 	private String roleNameSlug;
 	
-	public int getRoleId() {
+	public Integer getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
 

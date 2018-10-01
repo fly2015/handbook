@@ -29,17 +29,17 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 	}
 
 	@Override
-	public User readUser(int userId) {
+	public User readUser(Integer userId) {
 		return null;
 	}
 
 	@Override
-	public User readUserByUsername(String username, int status_id) {
+	public User readUserByUsername(String username, Integer statusId) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("select * from User where username = ?");
 		builder.append(" AND status_id = ?");
 		
-		SqlRowSet queryForRowSet = jdbc.queryForRowSet(builder.toString(), username, status_id);
+		SqlRowSet queryForRowSet = jdbc.queryForRowSet(builder.toString(), username, statusId);
 		User user = null;
 		if (queryForRowSet.first())
 		{
@@ -129,8 +129,5 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 			throw new ProcessException("Technical error");
 		}
 	}
-
-	
-
 	
 }

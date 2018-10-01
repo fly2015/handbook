@@ -6,18 +6,18 @@ package handbook.dto;
 
 
 public class User extends AbstractDto{
-	private int userId;
+	private Integer userId;
 	private String username;
 	private String email;
 	private String password;
 	private Role role;
 	//private List<Role> roles;
 	
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 

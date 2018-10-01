@@ -13,7 +13,7 @@ import handbook.dto.Status;
 public class StatusDaoImpl extends AbstractDao implements StatusDao{
 
 	@Override
-	public List<Status> readStatusList(int isVisible) {
+	public List<Status> readStatusList(Integer isVisible) {
 		String sql = "select * from status where is_visible = ?";
 		List<Map<String, Object>> queryForList = jdbc.queryForList(sql, isVisible);
 		

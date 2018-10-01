@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +25,15 @@ import handbook.dto.Tag;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
 import handbook.exception.ValidationException;
+import handbook.service.AccountService;
 import handbook.service.StatusService;
 import handbook.service.TagService;
 import handbook.validation.TagFormValidation;
 @Controller
 public class TagControllerImpl implements TagController{
 	final static Logger logger = Logger.getLogger(TagControllerImpl.class);
+	@Autowired
+	private AccountService accountService;
 	@Autowired
 	private TagService tagService;
 	@Autowired
@@ -88,11 +93,16 @@ public class TagControllerImpl implements TagController{
 		Status status = new Status();
 		status.setStatusId(Integer.valueOf(request.getParameter("statusId")));
 		tag.setStatus(status);
-		//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = new User();
-		user.setUserId(1);
-		tag.setCreatedByUser(user );
-		tag.setLastModifiedUser(user);
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		User principal = (User) auth.getPrincipal();
+		
+		User selectedUser = accountService.readUserByUserName(principal.getUsername(), 1);
+		
+		tag.setCreatedByUser(selectedUser);
+		tag.setLastModifiedUser(selectedUser);
+		
 		return tag;
 	}
 
