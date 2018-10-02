@@ -1,5 +1,6 @@
 package handbook.service.impl;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,13 @@ import handbook.service.AccountService;
 
 @Service
 public class AccountServiceImpl implements AccountService{
+	private static final Logger logger = Logger.getLogger(AccountServiceImpl.class);
 	@Autowired
 	private UserDao userDao;
 	@Override
 	public void register(User user) throws ProcessException, ValidationException {
+		logger.info("Start register");
+		
 		User selectedUser = userDao.readUserByUsername(user.getUsername());
 		if (selectedUser != null)
 		{
@@ -25,6 +29,8 @@ public class AccountServiceImpl implements AccountService{
 		User insertedUser = userDao.readUserByUsername(user.getUsername());
 		insertedUser.setRole(user.getRole());
 		userDao.writeRelationUserAndRole(insertedUser);
+		
+		logger.info("End register");
 	}
 	@Override
 	public User readUserByUserName(String username, Integer statusId) {

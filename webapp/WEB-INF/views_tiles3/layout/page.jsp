@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/stylesheet.css" />">
-<title>Insert title here</title>
+<title>Let's make life easier and make game harder</title>
 </head>
 <body>
 	<div id="container">

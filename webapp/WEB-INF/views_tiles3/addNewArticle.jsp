@@ -20,8 +20,15 @@
 		  	</td>
 		    <td>
 			    <c:forEach items="${tagList}" var="tag">
-			    	<input type="checkbox" name="tagIds" value='<c:out value="${tag.tagId}"></c:out>'/>
-   					<label>${tag.tagName}</label>
+			    	<div class="tag-list">
+		    			<div class="tag-check">
+		    				<input type="checkbox" name="tagIds" value='<c:out value="${tag.tagId}"></c:out>'/>
+		    			</div>
+		    			<div class="tag-label">
+		    				<label>${tag.tagName}</label>
+		    			</div>
+			    	</div>
+			    	
 			    </c:forEach>
    			</td>
 		  </tr>

@@ -2,6 +2,7 @@ package handbook.controller.impl;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import handbook.service.AccountService;
 import handbook.validation.RegisterFormValidation;
 @Controller
 public class AccountControllerImpl implements AccountController{
+	private static final Logger logger = Logger.getLogger(AccountControllerImpl.class);
 	@Autowired
 	private AccountService accountService;
 	
@@ -42,7 +44,8 @@ public class AccountControllerImpl implements AccountController{
 			
 			modelAndView.addObject("message", "Register sucessfully. Please contact admin to active your account.");
 		} catch (ProcessException e) {
-			modelAndView.addObject("message", e.getMessage());
+			logger.error(e.getMessage());
+			modelAndView.addObject("message", "Technical error.");
 		}
 		catch (ValidationException e) {
 			modelAndView.addObject("message", e.getMessage());

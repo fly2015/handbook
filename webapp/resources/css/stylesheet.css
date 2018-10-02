@@ -21,18 +21,18 @@ nav ul li:first-child{
 }
 
 nav a {
- color: red;
+ color: #E04;
 }
 
 .nav-left
 {
-	width: 40%;
+	width: 50%;
 	float: left;
 }
 
 .nav-middle
 {
-	width: 40%;
+	width: 30%;
 	float: left;
 }
 
@@ -63,4 +63,51 @@ footer
 footer p {
 	font-size: 8;
 	color: red;
+}
+
+.tag-list {
+    float: left;
+    border: solid 1px #ccc;
+    margin-right: 10px;
+    min-width: 100px;
+    margin-bottom: 10px;
+}
+
+.tag-check {
+    width: 20px;
+    margin: 0;
+    float: left;
+}
+
+.tag-label {
+    float: left;
+}
+
+.main-contain
+{
+	margin-bottom: 30px;
+}
+
+/* nav {
+    display: block;
+    list-style-type: none;
+} */
+
+nav nav {
+    visibility: hidden;
+    position: absolute;
+    opacity: 0;
+    -webkit-transition: all 0.25s linear;
+    height: 0;
+    margin-top: -10px;
+}
+
+nav nav li {
+    float: none;
+}
+
+nav li:hover nav {
+    margin-top: 0;
+    visibility: visible;
+    opacity: 1;
 }
