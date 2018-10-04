@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,10 +42,15 @@ public class TagControllerImpl implements TagController{
 	
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tags" })
-	public String readListTag(Model model, HttpServletRequest request) {
+	public ModelAndView readListTag(HttpServletRequest request) {
 		List<Tag> readTagList = tagService.readTagList(0, 50);
-		model.addAttribute("tagList", readTagList);
-		return "tagList";
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("tagList", readTagList);
+
+		modelAndView.addObject("activeClassMenu", "menu-tags");
+		modelAndView.setViewName("tagList");
+		return modelAndView;
 	}
 
 	@Override

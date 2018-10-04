@@ -14,11 +14,11 @@
 		  </tr>
 		  <tr>
 		    <td>Email: </td>
-		    <td><input type="text" name="email" value=""/></td>
+		    <td><input type="email" name="email" value=""/></td>
 		  </tr>
 		  <tr>
 		  	<td>Password: </td>
-		    <td><input type="text" name="password" value=""/></td>
+		    <td><input type="password" name="password" value=""/></td>
 		    <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
 		  </tr>
 		  

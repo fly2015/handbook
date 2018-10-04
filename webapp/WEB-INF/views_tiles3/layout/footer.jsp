@@ -1,5 +1,5 @@
 
 <footer>
 	<hr>
-	<p>fr.quochien@</p>
+	<p></p>
 </footer>

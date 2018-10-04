@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 public interface AuthenticationController {
-	String home();
+	ModelAndView home();
 	String login();
 	String logout(HttpServletRequest request, HttpServletResponse response);
 	String login(String username, String password, Model model, HttpServletRequest request);

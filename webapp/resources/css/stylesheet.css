@@ -21,12 +21,24 @@ nav ul li:first-child{
 }
 
 nav a {
- color: #E04;
+ 	color: #E04;
+    text-decoration: none;
+    display: inline-block;
+    border: solid 1px;
+    padding: 1px;
+    border-radius: 2px;
+    font-weight: bold;	
 }
+
+nav a:active {
+	color: blueviolet;
+}
+
+
 
 .nav-left
 {
-	width: 50%;
+	width: 40%;
 	float: left;
 }
 
@@ -38,7 +50,7 @@ nav a {
 
 .nav-right
 {
-	width: 20%;
+	width: 30%;
 	float: right;
 }
 
@@ -88,26 +100,17 @@ footer p {
 	margin-bottom: 30px;
 }
 
-/* nav {
-    display: block;
-    list-style-type: none;
-} */
 
-nav nav {
-    visibility: hidden;
-    position: absolute;
-    opacity: 0;
-    -webkit-transition: all 0.25s linear;
-    height: 0;
-    margin-top: -10px;
+
+span.menu-box-item-username {
+    font-weight: bold;
+    color: blueviolet;
+    display: inline-block;
+    border: solid 1px;
+    padding: 1px;
+    border-radius: 2px;
 }
 
-nav nav li {
-    float: none;
-}
-
-nav li:hover nav {
-    margin-top: 0;
-    visibility: visible;
-    opacity: 1;
+.blueviolet{
+	color: blueviolet;
 }

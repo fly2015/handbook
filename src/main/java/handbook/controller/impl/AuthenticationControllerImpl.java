@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import handbook.controller.AuthenticationController;
 
@@ -62,8 +63,11 @@ public class AuthenticationControllerImpl implements AuthenticationController {
 
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/home","/" })
-	public String home() {
-		return "home";
+	public ModelAndView home() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("activeClassMenu", "menu-home");
+		modelAndView.setViewName("home");
+		return modelAndView;
 	}
 
 }

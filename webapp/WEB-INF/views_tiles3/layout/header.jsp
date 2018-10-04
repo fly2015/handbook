@@ -2,18 +2,31 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<c:set var="activeClass" value="${activeClassMenu}"></c:set>
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".${activeClass}").addClass('blueviolet');
+});
+</script>
 <header>
 	<nav>
 		<div class="nav-left">
 			<ul>
-				<li><a href="<c:url value="/" />">Home</a></li>
-				<li><a href="<c:url value="/tags" />">Tags</a></li>
+				<li><a class="menu-home" href="<c:url value="/" />">Home</a></li>
+				<li><a class="menu-tags" href="<c:url value="/tags" />">Tags</a></li>
+				
 				<sec:authorize access="hasRole('ADMIN')">
-					<li><a href="<c:url value="/tag/add" />">+ Tag</a></li>
+					<li><a class="menu-add-tag" href="<c:url value="/tag/add" />">+ Tag</a></li>
+					<li><a href="<c:url value="/" />">Articles</a></li>
 					<li><a href="<c:url value="/article/add" />">+ Article</a></li>
 				</sec:authorize>
-				<li><a href="<c:url value="/" />">Articles</a></li>
-				<li><a href="<c:url value="/" />">Top 10</a></li>
+				
+				<sec:authorize access="hasRole('USER')">
+					<li><a href="<c:url value="/" />">Articles</a></li>
+					<li><a href="<c:url value="/article/add" />">+ Article</a></li>
+				</sec:authorize>
+				
 			</ul>
 		</div>
 		<div class="nav-middle">
@@ -28,9 +41,17 @@
 				<sec:authentication var="principal" property="principal"></sec:authentication>
 
 				<sec:authorize access="isAuthenticated()">
-					<li><c:out value="${principal.username}"></c:out><li>
-					<li><a href="<c:url value="/" />">Your post</a></li>
-					<li><a href="<c:url value="/logout" />">Logout</a></li>
+					<li>
+						<span class="menu-box-item-username"><c:out value="${principal.username}"></c:out></span>
+					<li>
+					
+					<li>
+						<a href="<c:url value="/" />">Yours</a>
+					</li>
+					
+					<li>
+						<a href="<c:url value="/logout" />">Logout</a>
+					</li>
 				</sec:authorize>
 
 				<sec:authorize access="!isAuthenticated()">
