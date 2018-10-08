@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import handbook.controller.AuthenticationController;
+import handbook.controller.HomeController;
 
 @Controller
-public class AuthenticationControllerImpl implements AuthenticationController {
+public class HomeControllerImpl implements HomeController {
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/login"})
 	public String login() {

@@ -111,6 +111,11 @@ span.menu-box-item-username {
     border-radius: 2px;
 }
 
-.blueviolet{
+.activeMenu{
 	color: blueviolet;
+}
+
+footer nav
+{
+	float: right;
 }

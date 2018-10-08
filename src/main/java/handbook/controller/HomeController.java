@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
-public interface AuthenticationController {
+public interface HomeController {
 	ModelAndView home();
 	String login();
 	String logout(HttpServletRequest request, HttpServletResponse response);

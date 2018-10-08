@@ -1,5 +1,9 @@
 
 <footer>
 	<hr>
-	<p></p>
+	<nav>
+		<ul>
+			<li><a href="#">About us</a></li>
+		</ul>
+	</nav>
 </footer>

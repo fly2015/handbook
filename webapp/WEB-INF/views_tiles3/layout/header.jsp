@@ -6,7 +6,7 @@
 <c:set var="activeClass" value="${activeClassMenu}"></c:set>
 <script type="text/javascript">
 $(document).ready(function() {
-	$(".${activeClass}").addClass('blueviolet');
+	$(".${activeClass}").addClass('activeMenu');
 });
 </script>
 <header>
