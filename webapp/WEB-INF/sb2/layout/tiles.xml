@@ -5,18 +5,17 @@
 <tiles-definitions>
 	
 	<definition name="base" template="/WEB-INF/sb2/layout/page.jsp">
-		<put-attribute name="header" value="/WEB-INF/sb2/header.jsp" />
 	</definition>
 	
 	<definition name="login" extends="base">
-		<put-attribute name="loginPage" value="/WEB-INF/sb2/login.jsp" />
+		<put-attribute name="body" value="/WEB-INF/sb2/login.jsp" />
 	</definition>
 	
 	
-	<definition name="home" extends="base">
+	<!-- <definition name="home" extends="base"> -->
 		<!-- <put-attribute name="header" value="/WEB-INF/sb2/header.jsp" /> -->
 		<!-- <put-attribute name="body" value="/WEB-INF/sb2/home.jsp" /> -->
-	</definition>
+	<!-- </definition> -->
 	
 	
 	

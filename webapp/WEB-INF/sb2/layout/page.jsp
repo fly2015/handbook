@@ -38,18 +38,18 @@
 </head>
 <body>
 	
-	<t:insertAttribute name="loginPage" />
-	<div id="wrapper">
+	<t:insertAttribute name="body" />
+	<%-- <div id="wrapper">
 	
-		<%-- <t:insertAttribute name="header" /> --%>
+		<t:insertAttribute name="header" />
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			
-			<%-- <t:insertAttribute name="body" /> --%>
+			<t:insertAttribute name="body" />
 		</div>
 		<!-- /#page-wrapper -->
 		
-	</div>
+	</div> --%>
 	
 	
 	<%-- <script src="<spring:url value="/resources/js/jquery/jquery-3.3.1.min.js" />" type="text/javascript"></script> --%>
