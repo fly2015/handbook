@@ -37,7 +37,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tiles = new TilesConfigurer();
-		tiles.setDefinitions(new String[] { "/WEB-INF/views_tiles3/layout/tiles.xml" });
+		tiles.setDefinitions(new String[] { "/WEB-INF/sb2/layout/tiles.xml" });
 		tiles.setCheckRefresh(true);
 		return tiles;
 	}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	
+	<definition name="base" template="/WEB-INF/sb2/layout/page.jsp">
+		<put-attribute name="header" value="/WEB-INF/sb2/header.jsp" />
+	</definition>
+	
+	<definition name="login" extends="base">
+		<put-attribute name="loginPage" value="/WEB-INF/sb2/login.jsp" />
+	</definition>
+	
+	
+	<definition name="home" extends="base">
+		<!-- <put-attribute name="header" value="/WEB-INF/sb2/header.jsp" /> -->
+		<!-- <put-attribute name="body" value="/WEB-INF/sb2/home.jsp" /> -->
+	</definition>
+	
+	
+	
+	<!--<definition name="register" extends="base">
+		<put-attribute name="body" value="/WEB-INF/sb2/register.jsp" />
+	</definition>
+	
+	<definition name="addNewArticle" extends="base">
+		<put-attribute name="body" value="/WEB-INF/sb2/addNewArticle.jsp" />
+	</definition>
+	
+	<definition name="articleByTag" extends="base">
+		<put-attribute name="body" value="/WEB-INF/sb2/articleByTag.jsp" />
+	</definition>
+	
+	<definition name="articleDetail" extends="base">
+		<put-attribute name="body" value="/WEB-INF/sb2/articleDetail.jsp" />
+	</definition>
+	
+	<definition name="addNewTag" extends="base">
+		<put-attribute name="body" value="/WEB-INF/sb2/addNewTag.jsp" />
+	</definition>
+	
+	<definition name="tagList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/sb2/tagList.jsp" />
+	</definition>
+	
+	<definition name="searchArticleResult" extends="base">
+		<put-attribute name="body" value="/WEB-INF/sb2/searchArticleResult.jsp" />
+	</definition> -->
+</tiles-definitions>

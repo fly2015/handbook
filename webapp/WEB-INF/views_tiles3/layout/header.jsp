@@ -42,16 +42,9 @@ $(document).ready(function() {
 
 				<sec:authorize access="isAuthenticated()">
 					<li>
-						<span class="menu-box-item-username"><c:out value="${principal.username}"></c:out></span>
+						<a class="menu-box-item-username" href="<c:url value="/" />"><c:out value="${principal.username}"></c:out></a>
 					<li>
-					
-					<li>
-						<a href="<c:url value="/" />">Yours</a>
-					</li>
-					
-					<li>
-						<a href="<c:url value="/logout" />">Logout</a>
-					</li>
+					<li><a href="<c:url value="/logout" />">Logout</a></li>
 				</sec:authorize>
 
 				<sec:authorize access="!isAuthenticated()">
@@ -61,7 +54,6 @@ $(document).ready(function() {
 			</ul>
 		</div>
 	</nav>
-	<div>
-	</div>
+	
 </header>
-<hr>
+
