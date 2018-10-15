@@ -8,14 +8,16 @@
 	</definition>
 	
 	<definition name="login" extends="base">
-		<put-attribute name="body" value="/WEB-INF/sb2/login.jsp" />
+		<put-attribute name="loginBody" value="/WEB-INF/sb2/login.jsp" />
 	</definition>
 	
+	<definition name="baseHasHeader" extends="base">
+		<put-attribute name="header" value="/WEB-INF/sb2/layout/header.jsp" />
+	</definition>
 	
-	<!-- <definition name="home" extends="base"> -->
-		<!-- <put-attribute name="header" value="/WEB-INF/sb2/header.jsp" /> -->
-		<!-- <put-attribute name="body" value="/WEB-INF/sb2/home.jsp" /> -->
-	<!-- </definition> -->
+	<definition name="home" extends="baseHasHeader">
+		<put-attribute name="body" value="/WEB-INF/sb2/home.jsp" />
+	</definition>
 	
 	
 	

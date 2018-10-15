@@ -2,7 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="t"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ page session="false"%>	
+<%@ page session="false"%>
+
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,18 +41,21 @@
 </head>
 <body>
 	
-	<t:insertAttribute name="body" />
-	<%-- <div id="wrapper">
+	<sec:authorize access="!isAuthenticated()">
+		<t:insertAttribute name="loginBody" />
+	</sec:authorize>
 	
-		<t:insertAttribute name="header" />
-		<!-- Page Content -->
-		<div id="page-wrapper">
-			
-			<t:insertAttribute name="body" />
+	<sec:authorize access="isAuthenticated()">
+		<div id="wrapper">
+			<t:insertAttribute name="header" />
+			<!-- Page Content -->
+			<div id="page-wrapper">
+				<t:insertAttribute name="body" />
+			</div>
+			<!-- /#page-wrapper -->
 		</div>
-		<!-- /#page-wrapper -->
-		
-	</div> --%>
+	</sec:authorize>
+	
 	
 	
 	<%-- <script src="<spring:url value="/resources/js/jquery/jquery-3.3.1.min.js" />" type="text/javascript"></script> --%>

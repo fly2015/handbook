@@ -8,7 +8,7 @@
 <div class="main-contain">
 	<h4>Login Form</h4>
 	<c:if test="${param.error != null}">
-    <p class="message">
+    <p class="alert alert-danger">
         <spring:message code="message.badCredentials">   
         </spring:message>
     </p>
