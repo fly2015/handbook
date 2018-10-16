@@ -35,8 +35,7 @@
                          </div>
                          <!-- Change this to a button or input when using this as a form -->
                          <input type="submit" class="btn btn-lg btn-success btn-block" value="Login"/>	
-                         <a href="#" class="btn btn-sm btn-danger btn-block">Register</a>
-                         <a href="#" class="btn btn-sm btn-danger btn-block">Forgot password</a>
+                         <a href="<c:url value="/register" />" class="btn btn-primary btn-lg btn-block">Register</a>
                      </fieldset>
                  </form>
                 </div>

@@ -5,26 +5,27 @@
 <tiles-definitions>
 	
 	<definition name="base" template="/WEB-INF/sb2/layout/page.jsp">
-	</definition>
-	
-	<definition name="login" extends="base">
-		<put-attribute name="loginBody" value="/WEB-INF/sb2/login.jsp" />
-	</definition>
-	
-	<definition name="baseHasHeader" extends="base">
+		<put-attribute name="anonymusForm" value="/WEB-INF/sb2/login.jsp" />
 		<put-attribute name="header" value="/WEB-INF/sb2/layout/header.jsp" />
 	</definition>
 	
-	<definition name="home" extends="baseHasHeader">
+	<definition name="login" extends="base">
+		<put-attribute name="anonymusForm" value="/WEB-INF/sb2/login.jsp" />
+	</definition>
+	
+	<definition name="register" extends="base">
+		<put-attribute name="anonymusForm" value="/WEB-INF/sb2/register.jsp" />
+	</definition>
+	
+	<definition name="home" extends="base">
 		<put-attribute name="body" value="/WEB-INF/sb2/home.jsp" />
 	</definition>
 	
-	
-	
-	<!--<definition name="register" extends="base">
+	<definition name="register" extends="base">
 		<put-attribute name="body" value="/WEB-INF/sb2/register.jsp" />
 	</definition>
 	
+
 	<definition name="addNewArticle" extends="base">
 		<put-attribute name="body" value="/WEB-INF/sb2/addNewArticle.jsp" />
 	</definition>
@@ -47,5 +48,5 @@
 	
 	<definition name="searchArticleResult" extends="base">
 		<put-attribute name="body" value="/WEB-INF/sb2/searchArticleResult.jsp" />
-	</definition> -->
+	</definition>
 </tiles-definitions>
