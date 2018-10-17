@@ -20,7 +20,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public Article readArticle(String articleTitleSlug) {
+	public Article readArticleBySlug(String articleTitleSlug) {
 		return dao.readArticleBySlug(articleTitleSlug);
 	}
 
@@ -42,6 +42,11 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public List<Article> searchArticle(String keyword) {
-		return dao.readArticleListByTitle(keyword);
+		return dao.searchArticleListByTitle(keyword);
+	}
+
+	@Override
+	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition) {
+		return dao.readArticleList(numberOfItem, startPosition);
 	}
 }

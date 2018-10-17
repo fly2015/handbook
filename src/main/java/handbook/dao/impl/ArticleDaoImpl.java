@@ -75,7 +75,7 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 	}
 
 	@Override
-	public List<Article> readArticleListByTitle(String keyword) {
+	public List<Article> searchArticleListByTitle(String keyword) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("select DISTINCT(a.article_id), a.article_title, a.article_title_slug, a.article_content from article a, tag t, tag_article ta ");
 		stringBuilder.append("where a.article_id = ta.article_id and t.tag_id = ta.tag_id ");
@@ -85,7 +85,16 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), "%" + keyword + "%");
 		return buildArticleListData(queryForList);
 	}
-
+	
+	@Override
+	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select * from article limit ?, ?");
+		
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
+		return buildArticleListData(queryForList);
+	}
+	
 	private List<Article> buildArticleListData(List<Map<String, Object>> queryForList) {
 		List<Article> articles = new ArrayList<Article>();
 		for (Map<String, Object> map : queryForList) {
@@ -103,4 +112,5 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		article.setArticleContent(map.get("article_content").toString());
 		return article;
 	}
+
 }

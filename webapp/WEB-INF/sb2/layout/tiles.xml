@@ -49,4 +49,8 @@
 	<definition name="searchArticleResult" extends="base">
 		<put-attribute name="body" value="/WEB-INF/sb2/searchArticleResult.jsp" />
 	</definition>
+	
+	<definition name="articleList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/sb2/articleList.jsp" />
+	</definition>
 </tiles-definitions>

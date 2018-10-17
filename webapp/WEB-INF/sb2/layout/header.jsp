@@ -28,12 +28,12 @@
 						Home</a></li>
 				<li><a href="<c:url value="/article/add" />"><i class="glyphicon glyphicon-plus"></i>
 						Article</a></li>
-				<li><a href="#"><i class="fa fa-list-ul	"></i>
+				<li><a href="<c:url value="/articles" />"><i class="fa fa-list-ul	"></i>
 						List Articles</a></li>
 				<li><a href="<c:url value="/tag/add" />"><i class="glyphicon glyphicon-plus-sign"></i>
 						Tag</a></li>		
 				<li><a href="<c:url value="/tags" />"><i class="glyphicon glyphicon-tags"></i>
-						List Tags<span class="fa arrow"></span></a></li>
+						List Tags</a></li>
 						
 				<li><a href="#"><i class="fa fa-user"></i>
 						Yours<span class="fa arrow"></span></a>

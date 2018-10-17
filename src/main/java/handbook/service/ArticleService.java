@@ -8,7 +8,8 @@ import handbook.exception.ProcessException;
 
 public interface ArticleService {
 	List<Article> readArticleListByTag(String tagSlug);
-	Article readArticle(String articleTitleSlug);
+	Article readArticleBySlug(String articleTitleSlug);
 	void addArticle(Article article) throws ProcessException;
 	List<Article> searchArticle(String keyword);
+	List<Article> readArticleList(Integer numberOfItem, Integer startPosition);
 }

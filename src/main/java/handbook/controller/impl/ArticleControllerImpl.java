@@ -50,8 +50,8 @@ public class ArticleControllerImpl implements ArticleController{
 
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/article/{artileTitleSlug}" })
-	public String readArticle(@PathVariable("artileTitleSlug") String articleTitleSlug, Model model) {
-		Article article = articleService.readArticle(articleTitleSlug);
+	public String readArticleBySlug(@PathVariable("artileTitleSlug") String articleTitleSlug, Model model) {
+		Article article = articleService.readArticleBySlug(articleTitleSlug);
 		model.addAttribute(article);
 		return "articleDetail";
 	}
@@ -149,6 +149,20 @@ public class ArticleControllerImpl implements ArticleController{
 		
 		modelAndView.addObject("articleList", articleList);
 		modelAndView.setViewName("searchArticleResult");
+		return modelAndView;
+	}
+
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = { "/articles" })
+	public ModelAndView readArticleList(Integer numberOfItem, Integer startPosition) {
+		
+		numberOfItem = (numberOfItem != null) ? numberOfItem : 30;
+		startPosition = (startPosition != null) ? startPosition: 0;
+		List<Article> articleList = articleService.readArticleList(numberOfItem, startPosition);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("articleList", articleList);
+		modelAndView.setViewName("articleList");
 		return modelAndView;
 	}
 }
