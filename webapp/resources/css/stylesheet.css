@@ -29,6 +29,8 @@ time, mark, audio, video {
 
 body {
     line-height:1;
+    font-family: monospace;
+    font-size: 12px;
 }
 
 article,aside,details,figcaption,figure,
@@ -103,8 +105,19 @@ input, select {
 
 /* End reset css */
 
+
+/* My reset */
+
+ul li{
+	list-style: none;
+}
+	
+/* End My reset */
+
+
+
 #container{
-	width: 1024px;
+	width: 1264px;
 	margin: 0 auto;
 }
 
@@ -119,7 +132,6 @@ nav ul{
 }
 nav ul li{
 	display: inline-block;
-	margin-left: 15px;
 }
 
 nav ul li:first-child{
@@ -127,13 +139,13 @@ nav ul li:first-child{
 }
 
 nav a {
- 	color: orangered;
+ 	color: darkblue;
     text-decoration: none;
     display: inline-block;
     border: solid 1px;
     padding: 1px;
     border-radius: 2px;
-    font-weight: bold;	
+    font-weight: bold;
 }
 
 
@@ -141,6 +153,7 @@ nav a {
 {
 	width: 40%;
 	float: left;
+	margin-top: 2px;
 }
 
 .nav-middle
@@ -153,11 +166,17 @@ nav a {
 {
 	width: 30%;
 	float: right;
+	margin-top: 2px;
 }
 
 .nav-right ul
 {
 	float: right;
+}
+
+.nav-right ul li
+{
+	margin-right:3px;
 }
 
 .tag{
@@ -182,7 +201,7 @@ footer p {
     float: left;
     border: solid 1px #ccc;
     margin-right: 10px;
-    min-width: 100px;
+    min-width: 70px;
     margin-bottom: 10px;
 }
 
@@ -194,6 +213,8 @@ footer p {
 
 .tag-label {
     float: left;
+    margin-right: 5px;
+    margin-top: 3px;
 }
 
 #content
@@ -228,4 +249,29 @@ footer nav
 
 .nav-right ul li:last-child {
 	margin-left: 0px;	
+}
+
+.input-font{
+	font-family: monospace !important;
+	font-weight: bold;
+}
+input{
+	font-family: monospace !important;
+	font-weight: bold;
+}
+
+.article-item{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.tag a
+{
+	float: left;
+    border: solid 1px #ccc;
+    margin-right: 10px;
+    min-width: 70px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-decoration: none;
 }

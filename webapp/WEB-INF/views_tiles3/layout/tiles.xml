@@ -44,4 +44,8 @@
 	<definition name="searchArticleResult" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views_tiles3/searchArticleResult.jsp" />
 	</definition>
+	
+	<definition name="articleList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/articleList.jsp" />
+	</definition>
 </tiles-definitions>

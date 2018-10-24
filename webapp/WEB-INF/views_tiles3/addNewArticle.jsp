@@ -36,7 +36,7 @@
 		  <tr>
 		    <td>Status: </td>
 		    <td>
-		    	<select name="statusId">
+		    	<select class="input-font" name="statusId">
 		    		<c:forEach items="${statusList}" var="status">
 		    			<option value="${status.statusId}">${status.statusName}</option>
 		    		</c:forEach>
@@ -52,7 +52,7 @@
 		  </tr>
 		  <tr>
 		   	<input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
-		    <td colspan="2" align="right"><input type="submit" value="Create"/></td>
+		    <td colspan="2" align="right"><input class="input-font" type="submit" value="Create"/></td>
 		  </tr>
 		</table>
 	</form>

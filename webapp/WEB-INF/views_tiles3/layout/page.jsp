@@ -11,7 +11,7 @@
 <script src="<spring:url value="/resources/js/jquery/jquery-3.3.1.min.js" />" type="text/javascript"></script>
 <script src="<spring:url value="/resources/js/style.js" />" type="text/javascript"></script>
 
-<title>Let's make life easier and make game harder</title>
+<title>Let's make life easier</title>
 </head>
 <body>
 	<div id="container">
