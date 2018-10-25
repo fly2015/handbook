@@ -26,7 +26,7 @@ public class ArticleFormValidation implements Validation {
 			throw new ValidationException("Tags must be selected");
 		}
 		
-		if (article.getStatus() == null && article.getStatus().getStatusId() == null)
+		if (article.getStatus() == null && article.getStatus().getStatusType() == null)
 		{
 			throw new ValidationException("Status must be selected");
 		}

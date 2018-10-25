@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import handbook.constant.StatusType;
+import handbook.constant.VisibleType;
 import handbook.controller.TagController;
 import handbook.dto.Status;
 import handbook.dto.Tag;
@@ -56,7 +58,8 @@ public class TagControllerImpl implements TagController{
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tag/add" })
 	public ModelAndView initAddNewTagForm() {
-		List<Status> statusList = statusService.readStatusList(1);
+		List<Status> statusList = statusService.readStatusList(VisibleType.IS_VISIBLE.getVisibleType(),
+				StatusType.TAG.name());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("statusList", statusList);
@@ -82,8 +85,10 @@ public class TagControllerImpl implements TagController{
 			modelAndView.addObject("message", e.getMessage());
 		}
 		
-		List<Status> statusList = statusService.readStatusList(1);
+		List<Status> statusList =  statusService.readStatusList(VisibleType.IS_VISIBLE.getVisibleType(),
+				StatusType.TAG.name());
 		modelAndView.addObject("statusList", statusList);
+		modelAndView.addObject("message", "Add tag sucessfully");
 		
 		modelAndView.setViewName("addNewTag");
 		return modelAndView;
@@ -100,7 +105,7 @@ public class TagControllerImpl implements TagController{
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
-		User principal = (User) auth.getPrincipal();
+		org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) auth.getPrincipal();
 		
 		User selectedUser = accountService.readUserByUserName(principal.getUsername(), 1);
 		

@@ -14,7 +14,11 @@ public class StatusServiceImpl implements StatusService{
 	@Autowired
 	private StatusDao dao;
 	@Override
-	public List<Status> readStatusList(int isVisible) {
-		return dao.readStatusList(isVisible);
+	public List<Status> readStatusList(int isVisible, String statusType) {
+		return dao.readStatusList(isVisible, statusType);
+	}
+	@Override
+	public Status readStatusByStatusNameAndType(Integer isVisible, String StatusType, String statusName) {
+		return dao.readStatusByStatusNameAndType(isVisible, StatusType, statusName);
 	}
 }

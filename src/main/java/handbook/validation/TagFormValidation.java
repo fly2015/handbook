@@ -21,7 +21,7 @@ public class TagFormValidation implements Validation{
 		
 		if (tag.getStatus() == null || tag.getStatus().getStatusId() == null)
 		{
-			throw new ValidationException("Status must be entered");
+			throw new ValidationException("Status must be selected");
 		}
 		
 		if (tag.getTagName().length() > 100)

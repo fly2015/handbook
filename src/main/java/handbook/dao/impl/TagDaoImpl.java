@@ -36,7 +36,7 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 	@Override
 	public Tag readTagByTagSlug(String tagSlug) {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select * from tag limit tag_name_slug = ?");
+		stringBuilder.append("select * from tag where tag_name_slug = ?");
 		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), tagSlug);
 		if(CollectionUtils.isNotEmpty(queryForList))
 		{

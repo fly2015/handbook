@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import handbook.constant.StatusType;
+import handbook.constant.VisibleType;
 import handbook.controller.ArticleController;
 import handbook.dto.Article;
 import handbook.dto.Status;
@@ -59,7 +61,8 @@ public class ArticleControllerImpl implements ArticleController{
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/article/add" })
 	public ModelAndView initAddNewArticleForm() {
-		List<Status> statusList = statusService.readStatusList(1);
+		List<Status> statusList =  statusService.readStatusList(VisibleType.IS_VISIBLE.getVisibleType(),
+				StatusType.ARTICLE.name());
 		List<Tag> tagList = tagService.readTagList(0, 50);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("addNewArticle");
@@ -89,7 +92,8 @@ public class ArticleControllerImpl implements ArticleController{
 		}
 		
 		//init form
-		List<Status> statusList = statusService.readStatusList(1);
+		List<Status> statusList = statusService.readStatusList(VisibleType.IS_VISIBLE.getVisibleType(),
+				StatusType.ARTICLE.name());
 		List<Tag> tagList = tagService.readTagList(0, 50);
 		modelAndView.setViewName("addNewArticle");
 		modelAndView.addObject("statusList", statusList);

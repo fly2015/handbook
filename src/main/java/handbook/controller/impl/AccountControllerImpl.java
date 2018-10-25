@@ -1,5 +1,6 @@
 package handbook.controller.impl;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import handbook.constant.StatusName;
+import handbook.constant.StatusType;
+import handbook.constant.VisibleType;
 import handbook.controller.AccountController;
 import handbook.dto.Role;
 import handbook.dto.Status;
@@ -16,6 +20,7 @@ import handbook.dto.User;
 import handbook.exception.ProcessException;
 import handbook.exception.ValidationException;
 import handbook.service.AccountService;
+import handbook.service.StatusService;
 import handbook.validation.RegisterFormValidation;
 @Controller
 public class AccountControllerImpl implements AccountController{
@@ -26,6 +31,8 @@ public class AccountControllerImpl implements AccountController{
 	@Autowired
 	private RegisterFormValidation validation;
 	
+	@Autowired
+	private StatusService statusService;
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/register"})
 	public String initRegisterForm() {
@@ -65,8 +72,10 @@ public class AccountControllerImpl implements AccountController{
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(email);
+		
 		Status status = new Status();
-		status.setStatusId(0);
+		Status selectedStatus = statusService.readStatusByStatusNameAndType(VisibleType.IS_VISIBLE.getVisibleType(), StatusType.USER.name(), StatusName.ACTIVE.name());
+		status.setStatusId(selectedStatus.getStatusId());
 		user.setStatus(status );
 		User createdUser = new User();
 		createdUser.setUserId(0);
