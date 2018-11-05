@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
+import handbook.constant.FilterOption;
 import handbook.dao.ArticleDao;
 import handbook.dto.Article;
 import handbook.dto.Tag;
@@ -113,4 +115,42 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		return article;
 	}
 
+	@Override
+	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, List<String> filters) {
+		if(CollectionUtils.isEmpty(filters))
+		{
+			return readArticleList(numberOfItem, startPosition);
+		}
+		
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select * from article");
+		
+		if(hasFilter(filters, FilterOption.TOP_USEFUL_ARTICLE))
+		{
+			
+		}
+		
+		if(hasFilter(filters, FilterOption.TOP_NEWEST_ARTICLE))
+		{
+			stringBuilder.append(" order by article_id desc");
+		}
+		
+		stringBuilder.append(" limit ?, ?");
+		
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
+		return buildArticleListData(queryForList);
+	}
+
+	private boolean hasFilter(List<String> filters, String filterOption)
+	{
+		for (String filter : filters) {
+			if(filterOption.equals(filter))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

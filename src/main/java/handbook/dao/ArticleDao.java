@@ -17,4 +17,5 @@ public interface ArticleDao {
 	void writeRelationArticleAndTags(Article article) throws ProcessException;
 	List<Article> searchArticleListByTitle(String keyword);
 	List<Article> readArticleList(Integer numberOfItem, Integer startPosition);
+	List<Article> readArticleList(Integer numberOfItem, Integer startPosition, List<String> filters);
 }

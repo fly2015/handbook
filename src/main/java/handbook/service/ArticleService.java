@@ -12,4 +12,5 @@ public interface ArticleService {
 	void addArticle(Article article) throws ProcessException;
 	List<Article> searchArticle(String keyword);
 	List<Article> readArticleList(Integer numberOfItem, Integer startPosition);
+	List<Article> readArticleList(Integer numberOfItem, Integer startPosition, List<String> filters);
 }

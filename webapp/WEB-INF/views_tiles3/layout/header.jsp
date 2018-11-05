@@ -47,7 +47,7 @@ $(document).ready(function() {
 
 				<sec:authorize access="isAuthenticated()">
 					<li>
-						<a class="menu-box-item-username" href="<c:url value="/" />"><c:out value="${principal.username}"></c:out>(details)</a>
+						<a class="menu-box-item-username" href="<c:url value="/" />"><c:out value="${principal.username}"></c:out></a>
 					<li>
 					<li><a href="<c:url value="/logout" />">Logout</a></li>
 				</sec:authorize>

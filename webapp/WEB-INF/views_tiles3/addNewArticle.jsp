@@ -4,7 +4,7 @@
 
 
 <div class="main-contain">
-	<h4>Add New Article Form</h4>
+	<h3>Add New Article Form</h3>
 
 	<spring:url value="/article/add" var="actionUrl" />
 	<p class="message"><c:out value="${message}"></c:out></p>

@@ -2,12 +2,25 @@
 
 
 <div class="main-contain">
-	<h3>List of Articles</h3>
+	<h3><span>>> </span>List of Articles</h3>
 	
 	<div class="article-list">
-		<c:forEach items="${articleList}" var="article">
-			<div class="article-item"><a href="<c:url value="/article/${article.articleTitleSlug}"/> "><c:out value="${article.articleTitle}"></c:out></a></div>
-		</c:forEach>	
+		<c:forEach items="${articleList}" var="article" varStatus="theCount">
+			<div class="article-item">
+				<span>${theCount.count}. </span>
+				<a href="<c:url value="/article/${article.articleTitleSlug}"/> "><c:out value="${article.articleTitle}"></c:out></a>
+			</div>
+		</c:forEach>
+		<div class="pagination">
+		  <a href="#">&laquo;</a>
+		  <a href="#">1</a>
+		  <a href="#">2</a>
+		  <a href="#">3</a>
+		  <a href="#">4</a>
+		  <a href="#">5</a>
+		  <a href="#">6</a>
+		  <a href="#">&raquo;</a>
+		</div>
 	</div>
 </div>
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import handbook.constant.Pagination;
 import handbook.constant.StatusType;
 import handbook.constant.VisibleType;
 import handbook.controller.ArticleController;
@@ -160,8 +161,8 @@ public class ArticleControllerImpl implements ArticleController{
 	@RequestMapping(method = RequestMethod.GET, value = { "/articles" })
 	public ModelAndView readArticleList(Integer numberOfItem, Integer startPosition) {
 		
-		numberOfItem = (numberOfItem != null) ? numberOfItem : 30;
-		startPosition = (startPosition != null) ? startPosition: 0;
+		numberOfItem = (numberOfItem != null) ? numberOfItem : Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE;
+		startPosition = (startPosition != null) ? startPosition: Pagination.START_POSITION_ARTICLES_PAGE;
 		List<Article> articleList = articleService.readArticleList(numberOfItem, startPosition);
 		
 		ModelAndView modelAndView = new ModelAndView();

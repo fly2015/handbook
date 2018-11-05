@@ -4,9 +4,13 @@
  */
 package handbook.controller.impl;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -17,10 +21,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import handbook.constant.FilterOption;
+import handbook.constant.Pagination;
 import handbook.controller.HomeController;
+import handbook.dto.Article;
+import handbook.service.ArticleService;
 
 @Controller
 public class HomeControllerImpl implements HomeController {
+	@Autowired
+	private ArticleService articleService;
+	
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/login"})
 	public String login() {
@@ -66,6 +77,15 @@ public class HomeControllerImpl implements HomeController {
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("activeClassMenu", "menu-home");
+		
+		List<Article> topUserfulArticles = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_HOME,
+				Pagination.START_POSITION_ARTICLES_HOME, Arrays.asList(FilterOption.TOP_USEFUL_ARTICLE));
+		modelAndView.addObject("topUserfulArticles", topUserfulArticles);
+		
+		List<Article> topNewestArticles = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_HOME,
+				Pagination.START_POSITION_ARTICLES_HOME, Arrays.asList(FilterOption.TOP_NEWEST_ARTICLE));
+		
+		modelAndView.addObject("topNewestArticles", topNewestArticles);
 		modelAndView.setViewName("home");
 		return modelAndView;
 	}
