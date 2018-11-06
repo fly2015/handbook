@@ -11,7 +11,8 @@
 				<a href="<c:url value="/article/${article.articleTitleSlug}"/> "><c:out value="${article.articleTitle}"></c:out></a>
 			</div>
 		</c:forEach>
-		<div class="pagination">
+	</div>
+	<div class="pagination">
 		  <a href="#">&laquo;</a>
 		  <a href="#">1</a>
 		  <a href="#">2</a>
@@ -20,7 +21,6 @@
 		  <a href="#">5</a>
 		  <a href="#">6</a>
 		  <a href="#">&raquo;</a>
-		</div>
 	</div>
 </div>
 

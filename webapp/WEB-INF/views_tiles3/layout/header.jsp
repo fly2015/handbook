@@ -5,9 +5,9 @@
 
 <c:set var="activeClass" value="${activeClassMenu}"></c:set>
 <script type="text/javascript">
-$(document).ready(function() {
+/* $(document).ready(function() {
 	$(".${activeClass}").addClass('activeMenu');
-});
+}); */
 </script>
 <header>
 	<nav class="nav-header">
