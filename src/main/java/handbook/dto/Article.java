@@ -11,6 +11,7 @@ public class Article extends AbstractDto {
 	private String articleTitle;
 	private String articleTitleSlug;
 	private String articleContent;
+	private Integer sequence;
 	private Set<Tag> tags;	
 
 	public Set<Tag> getTags() {
@@ -51,6 +52,14 @@ public class Article extends AbstractDto {
 
 	public void setArticleContent(String articleContent) {
 		this.articleContent = articleContent;
+	}
+
+	public Integer getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(Integer sequence) {
+		this.sequence = sequence;
 	}
 
 }

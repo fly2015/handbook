@@ -5,15 +5,14 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
   version="2.0">
   
-  <display-name>Custom EL Functions</display-name>    
+   <display-name>Custom EL Functions</display-name>    
    <tlib-version>1.0</tlib-version>
-   <short-name>ex</short-name>
-   <uri>/WEB-INF/tld/custom</uri>
+   <short-name>cfn</short-name>
+   <uri>customtld</uri>
    
-
    <function>
    	<name>formatArticleIndex</name>
     <function-class>hanbook.util.JSTLFunctionUtils</function-class>
-    <function-signature>java.lang.String formatArticleIndex(java.lang.String)</function-signature>
+    <function-signature>java.lang.String formatArticleIndex( int )</function-signature>
   </function>
 </taglib>

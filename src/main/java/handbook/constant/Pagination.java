@@ -6,4 +6,11 @@ public class Pagination {
 	
 	public final static int START_POSITION_ARTICLES_PAGE = 0;
 	public final static int NUMBER_OF_ITEM_ARTICLES_PAGE = 20;
+	
+	public final static int START_POSITION_TAG_PAGE = 0;
+	public final static int NUMBER_OF_ITEM_TAG_PAGE = 50;
+	
+	
+	public final static int START_POSITION_ADD_ARTICLE_PAGE = 0;
+	public final static int NUMBER_OF_ITEM_ADD_ARTICLE_PAGE = 20;
 }

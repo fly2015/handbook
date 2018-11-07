@@ -11,6 +11,7 @@ import handbook.exception.ProcessException;
 
 public interface TagDao {
 	List<Tag> readListTag(Integer startPosition, Integer numberOfItem);
+	List<Tag> readListTag(Integer startPosition, Integer numberOfItem, Integer statusId);
 	Tag readTag(Integer tagId);
 	Tag readTagByTagSlug(String tagSlug);
 	void writeTag(Tag tag) throws ProcessException;

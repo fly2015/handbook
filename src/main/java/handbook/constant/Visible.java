@@ -1,12 +1,12 @@
 package handbook.constant;
 
-public enum VisibleType {
+public enum Visible {
 	IS_VISIBLE(1),
 	IS_NOT_VISIBLE(0);
 	
 	private final Integer visible;
 
-	VisibleType(Integer visible)
+	Visible(Integer visible)
 	{
 		this.visible = visible;
 	}

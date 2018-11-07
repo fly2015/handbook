@@ -18,7 +18,7 @@ public class StatusServiceImpl implements StatusService{
 		return dao.readStatusList(isVisible, statusType);
 	}
 	@Override
-	public Status readStatusByStatusNameAndType(Integer isVisible, String StatusType, String statusName) {
-		return dao.readStatusByStatusNameAndType(isVisible, StatusType, statusName);
+	public Status readStatusByStatusNameAndType(Integer isVisible, String statusType, String statusName) {
+		return dao.readStatusByStatusNameAndType(isVisible, statusType, statusName);
 	}
 }

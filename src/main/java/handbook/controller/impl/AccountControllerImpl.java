@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import handbook.constant.StatusName;
+import handbook.constant.AccountStatus;
 import handbook.constant.StatusType;
-import handbook.constant.VisibleType;
+import handbook.constant.Visible;
 import handbook.controller.AccountController;
 import handbook.dto.Role;
 import handbook.dto.Status;
@@ -74,7 +74,7 @@ public class AccountControllerImpl implements AccountController{
 		user.setEmail(email);
 		
 		Status status = new Status();
-		Status selectedStatus = statusService.readStatusByStatusNameAndType(VisibleType.IS_VISIBLE.getVisibleType(), StatusType.USER.name(), StatusName.ACTIVE.name());
+		Status selectedStatus = statusService.readStatusByStatusNameAndType(Visible.IS_VISIBLE.getVisibleType(), StatusType.USER.name(), AccountStatus.INACTIVE.name());
 		status.setStatusId(selectedStatus.getStatusId());
 		user.setStatus(status );
 		User createdUser = new User();

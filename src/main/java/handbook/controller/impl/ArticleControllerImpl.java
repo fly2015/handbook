@@ -18,7 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import handbook.constant.Pagination;
 import handbook.constant.StatusType;
-import handbook.constant.VisibleType;
+import handbook.constant.TagStatus;
+import handbook.constant.Visible;
 import handbook.controller.ArticleController;
 import handbook.dto.Article;
 import handbook.dto.Status;
@@ -62,9 +63,13 @@ public class ArticleControllerImpl implements ArticleController{
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/article/add" })
 	public ModelAndView initAddNewArticleForm() {
-		List<Status> statusList =  statusService.readStatusList(VisibleType.IS_VISIBLE.getVisibleType(),
+		List<Status> statusList =  statusService.readStatusList(Visible.IS_VISIBLE.getVisibleType(),
 				StatusType.ARTICLE.name());
-		List<Tag> tagList = tagService.readTagList(0, 50);
+		
+		List<Tag> tagList = tagService.readTagList(Pagination.START_POSITION_ADD_ARTICLE_PAGE, 
+				Pagination.NUMBER_OF_ITEM_ADD_ARTICLE_PAGE,
+				TagStatus.ENABLE);
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("addNewArticle");
 		modelAndView.addObject("statusList", statusList);
@@ -93,9 +98,13 @@ public class ArticleControllerImpl implements ArticleController{
 		}
 		
 		//init form
-		List<Status> statusList = statusService.readStatusList(VisibleType.IS_VISIBLE.getVisibleType(),
+		List<Status> statusList = statusService.readStatusList(Visible.IS_VISIBLE.getVisibleType(),
 				StatusType.ARTICLE.name());
-		List<Tag> tagList = tagService.readTagList(0, 50);
+		
+		List<Tag> tagList = tagService.readTagList(Pagination.START_POSITION_ADD_ARTICLE_PAGE, 
+				Pagination.NUMBER_OF_ITEM_ADD_ARTICLE_PAGE,
+				TagStatus.ENABLE);
+		
 		modelAndView.setViewName("addNewArticle");
 		modelAndView.addObject("statusList", statusList);
 		modelAndView.addObject("tagList", tagList);

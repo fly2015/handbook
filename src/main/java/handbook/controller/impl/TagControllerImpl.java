@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import handbook.constant.Pagination;
 import handbook.constant.StatusType;
-import handbook.constant.VisibleType;
+import handbook.constant.TagStatus;
+import handbook.constant.Visible;
 import handbook.controller.TagController;
 import handbook.dto.Status;
 import handbook.dto.Tag;
@@ -45,7 +48,9 @@ public class TagControllerImpl implements TagController{
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tags" })
 	public ModelAndView readListTag(HttpServletRequest request) {
-		List<Tag> readTagList = tagService.readTagList(0, 50);
+		List<Tag> readTagList = tagService.readTagList(Pagination.START_POSITION_TAG_PAGE, 
+				Pagination.NUMBER_OF_ITEM_TAG_PAGE,
+				TagStatus.ENABLE);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("tagList", readTagList);
@@ -58,7 +63,7 @@ public class TagControllerImpl implements TagController{
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tag/add" })
 	public ModelAndView initAddNewTagForm() {
-		List<Status> statusList = statusService.readStatusList(VisibleType.IS_VISIBLE.getVisibleType(),
+		List<Status> statusList = statusService.readStatusList(Visible.IS_VISIBLE.getVisibleType(),
 				StatusType.TAG.name());
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -76,6 +81,8 @@ public class TagControllerImpl implements TagController{
 		{
 			validation.validate(tag);
 			tagService.addNewtagList(tag);
+			
+			modelAndView.addObject("message", "Add tag sucessfully");
 		}
 		catch (ProcessException e)
 		{
@@ -85,10 +92,9 @@ public class TagControllerImpl implements TagController{
 			modelAndView.addObject("message", e.getMessage());
 		}
 		
-		List<Status> statusList =  statusService.readStatusList(VisibleType.IS_VISIBLE.getVisibleType(),
+		List<Status> statusList =  statusService.readStatusList(Visible.IS_VISIBLE.getVisibleType(),
 				StatusType.TAG.name());
 		modelAndView.addObject("statusList", statusList);
-		modelAndView.addObject("message", "Add tag sucessfully");
 		
 		modelAndView.setViewName("addNewTag");
 		return modelAndView;

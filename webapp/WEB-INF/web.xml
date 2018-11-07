@@ -5,7 +5,7 @@
 
 	<jsp-config>
 	     <taglib>
-	         <taglib-uri>/WEB-INF/tld/custom</taglib-uri>
+	         <taglib-uri>customtld</taglib-uri>
 	         <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
 	     </taglib>
 	</jsp-config>

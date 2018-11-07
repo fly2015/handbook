@@ -16,8 +16,8 @@
 				<sec:authorize access="hasRole('ADMIN')">
 					<li><a class="menu-home" href="<c:url value="/" />">Home</a></li>
 					<li><a class="menu-tags" href="<c:url value="/tags" />">Tags</a></li>
-					<li><a class="menu-add-tag" href="<c:url value="/tag/add" />">+Tag</a></li>
 					<li><a href="<c:url value="/articles" />">Articles</a></li>
+					<li><a class="menu-add-tag" href="<c:url value="/tag/add" />">+Tag</a></li>
 					<li><a href="<c:url value="/article/add" />">+Article</a></li>
 				</sec:authorize>
 				

@@ -1,4 +1,5 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="customtld" prefix="cfn" %>
 
 
 <div class="main-contain">
@@ -7,8 +8,10 @@
 	<div class="article-list">
 		<c:forEach items="${articleList}" var="article" varStatus="theCount">
 			<div class="article-item">
-				<span>${theCount.count}. </span>
-				<a href="<c:url value="/article/${article.articleTitleSlug}"/> "><c:out value="${article.articleTitle}"></c:out></a>
+				<a href="<c:url value="/article/${article.articleTitleSlug}"/> ">
+					<span class="artile-list-item">${cfn:formatArticleIndex(article.articleId)}. </span>
+					<c:out value="${article.articleTitle}"></c:out>
+				</a>
 			</div>
 		</c:forEach>
 	</div>

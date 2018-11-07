@@ -1,7 +1,7 @@
 package hanbook.util;
 
-public final class JSTLFunctionUtils {
-	public String formatArticleIndex(String number)
+public class JSTLFunctionUtils {
+	public static String formatArticleIndex(int number)
 	{
 		return String.format("%05d", number);
 	}

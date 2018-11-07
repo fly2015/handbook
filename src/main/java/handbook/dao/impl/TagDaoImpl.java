@@ -28,6 +28,15 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 	}
 
 	@Override
+	public List<Tag> readListTag(Integer startPosition, Integer numberOfItem, Integer statusId) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select * from tag where status_id = ? limit ?, ?");
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), statusId, startPosition, numberOfItem);
+		
+		return buildTagList(queryForList);
+	}
+	
+	@Override
 	public Tag readTag(Integer tagId) {
 		// TODO Auto-generated method stub
 		return null;
@@ -80,5 +89,4 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 		}
 		
 	}
-
 }
