@@ -18,19 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import hanbook.util.StatusUtils;
 import handbook.constant.Pagination;
 import handbook.constant.StatusType;
 import handbook.constant.TagStatus;
-import handbook.constant.Visible;
 import handbook.controller.TagController;
-import handbook.dto.Status;
 import handbook.dto.Tag;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
 import handbook.exception.ValidationException;
 import handbook.service.AccountService;
-import handbook.service.StatusService;
 import handbook.service.TagService;
 import handbook.validation.TagFormValidation;
 @Controller
@@ -41,8 +38,6 @@ public class TagControllerImpl implements TagController{
 	@Autowired
 	private TagService tagService;
 	@Autowired
-	private StatusService statusService;
-	@Autowired
 	private TagFormValidation validation;
 	
 	@Override
@@ -50,7 +45,7 @@ public class TagControllerImpl implements TagController{
 	public ModelAndView readListTag(HttpServletRequest request) {
 		List<Tag> readTagList = tagService.readTagList(Pagination.START_POSITION_TAG_PAGE, 
 				Pagination.NUMBER_OF_ITEM_TAG_PAGE,
-				TagStatus.ENABLE);
+				TagStatus.ENABLE.getStatus());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("tagList", readTagList);
@@ -63,11 +58,10 @@ public class TagControllerImpl implements TagController{
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tag/add" })
 	public ModelAndView initAddNewTagForm() {
-		List<Status> statusList = statusService.readStatusList(Visible.IS_VISIBLE.getVisibleType(),
-				StatusType.TAG.name());
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("statusList", statusList);
+		
+		modelAndView.addObject("statusList", StatusUtils.getInstance().buildStatusList(StatusType.TAG));
 		modelAndView.setViewName("addNewTag");
 		return modelAndView;
 	}
@@ -92,9 +86,7 @@ public class TagControllerImpl implements TagController{
 			modelAndView.addObject("message", e.getMessage());
 		}
 		
-		List<Status> statusList =  statusService.readStatusList(Visible.IS_VISIBLE.getVisibleType(),
-				StatusType.TAG.name());
-		modelAndView.addObject("statusList", statusList);
+		modelAndView.addObject("statusList", StatusUtils.getInstance().buildStatusList(StatusType.TAG));
 		
 		modelAndView.setViewName("addNewTag");
 		return modelAndView;
@@ -105,9 +97,8 @@ public class TagControllerImpl implements TagController{
 		tag.setTagName(request.getParameter("tagName"));
 		String slug = StringUtils.replaceAll(request.getParameter("tagName"), " ", "-");
 		tag.setTagNameSlug(slug);
-		Status status = new Status();
-		status.setStatusId(Integer.valueOf(request.getParameter("statusId")));
-		tag.setStatus(status);
+
+		tag.setStatusId(Integer.valueOf(request.getParameter("statusId")));
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		

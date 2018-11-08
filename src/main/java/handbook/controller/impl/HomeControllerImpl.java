@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import handbook.constant.ArticleStatus;
 import handbook.constant.FilterOption;
 import handbook.constant.Pagination;
 import handbook.controller.HomeController;
@@ -79,11 +80,16 @@ public class HomeControllerImpl implements HomeController {
 		modelAndView.addObject("activeClassMenu", "menu-home");
 		
 		List<Article> topUserfulArticles = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_HOME,
-				Pagination.START_POSITION_ARTICLES_HOME, Arrays.asList(FilterOption.TOP_USEFUL_ARTICLE));
+				ArticleStatus.ENABLE.getStatus(),
+				Pagination.START_POSITION_ARTICLES_HOME, 
+				Arrays.asList(FilterOption.TOP_USEFUL_ARTICLE));
+		
 		modelAndView.addObject("topUserfulArticles", topUserfulArticles);
 		
 		List<Article> topNewestArticles = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_HOME,
-				Pagination.START_POSITION_ARTICLES_HOME, Arrays.asList(FilterOption.TOP_NEWEST_ARTICLE));
+				ArticleStatus.ENABLE.getStatus(),
+				Pagination.START_POSITION_ARTICLES_HOME, 
+				Arrays.asList(FilterOption.TOP_NEWEST_ARTICLE));
 		
 		modelAndView.addObject("topNewestArticles", topNewestArticles);
 		modelAndView.setViewName("home");

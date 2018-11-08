@@ -81,7 +81,7 @@ public class TagDaoImpl extends AbstractDao implements TagDao{
 		sql.append("VALUES (?, ?, ?, ?, ?)");
 		try
 		{
-			jdbc.update(sql.toString(), tag.getTagName(), tag.getTagNameSlug(), tag.getStatus().getStatusId(),
+			jdbc.update(sql.toString(), tag.getTagName(), tag.getTagNameSlug(), tag.getStatusId(),
 					tag.getCreatedByUser().getUserId(), tag.getLastModifiedUser().getUserId());
 		}
 		catch (Exception e) {

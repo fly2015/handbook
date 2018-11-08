@@ -7,20 +7,12 @@ package handbook.dto;
 import java.util.Date;
 
 public class AbstractDto {
-	private Status status;
+	private Integer statusId;
 	private User createdByUser;
 	private User lastModifiedUser;
 	private Date createdDate;
 	private Date lastModifiedDate;
 	
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
 	public User getCreatedByUser() {
 		return createdByUser;
 	}
@@ -51,5 +43,13 @@ public class AbstractDto {
 
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public Integer getStatusId() {
+		return statusId;
+	}
+
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
 	}
 }

@@ -17,15 +17,17 @@
 			</tr>
 			<tr>
 				<td>Status:</td>
-				<td><select class="input-font" name="statusId">
-						<c:forEach items="${statusList}" var="status">
-							<option value="${status.statusId}">${status.statusName}</option>
-						</c:forEach>
-				</select></td>
+				<td>
+					<select class="input-font" name="statusId">
+							<c:forEach items="${statusList}" var="status">
+								<option value="${status.key}">${status.value}</option>
+							</c:forEach>
+					</select>
+				</td>
 			</tr>
 			<tr>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<td colspan="2" align="right">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input class="input-font"type="submit" value="Create" />
 				</td>
 			</tr>

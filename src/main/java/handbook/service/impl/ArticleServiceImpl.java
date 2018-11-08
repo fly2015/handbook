@@ -46,12 +46,12 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition) {
-		return dao.readArticleList(numberOfItem, startPosition);
+	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId) {
+		return dao.readArticleList(numberOfItem, startPosition, statusId);
 	}
 
 	@Override
-	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, List<String> filters) {
-		return dao.readArticleList(numberOfItem, startPosition, filters);
+	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId, List<String> filters) {
+		return dao.readArticleList(numberOfItem, startPosition, statusId,  filters);
 	}
 }

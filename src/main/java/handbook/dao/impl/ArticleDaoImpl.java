@@ -59,7 +59,7 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		args[0] = article.getArticleTitle();
 		args[1] = article.getArticleTitleSlug();
 		args[2] = article.getArticleContent();
-		args[3] = article.getStatus().getStatusId();
+		args[3] = article.getStatusId();
 		args[4] = article.getCreatedByUser().getUserId();
 		args[5] = article.getLastModifiedUser().getUserId();
 		jdbc.update(sql.toString(), args);
@@ -89,8 +89,13 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 	}
 	
 	@Override
-	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition) {
+	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId) {
 		StringBuilder stringBuilder = new StringBuilder();
+		
+		if (statusId != null)
+		{
+			
+		}
 		stringBuilder.append("select * from article limit ?, ?");
 		
 		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
@@ -116,10 +121,10 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 	}
 
 	@Override
-	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, List<String> filters) {
+	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId, List<String> filters) {
 		if(CollectionUtils.isEmpty(filters))
 		{
-			return readArticleList(numberOfItem, startPosition);
+			return readArticleList(numberOfItem, startPosition, statusId);
 		}
 		
 		

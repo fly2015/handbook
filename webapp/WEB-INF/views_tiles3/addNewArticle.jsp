@@ -38,7 +38,7 @@
 		    <td>
 		    	<select class="input-font" name="statusId">
 		    		<c:forEach items="${statusList}" var="status">
-		    			<option value="${status.statusId}">${status.statusName}</option>
+		    			<option value="${status.key}">${status.value}</option>
 		    		</c:forEach>
 		    	</select>
 		    </td>

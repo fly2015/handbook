@@ -1,11 +1,11 @@
 package handbook.constant;
 
-public enum ArticleStatus {
-	DISABLE(0),
-	ENABLE(1);
+public enum UserStatus {
+	INACTIVE(0),
+	ACTIVE(1);
 	
 	final Integer status;
-	ArticleStatus(Integer status) 
+	UserStatus(Integer status) 
 	{
 		this.status = status;
 	}

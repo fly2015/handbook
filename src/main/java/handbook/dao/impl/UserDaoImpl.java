@@ -106,7 +106,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 		try 
 		{
 			jdbc.update(sql.toString(), user.getUsername(), user.getEmail(), user.getPassword(), 
-					user.getStatus().getStatusId(),  user.getCreatedByUser().getUserId(), user.getLastModifiedUser().getUserId());
+					user.getStatusId(),  user.getCreatedByUser().getUserId(), user.getLastModifiedUser().getUserId());
 		} catch (Exception e) 
 		{
 			throw new ProcessException("Register fails");

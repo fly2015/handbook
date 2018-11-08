@@ -10,17 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import handbook.constant.AccountStatus;
-import handbook.constant.StatusType;
-import handbook.constant.Visible;
+import handbook.constant.UserStatus;
 import handbook.controller.AccountController;
 import handbook.dto.Role;
-import handbook.dto.Status;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
 import handbook.exception.ValidationException;
 import handbook.service.AccountService;
-import handbook.service.StatusService;
 import handbook.validation.RegisterFormValidation;
 @Controller
 public class AccountControllerImpl implements AccountController{
@@ -31,8 +27,6 @@ public class AccountControllerImpl implements AccountController{
 	@Autowired
 	private RegisterFormValidation validation;
 	
-	@Autowired
-	private StatusService statusService;
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/register"})
 	public String initRegisterForm() {
@@ -73,10 +67,7 @@ public class AccountControllerImpl implements AccountController{
 		user.setPassword(password);
 		user.setEmail(email);
 		
-		Status status = new Status();
-		Status selectedStatus = statusService.readStatusByStatusNameAndType(Visible.IS_VISIBLE.getVisibleType(), StatusType.USER.name(), AccountStatus.INACTIVE.name());
-		status.setStatusId(selectedStatus.getStatusId());
-		user.setStatus(status );
+		user.setStatusId(UserStatus.INACTIVE.getStatus());
 		User createdUser = new User();
 		createdUser.setUserId(0);
 		user.setCreatedByUser(createdUser);

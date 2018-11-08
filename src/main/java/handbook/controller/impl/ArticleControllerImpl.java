@@ -16,19 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import hanbook.util.StatusUtils;
+import handbook.constant.ArticleStatus;
 import handbook.constant.Pagination;
 import handbook.constant.StatusType;
 import handbook.constant.TagStatus;
-import handbook.constant.Visible;
 import handbook.controller.ArticleController;
 import handbook.dto.Article;
-import handbook.dto.Status;
 import handbook.dto.Tag;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
 import handbook.exception.ValidationException;
 import handbook.service.ArticleService;
-import handbook.service.StatusService;
 import handbook.service.TagService;
 import handbook.validation.ArticleFormValidation;
 
@@ -36,8 +35,6 @@ import handbook.validation.ArticleFormValidation;
 public class ArticleControllerImpl implements ArticleController{
 	@Autowired
 	private ArticleService articleService;
-	@Autowired
-	private StatusService statusService;
 	@Autowired
 	private TagService tagService;
 	
@@ -63,16 +60,13 @@ public class ArticleControllerImpl implements ArticleController{
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/article/add" })
 	public ModelAndView initAddNewArticleForm() {
-		List<Status> statusList =  statusService.readStatusList(Visible.IS_VISIBLE.getVisibleType(),
-				StatusType.ARTICLE.name());
-		
 		List<Tag> tagList = tagService.readTagList(Pagination.START_POSITION_ADD_ARTICLE_PAGE, 
 				Pagination.NUMBER_OF_ITEM_ADD_ARTICLE_PAGE,
-				TagStatus.ENABLE);
+				TagStatus.ENABLE.getStatus());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("addNewArticle");
-		modelAndView.addObject("statusList", statusList);
+		modelAndView.addObject("statusList", StatusUtils.getInstance().buildStatusList(StatusType.ARTICLE));
 		modelAndView.addObject("tagList", tagList);
 		return modelAndView;
 	}
@@ -97,16 +91,13 @@ public class ArticleControllerImpl implements ArticleController{
 			modelAndView.addObject("message", "Unsuccessful !");
 		}
 		
-		//init form
-		List<Status> statusList = statusService.readStatusList(Visible.IS_VISIBLE.getVisibleType(),
-				StatusType.ARTICLE.name());
 		
 		List<Tag> tagList = tagService.readTagList(Pagination.START_POSITION_ADD_ARTICLE_PAGE, 
 				Pagination.NUMBER_OF_ITEM_ADD_ARTICLE_PAGE,
-				TagStatus.ENABLE);
+				TagStatus.ENABLE.getStatus());
 		
 		modelAndView.setViewName("addNewArticle");
-		modelAndView.addObject("statusList", statusList);
+		modelAndView.addObject("statusList", StatusUtils.getInstance().buildStatusList(StatusType.ARTICLE));
 		modelAndView.addObject("tagList", tagList);
 		
 		return modelAndView;
@@ -143,9 +134,7 @@ public class ArticleControllerImpl implements ArticleController{
 
 		article.setTags(tags);
 		
-		Status status = new Status();
-		status.setStatusId(Integer.valueOf(request.getParameter("statusId")));
-		article.setStatus(status );
+		article.setStatusId(Integer.valueOf(request.getParameter("statusId")));
 		return article;
 	}
 
@@ -172,7 +161,7 @@ public class ArticleControllerImpl implements ArticleController{
 		
 		numberOfItem = (numberOfItem != null) ? numberOfItem : Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE;
 		startPosition = (startPosition != null) ? startPosition: Pagination.START_POSITION_ARTICLES_PAGE;
-		List<Article> articleList = articleService.readArticleList(numberOfItem, startPosition);
+		List<Article> articleList = articleService.readArticleList(numberOfItem, startPosition, ArticleStatus.ENABLE.getStatus());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("articleList", articleList);
