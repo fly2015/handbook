@@ -54,4 +54,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId, List<String> filters) {
 		return dao.readArticleList(numberOfItem, startPosition, statusId,  filters);
 	}
+
+	@Override
+	public Integer countArticles(Integer statusId) {
+		return dao.readNumberOfArticles(statusId);
+	}
 }

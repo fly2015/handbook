@@ -13,4 +13,5 @@ public interface ArticleService {
 	List<Article> searchArticle(String keyword);
 	List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId);
 	List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId, List<String> filters);
+	Integer countArticles(Integer statusId);
 }

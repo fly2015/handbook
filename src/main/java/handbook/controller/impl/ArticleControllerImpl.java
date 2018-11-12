@@ -154,17 +154,43 @@ public class ArticleControllerImpl implements ArticleController{
 		modelAndView.setViewName("searchArticleResult");
 		return modelAndView;
 	}
-
+	
 	@Override
-	@RequestMapping(method = RequestMethod.GET, value = { "/articles" })
-	public ModelAndView readArticleList(Integer numberOfItem, Integer startPosition) {
-		
-		numberOfItem = (numberOfItem != null) ? numberOfItem : Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE;
-		startPosition = (startPosition != null) ? startPosition: Pagination.START_POSITION_ARTICLES_PAGE;
-		List<Article> articleList = articleService.readArticleList(numberOfItem, startPosition, ArticleStatus.ENABLE.getStatus());
+	@RequestMapping(method = RequestMethod.GET, value = {"/articles" })
+	public ModelAndView readArticleList() {
+		Integer numOfArticles = articleService.countArticles(ArticleStatus.ENABLE.getStatus());
+		List<Article> articleList = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE, Pagination.START_POSITION_ADD_ARTICLE_PAGE, ArticleStatus.ENABLE.getStatus());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("articleList", articleList);
+		modelAndView.addObject("numOfArticles", numOfArticles);
+		modelAndView.addObject("pageIndex", 1);
+		modelAndView.setViewName("articleList");
+		return modelAndView;
+	}
+	
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = {"/articles/{page}" })
+	public ModelAndView readArticleList(@PathVariable("page") Integer page) {
+		if(page == null || page == 0)
+		{
+			page = 1;
+		}
+		
+		Integer numOfArticles = articleService.countArticles(ArticleStatus.ENABLE.getStatus());
+		
+		if (page > numOfArticles/Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE)
+		{
+			page = numOfArticles/Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE;
+		}
+		
+		Integer startPosition =  (page - 1) * Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE;
+		List<Article> articleList = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE, startPosition, ArticleStatus.ENABLE.getStatus());
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("articleList", articleList);
+		modelAndView.addObject("numOfArticles", numOfArticles);
+		modelAndView.addObject("pageIndex", page);
 		modelAndView.setViewName("articleList");
 		return modelAndView;
 	}

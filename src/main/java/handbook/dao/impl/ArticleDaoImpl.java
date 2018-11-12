@@ -89,16 +89,18 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 	}
 	
 	@Override
+	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select * from article limit ?, ?");
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
+		return buildArticleListData(queryForList);
+	}
+	
+	@Override
 	public List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId) {
 		StringBuilder stringBuilder = new StringBuilder();
-		
-		if (statusId != null)
-		{
-			
-		}
-		stringBuilder.append("select * from article limit ?, ?");
-		
-		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
+		stringBuilder.append("select * from article where status_id = ? limit ?, ?");
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), statusId, startPosition, numberOfItem);
 		return buildArticleListData(queryForList);
 	}
 	
@@ -157,5 +159,19 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		}
 		
 		return false;
+	}
+
+	@Override
+	public Integer readNumberOfArticles(Integer statusId) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select count(*) as countNum from article where status_id = ?");
+		Map<String, Object> map = jdbc.queryForMap(stringBuilder.toString(), statusId);
+		
+		if(map.isEmpty())
+		{
+			return 0;
+		}
+		
+		return Integer.valueOf(map.get("countNum").toString());
 	}
 }

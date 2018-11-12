@@ -290,15 +290,25 @@ input{
     color: darkblue;
 }
 
+.pagination-section {
+    width: 100%;
+    display: block;
+    margin-bottom: 30px;
+}
+
 .pagination {
     display: inline-block;
+    float: right;
 }
 
 .pagination a {
-    color: black;
+	margin: 0 2px;
+    color: darkblue;
     float: left;
-    padding: 8px 16px;
+    padding: 3px 8px;
     text-decoration: none;
+    background: #ccc;
+    font-weight: bold;
 }
 
 .pagination a.active {
@@ -306,7 +316,4 @@ input{
     color: white;
 }
 
-.pagination a {
-    margin: 0 4px; /* 0 is for top and bottom. Feel free to change it */
-}
 .pagination a:hover:not(.active) {background-color: #ddd;}
