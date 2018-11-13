@@ -317,3 +317,8 @@ input{
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+.comment-section
+{
+	margin-top: 30px;
+}

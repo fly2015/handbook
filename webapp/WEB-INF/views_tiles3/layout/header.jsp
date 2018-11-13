@@ -14,18 +14,18 @@
 		<div class="nav-left">
 			<ul>
 				<sec:authorize access="hasRole('ADMIN')">
-					<li><a class="menu-home" href="<c:url value="/" />">Home</a></li>
-					<li><a class="menu-tags" href="<c:url value="/tags" />">Tags</a></li>
-					<li><a href="<c:url value="/articles" />">Articles</a></li>
-					<li><a class="menu-add-tag" href="<c:url value="/tag/add" />">+Tag</a></li>
-					<li><a href="<c:url value="/article/add" />">+Article</a></li>
+					<li><a class="menu-home" href="home">Home</a></li>
+					<li><a class="menu-tags" href="tags">Tags</a></li>
+					<li><a href="articles">Articles</a></li>
+					<li><a class="menu-add-tag" href="tag/add">+Tag</a></li>
+					<li><a href="article/add">+Article</a></li>
 				</sec:authorize>
 				
 				<sec:authorize access="hasRole('USER')">
-					<li><a class="menu-home" href="<c:url value="/" />">Home</a></li>
-					<li><a class="menu-tags" href="<c:url value="/tags" />">Tags</a></li>
-					<li><a href="<c:url value="/articles" />">Articles</a></li>
-					<li><a href="<c:url value="/article/add" />">+ Article</a></li>
+					<li><a class="menu-home" href="home">Home</a></li>
+					<li><a class="menu-tags" href="tags">Tags</a></li>
+					<li><a href="articles">Articles</a></li>
+					<li><a href="article/add">+ Article</a></li>
 				</sec:authorize>
 				
 			</ul>
@@ -49,12 +49,12 @@
 					<li>
 						<a class="menu-box-item-username" href="<c:url value="/" />"><c:out value="${principal.username}"></c:out></a>
 					<li>
-					<li><a href="<c:url value="/logout" />">Logout</a></li>
+					<li><a href="/logout">Logout</a></li>
 				</sec:authorize>
 
 				<sec:authorize access="!isAuthenticated()">
-					<li><a href="<c:url value="/login" />">Login</a></li>
-					<li><a href="<c:url value="/register" />">Register</a></li>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/register">Register</a></li>
 				</sec:authorize>
 			</ul>
 		</div>

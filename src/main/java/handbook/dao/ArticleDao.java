@@ -20,4 +20,5 @@ public interface ArticleDao {
 	List<Article> readArticleList(Integer numberOfItem, Integer startPosition);
 	List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId, List<String> filters);
 	Integer readNumberOfArticles(Integer statusId);
+	List<Article> readArticleListByTagSlug(String tagSlug, Integer tagStatus, Integer articleStatus);
 }

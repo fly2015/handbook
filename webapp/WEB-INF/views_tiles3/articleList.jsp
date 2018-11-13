@@ -21,7 +21,7 @@
 	
 	<c:set var="totalCount" scope="session" value="${numOfArticles}"/>
     <c:set var="perPage" scope="session" value="${Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE}"/>
-    <c:set var="totalPages" scope="session" value="${totalCount/perPage}"/>
+    <c:set var="totalPages" scope="session" value="${totalPages}"/>
 	
 	<c:set var="pageIndex" scope="session" value="${page}"/>
 	
@@ -29,16 +29,15 @@
 		<div class="pagination">
 			
 			 <c:if test="${totalPages > 0 && pageIndex > 1}">
-				<a href="${pageIndex - 1}">&laquo;</a>
+				<a href="articles/${pageIndex - 1}">&laquo;</a>
 			 </c:if>	
 			  
-			  
-			  <c:forEach begin="1" end="${totalPages}" varStatus="page">
-			  		<a href="<spring:url value="/"/>articles/${page.count}"><c:out value="${page.count}"></c:out> </a>
+			  <c:forEach begin="0" end="${totalPages}" varStatus="page">
+			  		<a href="articles/${page.count}"><c:out value="${page.count}"></c:out> </a>
 			  </c:forEach>
 			  
 			  <c:if test="${totalPages > 0 && pageIndex < totalPages - 1 }">
-				<a href="${pageIndex + 1}">&raquo;</a>
+				<a href="articles/${pageIndex + 1}">&raquo;</a>
 			  </c:if>
 			  
 		</div>

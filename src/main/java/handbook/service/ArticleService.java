@@ -14,4 +14,5 @@ public interface ArticleService {
 	List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId);
 	List<Article> readArticleList(Integer numberOfItem, Integer startPosition, Integer statusId, List<String> filters);
 	Integer countArticles(Integer statusId);
+	List<Article> readArticleListByTag(String tagSlug, Integer tagStatus, Integer articleStatus);
 }

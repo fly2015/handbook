@@ -59,4 +59,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public Integer countArticles(Integer statusId) {
 		return dao.readNumberOfArticles(statusId);
 	}
+
+	@Override
+	public List<Article> readArticleListByTag(String tagSlug, Integer tagStatus, Integer articleStatus) {
+		return dao.readArticleListByTagSlug(tagSlug, tagStatus, articleStatus);
+	}
 }

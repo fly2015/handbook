@@ -6,12 +6,14 @@
 <!DOCTYPE html">
 <html>
 <head>
+<base href="<spring:url value="/" />"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/stylesheet.css" />">
-<script src="<spring:url value="/resources/js/jquery/jquery-3.3.1.min.js" />" type="text/javascript"></script>
-<script src="<spring:url value="/resources/js/style.js" />" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/stylesheet.css">
+<script src="resources/js/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="resources/js/style.js" type="text/javascript"></script>
 
 <title>Let's make life easier</title>
+
 </head>
 <body>
 	<div id="container">

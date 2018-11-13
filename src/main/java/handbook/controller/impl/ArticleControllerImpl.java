@@ -44,7 +44,7 @@ public class ArticleControllerImpl implements ArticleController{
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/tag/{tagSlug}" })
 	public String readArticleListByTag(@PathVariable("tagSlug") String tagSlug, Model model) {
-		List<Article> articleList = articleService.readArticleListByTag(tagSlug);
+		List<Article> articleList = articleService.readArticleListByTag(tagSlug, TagStatus.ENABLE.getStatus(), ArticleStatus.ENABLE.getStatus());
 		model.addAttribute("articleList", articleList);
 		return "articleByTag";
 	}
@@ -178,18 +178,22 @@ public class ArticleControllerImpl implements ArticleController{
 		}
 		
 		Integer numOfArticles = articleService.countArticles(ArticleStatus.ENABLE.getStatus());
-		
-		if (page > numOfArticles/Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE)
+		Integer totalPages = (int)Math.ceil((float)numOfArticles/20);
+		if (page > totalPages)
 		{
-			page = numOfArticles/Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE;
+			page = totalPages;
 		}
 		
 		Integer startPosition =  (page - 1) * Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE;
+		
+		
+		
 		List<Article> articleList = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE, startPosition, ArticleStatus.ENABLE.getStatus());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("articleList", articleList);
 		modelAndView.addObject("numOfArticles", numOfArticles);
+		modelAndView.addObject("totalPages", totalPages);
 		modelAndView.addObject("pageIndex", page);
 		modelAndView.setViewName("articleList");
 		return modelAndView;

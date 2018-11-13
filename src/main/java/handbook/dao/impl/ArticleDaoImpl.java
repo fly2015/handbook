@@ -48,7 +48,18 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), tagSlug);
 		return buildArticleListData(queryForList);
 	}
-
+	
+	@Override
+	public List<Article> readArticleListByTagSlug(String tagSlug, Integer tagStatus, Integer articleStatus) {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("select * from article a, tag t, tag_article ta ");
+		stringBuilder.append("where a.article_id = ta.article_id and t.tag_id = ta.tag_id ");
+		stringBuilder.append("and t.tag_name_slug = ? and a.status_id = ? and t.status_id = ?");
+		
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), tagSlug, tagStatus, articleStatus);
+		return buildArticleListData(queryForList);
+	}
+	
 	@Override
 	public void writeArticle(Article article) throws ProcessException {
 		StringBuilder sql = new StringBuilder();
@@ -129,9 +140,8 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 			return readArticleList(numberOfItem, startPosition, statusId);
 		}
 		
-		
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("select * from article");
+		stringBuilder.append("select * from article where status_id = ?");
 		
 		if(hasFilter(filters, FilterOption.TOP_USEFUL_ARTICLE))
 		{
@@ -145,7 +155,7 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		
 		stringBuilder.append(" limit ?, ?");
 		
-		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), startPosition, numberOfItem);
+		List<Map<String, Object>> queryForList = jdbc.queryForList(stringBuilder.toString(), statusId, startPosition, numberOfItem);
 		return buildArticleListData(queryForList);
 	}
 
@@ -174,4 +184,5 @@ public class ArticleDaoImpl extends AbstractDao implements ArticleDao{
 		
 		return Integer.valueOf(map.get("countNum").toString());
 	}
+
 }
