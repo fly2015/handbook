@@ -244,7 +244,7 @@ footer nav
     color: #E04;
 }
 
-.activeMenu{
+.activated-menu{
 	color: #E04;
 }
 
@@ -320,5 +320,27 @@ input{
 
 .comment-section
 {
-	margin-top: 30px;
+	margin-top: 20px;
+}
+
+
+.sub-menu {
+    height: 25px;
+    margin-top: 10px;
+}
+
+.sub-menu-content {
+    float: right;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 8px;
+}
+
+.article-section {
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 30px;
+}
+
+.btn-comment-section {
+    margin-left: 514px;
+    margin-top: 10px;
 }

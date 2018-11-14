@@ -50,7 +50,6 @@ public class TagControllerImpl implements TagController{
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("tagList", readTagList);
 
-		modelAndView.addObject("activeClassMenu", "menu-tags");
 		modelAndView.setViewName("tagList");
 		return modelAndView;
 	}

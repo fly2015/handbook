@@ -32,7 +32,7 @@
 				<a href="articles/${pageIndex - 1}">&laquo;</a>
 			 </c:if>	
 			  
-			  <c:forEach begin="0" end="${totalPages}" varStatus="page">
+			  <c:forEach begin="1" end="${totalPages}" varStatus="page">
 			  		<a href="articles/${page.count}"><c:out value="${page.count}"></c:out> </a>
 			  </c:forEach>
 			  

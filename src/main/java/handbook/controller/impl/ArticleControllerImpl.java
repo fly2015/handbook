@@ -139,7 +139,7 @@ public class ArticleControllerImpl implements ArticleController{
 	}
 
 	@Override
-	@RequestMapping(method = RequestMethod.GET, value = { "/search" })
+	@RequestMapping(method = RequestMethod.GET, value = { "articles/search" })
 	public ModelAndView searchArticle(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		String keyword = request.getParameter("keyword");
@@ -159,12 +159,16 @@ public class ArticleControllerImpl implements ArticleController{
 	@RequestMapping(method = RequestMethod.GET, value = {"/articles" })
 	public ModelAndView readArticleList() {
 		Integer numOfArticles = articleService.countArticles(ArticleStatus.ENABLE.getStatus());
-		List<Article> articleList = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE, Pagination.START_POSITION_ADD_ARTICLE_PAGE, ArticleStatus.ENABLE.getStatus());
+		Integer totalPages = (int)Math.ceil((float)numOfArticles/Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE);
+		
+		List<Article> articleList = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE, Pagination.START_POSITION_ARTICLES_PAGE, ArticleStatus.ENABLE.getStatus());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("articleList", articleList);
 		modelAndView.addObject("numOfArticles", numOfArticles);
+		modelAndView.addObject("totalPages", totalPages);
 		modelAndView.addObject("pageIndex", 1);
+		
 		modelAndView.setViewName("articleList");
 		return modelAndView;
 	}
@@ -178,7 +182,7 @@ public class ArticleControllerImpl implements ArticleController{
 		}
 		
 		Integer numOfArticles = articleService.countArticles(ArticleStatus.ENABLE.getStatus());
-		Integer totalPages = (int)Math.ceil((float)numOfArticles/20);
+		Integer totalPages = (int)Math.ceil((float)numOfArticles/Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE);
 		if (page > totalPages)
 		{
 			page = totalPages;

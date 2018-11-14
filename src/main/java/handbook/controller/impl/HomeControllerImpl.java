@@ -77,8 +77,7 @@ public class HomeControllerImpl implements HomeController {
 	@RequestMapping(method = RequestMethod.GET, value = { "/home","/" })
 	public ModelAndView home() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("activeClassMenu", "menu-home");
-		
+	
 		List<Article> topUserfulArticles = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_HOME,
 				Pagination.START_POSITION_ARTICLES_HOME, 
 				ArticleStatus.ENABLE.getStatus(),
