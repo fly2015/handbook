@@ -1,5 +1,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<script src="resources/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script src="resources/js/ajax.js" type="text/javascript"></script>
 
 <div class="main-contain">
 	<div class="article-section">
@@ -11,11 +13,13 @@
 	
 	<sec:authorize access="hasRole('ADMIN')">
 		<div class="comment-section">
-			<form action="#" id="usrform">
-				<textarea name="content" rows="8" cols="80"></textarea>
+			<form action="#" id="commentForm">
+				<input id="article-id" type="hidden" value="${article.articleId}"/>
+				<textarea id="comment-content" name="commentContent"></textarea>
 			  	
 			  	<div class="btn-comment-section">
-			  		<input class="btn-comment	" type="submit" name="" value="Comment">
+			  		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			  		<input id="btn-comment" type="button" name="" value="Comment">
 			  	</div>
 			  	
 			</form>
@@ -25,3 +29,6 @@
 </div>
 
 
+<script>
+	CKEDITOR.replace( 'comment-content' );
+</script>

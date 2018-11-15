@@ -11,6 +11,7 @@
 <base href="<spring:url value="/" />"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="resources/css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="resources/fontawesome/css/all.css">
 <script src="resources/js/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="resources/js/style.js" type="text/javascript"></script>
 
@@ -34,7 +35,7 @@
 							<li><a href="#">Your comments</a></li>
 							<li><a href="#">Activated accounts</a></li>
 							<li><a href="#">Inactivated accounts</a></li>
-							<li><a href="#">Deactivated accounts</a></li>
+							<li><a href="#"><i class="fas fa-users"></i></a></li>
 						</ul>
 					</nav>	
 				</div>

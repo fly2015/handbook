@@ -341,6 +341,12 @@ input{
 }
 
 .btn-comment-section {
-    margin-left: 514px;
+    float: right;
     margin-top: 10px;
+}
+
+.sub-menu-content a
+{
+	color: red;
+	font-weight: normal;
 }

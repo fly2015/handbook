@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<script src="<c:url value="/resources/js/ckeditor/ckeditor.js" />" type="text/javascript"></script>
+<script src="<c:url value="/resources/ckeditor/ckeditor.js" />" type="text/javascript"></script>
 
 
 <div class="main-contain">
@@ -51,8 +51,10 @@
 		    </td>
 		  </tr>
 		  <tr>
-		   	<input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
-		    <td colspan="2" align="right"><input class="input-font" type="submit" value="Create"/></td>
+		    <td colspan="2" align="right">
+		    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		    	<input class="input-font" type="submit" value="Create"/>
+		    </td>
 		  </tr>
 		</table>
 	</form>
