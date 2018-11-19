@@ -4,27 +4,22 @@ $(document).ready(function(){
 		console.log("Started add comment");
 		var data = {}
 		var headers = {}
-		data["aritlceId"] = $("#article-id").val();
-		data["commentContent"] = $("#comment-content").val();
 		
-		var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	    var csrfToken = $("meta[name='_csrf.token']").attr("content"); 
-	    var csrfHeader = $("meta[name='_csrf_header']").attr("content")
-	    
-	    data[csrfParameter] = csrfToken;
-	    headers[csrfHeader] = csrfToken;
-	    
+		var articleId = $("#article-id").val();
+		var commentContent = CKEDITOR.instances['comment-content'].getData()
+		var csrfParameter = $("#csrf").attr("name");
+		var csrfToken = $("#csrf").val();
+		console.log(csrfParameter); 
+		
 		$("#btn-comment").prop("disabled", true);
 		
 		
 		$.ajax({
             type: "POST",
-            async: false,
-            contentType: "application/html",
+            //async: false,
             url: "comment/add",
-            headers: headers,
-            data: data,
-            dataType: 'json',
+            data: jQuery.param({ articleId: articleId, commentContent : commentContent, _csrf : csrfToken}) ,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             timeout: 600000,
             success: function (data) {
                 console.log("Comment added");

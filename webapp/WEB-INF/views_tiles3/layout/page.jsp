@@ -35,7 +35,6 @@
 							<li><a href="#">Your comments</a></li>
 							<li><a href="#">Activated accounts</a></li>
 							<li><a href="#">Inactivated accounts</a></li>
-							<li><a href="#"><i class="fas fa-users"></i></a></li>
 						</ul>
 					</nav>	
 				</div>

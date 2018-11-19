@@ -13,12 +13,11 @@
 	
 	<sec:authorize access="hasRole('ADMIN')">
 		<div class="comment-section">
-			<form action="#" id="commentForm">
-				<input id="article-id" type="hidden" value="${article.articleId}"/>
+			<form action="comment/add" id="commentForm" method="POST">
+				<input id="article-id" name="articleId" type="hidden" value="${article.articleId}"/>
 				<textarea id="comment-content" name="commentContent"></textarea>
-			  	
 			  	<div class="btn-comment-section">
-			  		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			  		<input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			  		<input id="btn-comment" type="button" name="" value="Comment">
 			  	</div>
 			  	
