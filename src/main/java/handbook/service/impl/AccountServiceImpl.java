@@ -34,7 +34,10 @@ public class AccountServiceImpl implements AccountService{
 	}
 	@Override
 	public User readUserByUserName(String username, Integer statusId) {
-		// TODO Auto-generated method stub
 		return userDao.readUserByUsername(username, statusId);
+	}
+	@Override
+	public User readUserByUserName(String userName) {
+		return userDao.readUserByUsername(userName);
 	}
 }

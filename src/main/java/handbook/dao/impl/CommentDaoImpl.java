@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import handbook.dao.CommentDao;
 import handbook.dto.Comment;
+import handbook.exception.ProcessException;
 
 @Component
 public class CommentDaoImpl extends AbstractDao implements CommentDao{
@@ -47,10 +48,24 @@ public class CommentDaoImpl extends AbstractDao implements CommentDao{
 	}
 
 	@Override
-	public void writeComment(Comment comment) {
+	public void writeComment(Comment comment) throws ProcessException{
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("insert into comment(article_id, comment_content , status_id, created_by_user ");
-		stringBuilder.append("values(?, ?, ? ,?)");
+		stringBuilder.append("insert into comment(article_id, comment_content , status_id, created_by_user) ");
+		stringBuilder.append("values (?, ?, ? ,?)");
+		
+
+		Object[] args = new Object[4];
+		args[0] = comment.getArticleId();
+		args[1] = comment.getCommentContent();
+		args[2] = comment.getStatusId();
+		args[3] = comment.getCreatedByUser().getUserId();
+		try 
+		{
+			jdbc.update(stringBuilder.toString(), args);
+		} catch (Exception e) 
+		{
+			throw new ProcessException("Write comment failed!");
+		}
 	}
 	
 }

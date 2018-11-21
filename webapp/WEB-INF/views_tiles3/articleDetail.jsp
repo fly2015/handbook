@@ -10,6 +10,9 @@
 			${article.articleContent}
 		</p>
 	</div>
+	<div id="comment">
+	
+	</div>
 	
 	<sec:authorize access="hasRole('ADMIN')">
 		<div class="comment-section">
@@ -20,6 +23,7 @@
 			  		<input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			  		<input id="btn-comment" type="button" name="" value="Comment">
 			  	</div>
+			  	
 			  	
 			</form>
 		</div>

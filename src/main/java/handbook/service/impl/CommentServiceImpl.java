@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import handbook.dao.CommentDao;
 import handbook.dto.Comment;
+import handbook.exception.ProcessException;
 import handbook.service.CommentService;
 
 @Service
@@ -19,8 +20,8 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public void writeComment(Comment comment) {
-		commentDao.writeComment(comment);;
+	public void writeComment(Comment comment) throws ProcessException {
+		commentDao.writeComment(comment);
 	}
 	
 }
