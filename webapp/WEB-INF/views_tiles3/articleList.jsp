@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="main-contain">
-	<h3><span>>> </span>List of Articles</h3>
+	<h3 class="title">Article > List of Articles</h3>
 	
 	<div class="article-list">
 		<c:forEach items="${articleList}" var="article" varStatus="theCount">

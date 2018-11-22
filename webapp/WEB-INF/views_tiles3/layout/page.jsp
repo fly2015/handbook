@@ -24,7 +24,7 @@
 		</div>
 		
 		<sec:authorize access="hasRole('ADMIN')">
-			<div class="sub-menu">
+			<!-- <div class="sub-menu">
 				<div class="sub-menu-content">
 					<nav>
 						<ul>
@@ -37,16 +37,16 @@
 						</ul>
 					</nav>	
 				</div>
-			</div>
+			</div> -->
 		</sec:authorize>
 
 		<div id="content">
 			<t:insertAttribute name="body" />
 		</div>
 		
-		<%-- <div id="footer">
+		<div id="footer">
 			<t:insertAttribute name="footer" />
-		</div> --%>
+		</div>
 	</div>
 </body>
 </body>

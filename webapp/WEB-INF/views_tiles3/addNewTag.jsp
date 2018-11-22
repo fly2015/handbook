@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div class="main-contain">
-	<h3>Add New Tag Form</h3>
+	<h3 class="title">Tag > Create a new Tag	</h3>
 
 	<spring:url value="/tag/add" var="actionUrl" />
 	<p style="color: red">

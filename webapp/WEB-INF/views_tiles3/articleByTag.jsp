@@ -2,7 +2,7 @@
 <%@ taglib uri="customtld" prefix="cfn" %>
 
 <div class="main-contain">
-	<h3><span>>> </span>List of Articles search by tag</h3>
+	<h3 class="title">Tag > List of Articles</h3>
 
 	<div class="article-list">
 		<c:forEach items="${articleList}" var="article" varStatus="theCount">

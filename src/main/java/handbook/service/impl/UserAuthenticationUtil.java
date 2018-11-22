@@ -1,4 +1,4 @@
-package handbook.service;
+package handbook.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -7,9 +7,10 @@ import org.springframework.stereotype.Component;
 
 import handbook.constant.UserStatus;
 import handbook.dto.User;
+import handbook.service.AccountService;
 
 @Component
-public class AuthenticationUtil {
+public class UserAuthenticationUtil {
 	@Autowired
 	private AccountService accountService;
 	

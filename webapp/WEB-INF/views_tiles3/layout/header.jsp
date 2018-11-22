@@ -11,6 +11,8 @@
 					<li><a class="menu-home" href="home">Home</a></li>
 					<li><a class="menu-tags" href="tags">Tags</a></li>
 					<li><a class="menu-articles" href="articles">Articles</a></li>
+					<li><a class="menu-articles" href="articles/userful">Most Userful</a></li>
+					<li><a class="menu-articles" href="articles/newest">Newest</a></li>
 					<li><a class="menu-add-tag" href="tag/add">+Tag</a></li>
 					<li><a class="menu-add-article" href="article/add">+Article</a></li>
 				</sec:authorize>
@@ -19,30 +21,34 @@
 					<li><a class="menu-home" href="home">Home</a></li>
 					<li><a class="menu-tags" href="tags">Tags</a></li>
 					<li><a class="menu-articles" href="articles">Articles</a></li>
-					<li><a class="menu-add-article" href="article/add">+ Article</a></li>
+					<li><a class="menu-articles" href="articles/userful">Most Userful</a></li>
+					<li><a class="menu-articles" href="articles/newest">Newest</a></li>
+					<li><a class="menu-add-tag" href="tag/add">+Tag</a></li>
+					<li><a class="menu-add-article" href="article/add">+Article</a></li>
 				</sec:authorize>
 				
 			</ul>
 		</div>
 		
-		<div class="nav-middle">
-			<sec:authorize access="hasRole('USER') or hasRole('ADMIN')">
-				<c:url var="actionUrl" value="articles/search"></c:url>
-				<form action="${actionUrl}" method="GET" accept-charset="utf-8">
-					<input size="30" type="text" name="keyword"> <input
-						class="input-font" type="submit" value="Search">
-				</form>
-			</sec:authorize>
-		</div>
+		<!-- <div class="nav-middle">
+			
+		</div> -->
 		
 		<div class="nav-right">
 			<ul>
+				
+				<sec:authorize access="hasRole('ADMIN')">
+					<li><a href="accounts/activated">Art.Visible</a></li>
+					<li><a href="accounts/inactivated">Art.Invisible</a></li>
+					
+					<li><a href="accounts/activated">Ac.Activated</a></li>
+					<li><a href="accounts/inactivated">Ac.Inactivated</a></li>
+				</sec:authorize>
+				
+			
 				<sec:authentication var="principal" property="principal"></sec:authentication>
-
 				<sec:authorize access="isAuthenticated()">
-					<li>
-						<a class="menu-box-item-username" href="<c:url value="/" />"><c:out value="${principal.username}"></c:out></a>
-					<li>
+					<li><a class="menu-box-item-username" href="<c:url value="" />"><c:out value="${principal.username}"></c:out></a><li>
 					<li><a href="logout">Logout</a></li>
 				</sec:authorize>
 

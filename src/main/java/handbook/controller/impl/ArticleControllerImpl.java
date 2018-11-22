@@ -18,16 +18,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import hanbook.util.StatusUtils;
 import handbook.constant.ArticleStatus;
+import handbook.constant.CommentStatus;
 import handbook.constant.Pagination;
 import handbook.constant.StatusType;
 import handbook.constant.TagStatus;
 import handbook.controller.ArticleController;
 import handbook.dto.Article;
+import handbook.dto.Comment;
 import handbook.dto.Tag;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
 import handbook.exception.ValidationException;
 import handbook.service.ArticleService;
+import handbook.service.CommentService;
 import handbook.service.TagService;
 import handbook.validation.ArticleFormValidation;
 
@@ -37,6 +40,9 @@ public class ArticleControllerImpl implements ArticleController{
 	private ArticleService articleService;
 	@Autowired
 	private TagService tagService;
+	
+	@Autowired
+	private CommentService commentService;
 	
 	@Autowired
 	private ArticleFormValidation articleValidation;
@@ -51,10 +57,21 @@ public class ArticleControllerImpl implements ArticleController{
 
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/article/{artileTitleSlug}" })
-	public String readArticleBySlug(@PathVariable("artileTitleSlug") String articleTitleSlug, Model model) {
+	public ModelAndView readArticleBySlug(@PathVariable("artileTitleSlug") String articleTitleSlug, Model model) {
+		ModelAndView modelAndView = new ModelAndView();
+		
 		Article article = articleService.readArticleBySlug(articleTitleSlug);
-		model.addAttribute(article);
-		return "articleDetail";
+		
+		if(article.getArticleId() != null)
+		{
+			List<Comment> commentList = commentService.readCommentList(article.getArticleId(), 
+					ArticleStatus.ENABLE.getStatus(), CommentStatus.ENABLE.getStatus());
+			modelAndView.addObject("comments", commentList);
+		}
+		
+		modelAndView.addObject("article", article);
+		modelAndView.setViewName("articleDetail");
+		return modelAndView;
 	}
 
 	@Override

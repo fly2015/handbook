@@ -4,15 +4,15 @@
 
 
 <div class="main-contain">
-	<h3>Add New Article Form</h3>
+	<h3 class="title">Aticle > Create a new Article</h3>
 
 	<spring:url value="/article/add" var="actionUrl" />
 	<p class="message"><c:out value="${message}"></c:out></p>
-	<form method="post" action="${actionUrl}">
+	<form class="add-article-form" method="post" action="${actionUrl}">
 		<table>
 		  <tr>
-		    <td>Title: </td>
-		    <td><input type="text" size="100" name="articleTitle" value=""/></td>
+		    <td	>Title: </td>
+		    <td><input autocomplete="name" type="text" size="100" name="articleTitle" value=""/></td>
 		  </tr>
 		  <tr>
 		  	<td>

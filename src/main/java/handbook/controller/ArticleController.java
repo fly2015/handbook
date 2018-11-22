@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface ArticleController {
 	String readArticleListByTag(String tagSlug, Model model);
-	String readArticleBySlug(String articleTitleSlug, Model model);
+	ModelAndView readArticleBySlug(String articleTitleSlug, Model model);
 	ModelAndView readArticleList(Integer page);
 	ModelAndView initAddNewArticleForm();
 	ModelAndView addNewArticle(HttpServletRequest request);

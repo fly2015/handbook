@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div class="main-contain">
-	<h4>Register Form</h4>
+	<h4 class="title">Register Form</h4>
 	<p class="message"><c:out value="${message}"></c:out> </p>
 	<spring:url value="/register" var="registerUrl" />
 	<form method="post" action="${registerUrl}">

@@ -151,20 +151,20 @@ nav a {
 
 .nav-left
 {
-	width: 40%;
+	width: 50%;
 	float: left;
 	margin-top: 2px;
 }
 
-.nav-middle
+/* .nav-middle
 {
 	width: 30%;
 	float: left;
-}
+} */
 
 .nav-right
 {
-	width: 30%;
+	width: 50%;
 	float: right;
 	margin-top: 2px;
 }
@@ -188,14 +188,12 @@ nav a {
 	color: red;
 }
 
-footer
+.validation-message
 {
-	margin-top: 20px;
-}
-footer p {
-	font-size: 8;
 	color: red;
+	font-weight: bold;
 }
+
 
 .tag-list {
     float: left;
@@ -225,19 +223,24 @@ footer p {
     margin: 15px 0 15px;
 }
 
-footer
-{
-	margin-top: 10px;
-}
 
-footer nav
+#footer nav
 {
 	float: right;
+	margin-top: 10px;		
+}
+
+#footer p {
+	font-size: 8;
+	color: red;
 }
 
 #footer
 {
 	border-top: solid 1px #ccc;
+	height: 30px;
+	margin-top: 40px;
+	margin-bottom: 20px;
 }
 
 .menu-box-item-username {
@@ -281,7 +284,7 @@ input{
 
 .top-article, .article-list
 {
-	margin-left: 15px;
+	/* margin-left: 15px; */
 }
 
 .article-item a {
@@ -340,13 +343,40 @@ input{
     padding-bottom: 30px;
 }
 
-.btn-comment-section {
-    float: right;
-    margin-top: 10px;
-}
 
 .sub-menu-content a
 {
 	color: red;
 	font-weight: normal;
+}
+
+h3.title
+{
+	border-bottom: solid 2px #ccc;
+    padding-bottom: 3px;
+    color: #E04;
+}
+
+h4.title
+{
+    color: #E04;
+}
+
+.main-contain table tr
+{
+	height: 25px;
+}
+
+.main-contain .add-article-form tr
+{
+	height: 40px;
+}
+
+.main-contain .form-label
+{
+	color: #E04;
+}
+.btn-comment-section {
+    float: right;
+    margin-top: 10px;
 }
