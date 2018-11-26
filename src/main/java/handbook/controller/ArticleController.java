@@ -14,4 +14,6 @@ public interface ArticleController {
 	ModelAndView addNewArticle(HttpServletRequest request);
 	ModelAndView searchArticle(HttpServletRequest request);
 	ModelAndView readArticleList();
+	ModelAndView readUserFulArticle();
+	ModelAndView readNewestArticle();
 }

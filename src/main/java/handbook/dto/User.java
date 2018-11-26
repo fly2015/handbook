@@ -11,7 +11,6 @@ public class User extends AbstractDto{
 	private String email;
 	private String password;
 	private Role role;
-	//private List<Role> roles;
 	
 	public Integer getUserId() {
 		return userId;
@@ -52,12 +51,4 @@ public class User extends AbstractDto{
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
-	/*public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}*/
 }

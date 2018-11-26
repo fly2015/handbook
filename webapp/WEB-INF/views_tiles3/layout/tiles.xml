@@ -48,4 +48,12 @@
 	<definition name="articleList" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views_tiles3/articleList.jsp" />
 	</definition>
+	
+	<definition name="userfulArticles" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/userfulArticles.jsp" />
+	</definition>
+	
+	<definition name="newestArticles" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/newestArticles.jsp" />
+	</definition>
 </tiles-definitions>

@@ -7,22 +7,15 @@
 	<nav class="nav-header">
 		<div class="nav-left">
 			<ul>
-				<sec:authorize access="hasRole('ADMIN')">
+				<sec:authorize access="hasRole('ADMIN') or hasRole('SUPER-USER') or hasRole('USER')">
 					<li><a class="menu-home" href="home">Home</a></li>
 					<li><a class="menu-tags" href="tags">Tags</a></li>
 					<li><a class="menu-articles" href="articles">Articles</a></li>
-					<li><a class="menu-articles" href="articles/userful">Most Userful</a></li>
-					<li><a class="menu-articles" href="articles/newest">Newest</a></li>
-					<li><a class="menu-add-tag" href="tag/add">+Tag</a></li>
-					<li><a class="menu-add-article" href="article/add">+Article</a></li>
+					<li><a class="menu-articles-userful" href="articles/userful">Most Userful</a></li>
+					<li><a class="menu-articles-newest" href="articles/newest">Newest</a></li>
 				</sec:authorize>
 				
-				<sec:authorize access="hasRole('USER')">
-					<li><a class="menu-home" href="home">Home</a></li>
-					<li><a class="menu-tags" href="tags">Tags</a></li>
-					<li><a class="menu-articles" href="articles">Articles</a></li>
-					<li><a class="menu-articles" href="articles/userful">Most Userful</a></li>
-					<li><a class="menu-articles" href="articles/newest">Newest</a></li>
+				<sec:authorize access="hasRole('ADMIN') or hasRole('SUPER-USER')">
 					<li><a class="menu-add-tag" href="tag/add">+Tag</a></li>
 					<li><a class="menu-add-article" href="article/add">+Article</a></li>
 				</sec:authorize>
@@ -38,11 +31,10 @@
 			<ul>
 				
 				<sec:authorize access="hasRole('ADMIN')">
-					<li><a href="accounts/activated">Art.Visible</a></li>
-					<li><a href="accounts/inactivated">Art.Invisible</a></li>
-					
-					<li><a href="accounts/activated">Ac.Activated</a></li>
-					<li><a href="accounts/inactivated">Ac.Inactivated</a></li>
+					<li><a href="manage/article">Manage Articles</a></li>
+					<li><a href="manage/comment">Manage Comments</a></li>
+					<li><a href="manage/tag">Manage Tags</a></li>
+					<li><a href="manage/account">Manage Accounts</a></li>
 				</sec:authorize>
 				
 			

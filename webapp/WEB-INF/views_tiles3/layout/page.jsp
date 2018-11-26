@@ -24,20 +24,47 @@
 		</div>
 		
 		<sec:authorize access="hasRole('ADMIN')">
-			<!-- <div class="sub-menu">
+			<div class="sub-menu">
 				<div class="sub-menu-content">
-					<nav>
+					<nav class="sub-menu-article disabled">
 						<ul>
-							<li><a href="#">Enabled articles</a></li>
-							<li><a href="#">Disabled articles</a></li>
-							<li><a href="#">Your tags</a></li>
-							<li><a href="#">Your comments</a></li>
-							<li><a href="#">Activated accounts</a></li>
-							<li><a href="#">Inactivated accounts</a></li>
+							<li><a href="manage/account/visible">Visible articles</a></li>
+							<li><a href="manage/account/invisible">Invisible articles</a></li>
 						</ul>
-					</nav>	
+					</nav>
+					
+					<nav class="sub-menu-comment disabled">
+						<ul>
+							<li><a href="manage/comment/visible">Visible comments</a></li>
+							<li><a href="manage/comment/invisible">Invisible comments</a></li>
+						</ul>
+					</nav>
+					
+					<nav class="sub-menu-tag disabled">
+						<ul>
+							<li><a href="manage/tag/visible">Visible tags</a></li>
+							<li><a href="manage/tag/invisible">Invisible tags</a></li>
+						</ul>
+					</nav>
+					
+					<nav class="sub-menu-account disabled">
+						<ul>
+							<li><a href="manage/account/activated">Activated accounts</a></li>
+							<li><a href="manage/account/inactivated">Inactivated accounts</a></li>
+						</ul>
+					</nav>
+					
+					<nav class="sub-menu-your-account">
+						<ul>
+							<li><a href="#">Your approved articles</a></li>
+							<li><a href="#">Your unapproved articles</a></li>
+							<li><a href="#">Your approved comments</a></li>
+							<li><a href="#">Your unapproved comments</a></li>
+						</ul>
+					</nav>
+					
 				</div>
-			</div> -->
+			</div>
 		</sec:authorize>
 
 		<div id="content">

@@ -1,6 +1,7 @@
 package handbook.controller.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import hanbook.util.StatusUtils;
 import handbook.constant.ArticleStatus;
 import handbook.constant.CommentStatus;
+import handbook.constant.FilterOption;
 import handbook.constant.Pagination;
 import handbook.constant.StatusType;
 import handbook.constant.TagStatus;
@@ -217,6 +219,37 @@ public class ArticleControllerImpl implements ArticleController{
 		modelAndView.addObject("totalPages", totalPages);
 		modelAndView.addObject("pageIndex", page);
 		modelAndView.setViewName("articleList");
+		return modelAndView;
+	}
+
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = {"/articles/userful" })
+	public ModelAndView readUserFulArticle() {
+		ModelAndView modelAndView = new ModelAndView();
+	
+		List<Article> topUserfulArticles = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_HOME,
+				Pagination.START_POSITION_ARTICLES_HOME, 
+				ArticleStatus.ENABLE.getStatus(),
+				Arrays.asList(FilterOption.TOP_USEFUL_ARTICLE));
+		
+		modelAndView.addObject("topUserfulArticles", topUserfulArticles);
+		modelAndView.setViewName("userfulArticles");
+		
+		return modelAndView;
+	}
+
+	@Override
+	@RequestMapping(method = RequestMethod.GET, value = {"/articles/newest" })
+	public ModelAndView readNewestArticle() {
+		ModelAndView modelAndView = new ModelAndView();
+		List<Article> topNewestArticles = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_HOME,
+				Pagination.START_POSITION_ARTICLES_HOME, 
+				ArticleStatus.ENABLE.getStatus(), 
+				Arrays.asList(FilterOption.TOP_NEWEST_ARTICLE));
+		
+		modelAndView.addObject("topNewestArticles", topNewestArticles);
+		modelAndView.setViewName("newestArticles");
+		
 		return modelAndView;
 	}
 }

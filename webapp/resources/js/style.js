@@ -1,48 +1,82 @@
 $(document).ready(function() {
-	
 	var activatedMenu = getActivatedMenuFromUrlVars();
 	if (activatedMenu != '')
 	{
 		$('.' + activatedMenu).addClass("activated-menu");
 	}
+	
+	initSubMenu();
+	
+	
 });
 
+function initSubMenu()
+{
+	$(".sub-menu-your-account").removeClass("disabled");
+}
 
 function getActivatedMenuFromUrlVars()
 {
     var hashes = window.location.href.split('/');
-    if(hashes[hashes.length - 1] === "home")
+    var length1 = hashes.length - 1;
+
+    if(hashes[length1] === "home")
 	{
     	return "menu-home";
 	}
     
-    if(hashes[hashes.length - 1] === "tags")
+    if(hashes[length1] === "tags")
 	{
     	return "menu-tags";
 	}
     
-    if(hashes[hashes.length - 1] === "articles")
+    if(hashes[length1] === "articles")
 	{
+    	console.log("aaaaaaaaaaaaaaaaaaa");
+    	var length2 = hashes.length - 2;
+    	if(hashes[length2] === "userful")
+		{
+    		console.log("bbbbbbbbbbbbb");
+	    	return "menu-articles-userful";
+		}
+	    
+	    if(hashes[length2] === "newest")
+		{
+	    	console.log("cccccccccccccccccc");
+	    	return "menu-articles-newest";
+		}
+    	    
     	return "menu-articles";
 	}
     
-    if(hashes[hashes.length - 1] === "add")
+   
+    
+    if(hashes[length1] === "add")
 	{
-    	if(hashes[hashes.length - 2] === "tag")
+    	var length2 = hashes.length - 2;
+    	if(hashes[length2] === "tag")
     	{
         	return "menu-add-tag";
     	}
     	
-    	if(hashes[hashes.length - 2] === "article")
+    	if(hashes[length2] === "article")
     	{
         	return "menu-add-article";
     	}
 	}
-    
-    if(hashes[hashes.length - 1].substring(0,6	) === "search")
-	{
-    	return "menu-articles";
-	}
 
-    return "";
+    
+    getActiveMenuHasSubMenu(hashes);
+
+    return "menu-home";
+}
+
+
+function getActiveMenuHasSubMenu(hashes)
+{
+	var length1 = hashes.length - 1;
+	if (hashes[length1] === "manage")
+	{
+		return "sub-menu-article";
+	}
 }

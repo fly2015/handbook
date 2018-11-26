@@ -151,7 +151,7 @@ nav a {
 
 .nav-left
 {
-	width: 50%;
+	width: 40%;
 	float: left;
 	margin-top: 2px;
 }
@@ -164,7 +164,7 @@ nav a {
 
 .nav-right
 {
-	width: 50%;
+	width: 60%;
 	float: right;
 	margin-top: 2px;
 }
@@ -344,11 +344,6 @@ input{
 }
 
 
-.sub-menu-content a
-{
-	color: red;
-	font-weight: normal;
-}
 
 h3.title
 {
@@ -379,4 +374,9 @@ h4.title
 .btn-comment-section {
     float: right;
     margin-top: 10px;
+}
+
+.disabled
+{
+	display: none;
 }
