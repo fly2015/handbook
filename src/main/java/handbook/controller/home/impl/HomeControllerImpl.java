@@ -2,37 +2,24 @@
  * @author fr.quochien@gmail.com
  * @date Jul 26, 2018
  */
-package handbook.controller.impl;
+package handbook.controller.home.impl;
 
-import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import handbook.constant.ArticleStatus;
-import handbook.constant.FilterOption;
-import handbook.constant.Pagination;
-import handbook.controller.HomeController;
-import handbook.dto.Article;
-import handbook.service.ArticleService;
+import handbook.controller.home.HomeController;
 
 @Controller
 public class HomeControllerImpl implements HomeController {
-	@Autowired
-	private ArticleService articleService;
-	
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = { "/login"})
 	public String login() {
@@ -49,28 +36,6 @@ public class HomeControllerImpl implements HomeController {
 		}
 		
 		return "redirect:/login?logout";
-	}
-
-	
-	/* * 
-	 * For none sercurity login. It is disabled when spring security is on
-	 * */
-	@Override
-	@RequestMapping(method = RequestMethod.POST, value = { "/login" })
-	public String login(
-			@RequestParam("username") String username, 
-			@RequestParam("password") String password,
-			Model model, 
-			HttpServletRequest request) {
-		
-		/*User user = authenticationService.login(username, password);
-		user.setUsername("admin");
-		user.setUserId(1);
-		
-		request.getSession().invalidate();
-		request.getSession().setAttribute("user", user);*/
-		
-		return null;
 	}
 
 	@Override

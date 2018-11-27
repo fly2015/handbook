@@ -1,10 +1,10 @@
-package handbook.controller;
+package handbook.controller.account;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
 
-public interface AccountController {
+public interface UserController {
 	String initRegisterForm();
 	ModelAndView register(HttpServletRequest request);
 }

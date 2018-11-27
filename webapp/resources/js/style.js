@@ -7,12 +7,22 @@ $(document).ready(function() {
 	
 	initSubMenu();
 	
-	
 });
 
 function initSubMenu()
 {
-	$(".sub-menu-your-account").removeClass("disabled");
+	$(".menu-manage-your-content").click(function(e){
+		e.preventDefault();
+		$(".sub-menu").removeClass("disabled");
+		$(".sub-menu-your-content").removeClass("disabled");
+	});
+	
+	
+	$(".menu-manage-article").click(function(){
+		e.preventDefault();
+		$(".sub-menu").removeClass("disabled");
+		$(".sub-menu-article").removeClass("disabled");
+	});
 }
 
 function getActivatedMenuFromUrlVars()
@@ -31,24 +41,19 @@ function getActivatedMenuFromUrlVars()
 	}
     
     if(hashes[length1] === "articles")
-	{
-    	console.log("aaaaaaaaaaaaaaaaaaa");
-    	var length2 = hashes.length - 2;
-    	if(hashes[length2] === "userful")
-		{
-    		console.log("bbbbbbbbbbbbb");
-	    	return "menu-articles-userful";
-		}
-	    
-	    if(hashes[length2] === "newest")
-		{
-	    	console.log("cccccccccccccccccc");
-	    	return "menu-articles-newest";
-		}
-    	    
+	{   
     	return "menu-articles";
 	}
     
+    if(hashes[length1] === "userful")
+	{
+    	return "menu-articles-userful";
+	}
+    
+    if(hashes[length1] === "newest")
+	{
+    	return "menu-articles-newest";
+	}
    
     
     if(hashes[length1] === "add")
@@ -65,18 +70,5 @@ function getActivatedMenuFromUrlVars()
     	}
 	}
 
-    
-    getActiveMenuHasSubMenu(hashes);
-
     return "menu-home";
-}
-
-
-function getActiveMenuHasSubMenu(hashes)
-{
-	var length1 = hashes.length - 1;
-	if (hashes[length1] === "manage")
-	{
-		return "sub-menu-article";
-	}
 }

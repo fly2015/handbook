@@ -1,4 +1,4 @@
-package handbook.controller;
+package handbook.controller.article;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +12,6 @@ public interface ArticleController {
 	ModelAndView readArticleList(Integer page);
 	ModelAndView initAddNewArticleForm();
 	ModelAndView addNewArticle(HttpServletRequest request);
-	ModelAndView searchArticle(HttpServletRequest request);
 	ModelAndView readArticleList();
 	ModelAndView readUserFulArticle();
 	ModelAndView readNewestArticle();

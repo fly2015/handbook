@@ -1,4 +1,4 @@
-package hanbook.util;
+package handbook.util;
 
 public class JSTLFunctionUtils {
 	public static String formatArticleIndex(int number)

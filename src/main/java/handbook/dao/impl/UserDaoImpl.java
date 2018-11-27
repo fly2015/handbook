@@ -74,20 +74,20 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 	
 	@Override
 	public List<Role> readRoleList(String username) {
-		/*StringBuilder builder = new StringBuilder();
+		StringBuilder builder = new StringBuilder();
 		builder.append("SELECT r.role_id, r.role_name from user_role ur, role r, user u "); 
 		builder.append("WHERE r.role_id = ur.role_id ");
 		builder.append("AND u.user_id = ur.user_id ");
 		builder.append("AND u.username = ? ");
 		builder.append("AND r.status_id = 1 ");
-		builder.append("AND u.status_id = 1");*/
+		builder.append("AND u.status_id = 1");
 		
-		StringBuilder builder = new StringBuilder();
+		/*StringBuilder builder = new StringBuilder();
 		builder.append("SELECT r.role_id, r.role_name from role r, user u "); 
 		builder.append("WHERE u.role_id = r.role_id ");
 		builder.append("AND u.username = ? ");
 		builder.append("AND r.status_id = 1 ");
-		builder.append("AND u.status_id = 1");
+		builder.append("AND u.status_id = 1");*/
 		
 		List<Map<String, Object>> queryForList = jdbc.queryForList(builder.toString(), username);
 		

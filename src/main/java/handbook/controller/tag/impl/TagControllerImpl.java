@@ -2,7 +2,7 @@
  * @author fr.quochien@gmail.com
  * @date Jul 31, 2018
  */
-package handbook.controller.impl;
+package handbook.controller.tag.impl;
 
 import java.util.List;
 
@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import hanbook.util.StatusUtils;
 import handbook.constant.Pagination;
 import handbook.constant.StatusType;
 import handbook.constant.TagStatus;
-import handbook.controller.TagController;
+import handbook.controller.tag.TagController;
 import handbook.dto.Tag;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
 import handbook.exception.ValidationException;
 import handbook.service.AccountService;
 import handbook.service.TagService;
+import handbook.util.StatusUtils;
 import handbook.validation.TagFormValidation;
 @Controller
 public class TagControllerImpl implements TagController{

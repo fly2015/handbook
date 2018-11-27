@@ -23,8 +23,8 @@
 			<t:insertAttribute name="header" />
 		</div>
 		
-		<sec:authorize access="hasRole('ADMIN')">
-			<div class="sub-menu">
+		<sec:authorize access="hasRole('ADMIN') or hasRole('SUPER-USER')">
+			<div class="sub-menu disabled">
 				<div class="sub-menu-content">
 					<nav class="sub-menu-article disabled">
 						<ul>
@@ -54,7 +54,7 @@
 						</ul>
 					</nav>
 					
-					<nav class="sub-menu-your-account">
+					<nav class="sub-menu-your-content disabled">
 						<ul>
 							<li><a href="#">Your approved articles</a></li>
 							<li><a href="#">Your unapproved articles</a></li>

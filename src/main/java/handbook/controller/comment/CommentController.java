@@ -1,4 +1,4 @@
-package handbook.controller;
+package handbook.controller.comment;
 
 import java.util.List;
 

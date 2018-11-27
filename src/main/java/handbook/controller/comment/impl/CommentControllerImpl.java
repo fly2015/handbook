@@ -1,4 +1,4 @@
-package handbook.controller.impl;
+package handbook.controller.comment.impl;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import handbook.constant.ArticleStatus;
 import handbook.constant.CommentStatus;
-import handbook.controller.CommentController;
+import handbook.controller.comment.CommentController;
 import handbook.dto.Comment;
 import handbook.exception.ProcessException;
 import handbook.exception.ValidationException;

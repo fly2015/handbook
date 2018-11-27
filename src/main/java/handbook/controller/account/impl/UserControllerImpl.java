@@ -1,4 +1,4 @@
-package handbook.controller.impl;
+package handbook.controller.account.impl;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import handbook.constant.UserStatus;
-import handbook.controller.AccountController;
+import handbook.controller.account.UserController;
 import handbook.dto.Role;
 import handbook.dto.User;
 import handbook.exception.ProcessException;
@@ -19,8 +19,8 @@ import handbook.exception.ValidationException;
 import handbook.service.AccountService;
 import handbook.validation.RegisterFormValidation;
 @Controller
-public class AccountControllerImpl implements AccountController{
-	private static final Logger logger = Logger.getLogger(AccountControllerImpl.class);
+public class UserControllerImpl implements UserController{
+	private static final Logger logger = Logger.getLogger(UserControllerImpl.class);
 	@Autowired
 	private AccountService accountService;
 	

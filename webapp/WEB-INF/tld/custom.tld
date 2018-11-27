@@ -12,7 +12,7 @@
    
    <function>
    	<name>formatArticleIndex</name>
-    <function-class>hanbook.util.JSTLFunctionUtils</function-class>
+    <function-class>handbook.util.JSTLFunctionUtils</function-class>
     <function-signature>java.lang.String formatArticleIndex( int )</function-signature>
   </function>
 </taglib>

@@ -31,19 +31,21 @@
 			<ul>
 				
 				<sec:authorize access="hasRole('ADMIN')">
-					<li><a href="manage/article">Manage Articles</a></li>
-					<li><a href="manage/comment">Manage Comments</a></li>
-					<li><a href="manage/tag">Manage Tags</a></li>
-					<li><a href="manage/account">Manage Accounts</a></li>
+					<li><a class="menu-manage menu-manage-article" href="#">Manage Articles</a></li>
+					<li><a class="menu-manage menu-manage-comment" href="#">Manage Comments</a></li>
+					<li><a class="menu-manage menu-manage-tag" href="#">Manage Tags</a></li>
+					<li><a class="menu-manage menu-manage-account" href="#">Manage Accounts</a></li>
 				</sec:authorize>
 				
-			
-				<sec:authentication var="principal" property="principal"></sec:authentication>
-				<sec:authorize access="isAuthenticated()">
-					<li><a class="menu-box-item-username" href="<c:url value="" />"><c:out value="${principal.username}"></c:out></a><li>
-					<li><a href="logout">Logout</a></li>
+				<sec:authorize access="hasRole('ADMIN') or hasRole('SUPER-USER')">
+					<li><a class="menu-manage menu-manage-your-content" href="#">Your Contents</a></li>
 				</sec:authorize>
 
+				
+				<sec:authorize access="isAuthenticated()">
+					<li><a href="logout">Logout</a></li>
+				</sec:authorize>
+				
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="login">Login</a></li>
 					<li><a href="register">Register</a></li>

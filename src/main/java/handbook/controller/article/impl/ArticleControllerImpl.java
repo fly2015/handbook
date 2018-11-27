@@ -1,6 +1,5 @@
-package handbook.controller.impl;
+package handbook.controller.article.impl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -17,14 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import hanbook.util.StatusUtils;
 import handbook.constant.ArticleStatus;
 import handbook.constant.CommentStatus;
 import handbook.constant.FilterOption;
 import handbook.constant.Pagination;
 import handbook.constant.StatusType;
 import handbook.constant.TagStatus;
-import handbook.controller.ArticleController;
+import handbook.controller.article.ArticleController;
 import handbook.dto.Article;
 import handbook.dto.Comment;
 import handbook.dto.Tag;
@@ -34,6 +32,7 @@ import handbook.exception.ValidationException;
 import handbook.service.ArticleService;
 import handbook.service.CommentService;
 import handbook.service.TagService;
+import handbook.util.StatusUtils;
 import handbook.validation.ArticleFormValidation;
 
 @Controller
@@ -157,22 +156,6 @@ public class ArticleControllerImpl implements ArticleController{
 		return article;
 	}
 
-	@Override
-	@RequestMapping(method = RequestMethod.GET, value = { "articles/search" })
-	public ModelAndView searchArticle(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView();
-		String keyword = request.getParameter("keyword");
-		
-		List<Article> articleList = new ArrayList<>();
-		if (StringUtils.isNotEmpty(keyword))
-		{
-			articleList = articleService.searchArticle(keyword);
-		}
-		
-		modelAndView.addObject("articleList", articleList);
-		modelAndView.setViewName("searchArticleResult");
-		return modelAndView;
-	}
 	
 	@Override
 	@RequestMapping(method = RequestMethod.GET, value = {"/articles" })

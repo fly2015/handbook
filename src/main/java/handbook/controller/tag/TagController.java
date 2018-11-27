@@ -2,7 +2,7 @@
  * @author fr.quochien@gmail.com
  * @date Jul 31, 2018
  */
-package handbook.controller;
+package handbook.controller.tag;
 
 
 import javax.servlet.http.HttpServletRequest;

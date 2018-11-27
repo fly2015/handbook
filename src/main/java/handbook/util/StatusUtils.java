@@ -1,4 +1,4 @@
-package hanbook.util;
+package handbook.util;
 
 import java.util.HashMap;
 import java.util.Map;
