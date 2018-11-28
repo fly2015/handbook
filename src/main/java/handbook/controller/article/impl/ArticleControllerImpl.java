@@ -32,6 +32,7 @@ import handbook.exception.ValidationException;
 import handbook.service.ArticleService;
 import handbook.service.CommentService;
 import handbook.service.TagService;
+import handbook.util.PaginationUtils;
 import handbook.util.StatusUtils;
 import handbook.validation.ArticleFormValidation;
 
@@ -157,7 +158,7 @@ public class ArticleControllerImpl implements ArticleController{
 	}
 
 	
-	@Override
+	/*@Override
 	@RequestMapping(method = RequestMethod.GET, value = {"/articles" })
 	public ModelAndView readArticleList() {
 		Integer numOfArticles = articleService.countArticles(ArticleStatus.ENABLE.getStatus());
@@ -173,33 +174,23 @@ public class ArticleControllerImpl implements ArticleController{
 		
 		modelAndView.setViewName("articleList");
 		return modelAndView;
-	}
+	}*/
 	
 	@Override
-	@RequestMapping(method = RequestMethod.GET, value = {"/articles/{page}" })
-	public ModelAndView readArticleList(@PathVariable("page") Integer page) {
-		if(page == null || page == 0)
-		{
-			page = 1;
-		}
+	@RequestMapping(method = RequestMethod.GET, value = {"/articles", "/articles/{page}" })
+	public ModelAndView readArticleList(@PathVariable(value = "page", required = false) Integer page) {
 		
 		Integer numOfArticles = articleService.countArticles(ArticleStatus.ENABLE.getStatus());
-		Integer totalPages = (int)Math.ceil((float)numOfArticles/Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE);
-		if (page > totalPages)
-		{
-			page = totalPages;
-		}
+		Integer numberOfPages = PaginationUtils.getInstance().getNumberOfPages(numOfArticles, Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE);
 		
-		Integer startPosition =  (page - 1) * Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE;
-		
-		
-		
+		page = PaginationUtils.getInstance().verifyRequestedPageNumber(page, numberOfPages);
+		Integer startPosition =   PaginationUtils.getInstance().caculateStartPosition(page, Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE);
 		List<Article> articleList = articleService.readArticleList(Pagination.NUMBER_OF_ITEM_ARTICLES_PAGE, startPosition, ArticleStatus.ENABLE.getStatus());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("articleList", articleList);
 		modelAndView.addObject("numOfArticles", numOfArticles);
-		modelAndView.addObject("totalPages", totalPages);
+		modelAndView.addObject("numberOfPages", numberOfPages);
 		modelAndView.addObject("pageIndex", page);
 		modelAndView.setViewName("articleList");
 		return modelAndView;

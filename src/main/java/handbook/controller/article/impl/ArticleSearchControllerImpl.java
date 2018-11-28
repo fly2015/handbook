@@ -27,7 +27,7 @@ public class ArticleSearchControllerImpl implements ArticleSearchController{
 	
 	@Override
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.GET, value = { "article/search" })
+	@RequestMapping(method = RequestMethod.GET, value = { "search-article" })
 	public ResponseEntity<?> searchArticles(@RequestParam(name="searchString") String searchString) {
 		
 		Map<String, Object> headers = new HashMap<>();

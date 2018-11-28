@@ -12,7 +12,7 @@ public interface ArticleController {
 	ModelAndView readArticleList(Integer page);
 	ModelAndView initAddNewArticleForm();
 	ModelAndView addNewArticle(HttpServletRequest request);
-	ModelAndView readArticleList();
+	/*ModelAndView readArticleList();*/
 	ModelAndView readUserFulArticle();
 	ModelAndView readNewestArticle();
 }

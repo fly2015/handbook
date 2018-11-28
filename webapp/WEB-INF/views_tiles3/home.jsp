@@ -18,4 +18,12 @@
 		</div>
 	</div>
 	
+	<div class="pagination-section disabled">
+		<div class="pagination">
+			<a href="articles/${pageIndex - 1}">&laquo;</a>
+		  	<a href="articles/${page.count}"><c:out value="${page.count}"></c:out> </a>
+			<a href="articles/${pageIndex + 1}">&raquo;</a>
+		</div>
+	</div>
+	
 </div>
