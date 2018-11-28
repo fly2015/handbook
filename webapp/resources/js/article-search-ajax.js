@@ -36,7 +36,6 @@ function display(data) {
 	$(".search-response-section").removeClass("disabled");
 	var articles = data["articles"];
 	
-	console.log(articles.length);
 	
 	var articleBlockData = "";
 	if(articles)
