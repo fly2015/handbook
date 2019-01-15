@@ -5,25 +5,8 @@ $(document).ready(function() {
 		$('.' + activatedMenu).addClass("activated-menu");
 	}
 	
-	initSubMenu();
-	
 });
 
-function initSubMenu()
-{
-	$(".menu-manage-your-content").click(function(e){
-		e.preventDefault();
-		$(".sub-menu").removeClass("disabled");
-		$(".sub-menu-your-content").removeClass("disabled");
-	});
-	
-	
-	$(".menu-manage-article").click(function(){
-		e.preventDefault();
-		$(".sub-menu").removeClass("disabled");
-		$(".sub-menu-article").removeClass("disabled");
-	});
-}
 
 function getActivatedMenuFromUrlVars()
 {

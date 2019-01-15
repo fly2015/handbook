@@ -1,4 +1,4 @@
-package handbook.security.config;
+package handbook.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

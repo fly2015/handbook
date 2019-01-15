@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import handbook.constant.Pagination;
+import handbook.constant.Status;
 import handbook.constant.StatusType;
-import handbook.constant.TagStatus;
 import handbook.controller.tag.TagController;
 import handbook.dto.Tag;
 import handbook.dto.User;
@@ -45,7 +45,7 @@ public class TagControllerImpl implements TagController{
 	public ModelAndView readListTag(HttpServletRequest request) {
 		List<Tag> readTagList = tagService.readTagList(Pagination.START_POSITION_TAG_PAGE, 
 				Pagination.NUMBER_OF_ITEM_TAG_PAGE,
-				TagStatus.ENABLE.getStatus());
+				Status.ENABLE.getStatus());
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("tagList", readTagList);

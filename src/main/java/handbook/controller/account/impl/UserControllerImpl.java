@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import handbook.constant.UserStatus;
+import handbook.constant.Status;
 import handbook.controller.account.UserController;
 import handbook.dto.Role;
 import handbook.dto.User;
@@ -67,7 +67,7 @@ public class UserControllerImpl implements UserController{
 		user.setPassword(password);
 		user.setEmail(email);
 		
-		user.setStatusId(UserStatus.INACTIVE.getStatus());
+		user.setStatusId(Status.INACTIVE.getStatus());
 		User createdUser = new User();
 		createdUser.setUserId(0);
 		user.setCreatedByUser(createdUser);

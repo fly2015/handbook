@@ -1,4 +1,4 @@
-package handbook.security.config;
+package handbook.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -30,8 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		//.antMatchers("/home", "/").permitAll()
 		.antMatchers("/login", "/register").anonymous()
-		.antMatchers("/tag/add").access("hasRole('ADMIN')")
-		.antMatchers("/tag/add").access("hasRole('SUPER-USER')")
+		.antMatchers("/tag/add").access("hasRole('ADMIN') or hasRole('SUPER-USER')")
 		.anyRequest().authenticated()
 		//.antMatchers("/tags").authenticated()
 		.and()

@@ -1,4 +1,4 @@
-package handbook.security.config;
+package handbook.security;
 
 import java.util.ArrayList;
 import java.util.List;

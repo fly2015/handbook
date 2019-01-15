@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import handbook.constant.ArticleStatus;
-import handbook.constant.CommentStatus;
+import handbook.constant.Status;
 import handbook.controller.comment.CommentController;
 import handbook.dto.Comment;
 import handbook.exception.ProcessException;
@@ -46,7 +44,7 @@ public class CommentControllerImpl implements CommentController{
 		Comment comment = new Comment();
 		comment.setArticleId(articleId);
 		comment.setCommentContent(commentContent);
-		comment.setStatusId(CommentStatus.ENABLE.getStatus());
+		comment.setStatusId(Status.ENABLE.getStatus());
 		comment.setCreatedByUser(userAuthenticationUtil.readAuthenticatedUser());
 		
 		Map<String, Object> headers = new HashMap<>();
@@ -65,7 +63,7 @@ public class CommentControllerImpl implements CommentController{
 		}
 		
 		
-		List<Comment> comments = commentService.readCommentList(articleId, ArticleStatus.ENABLE.getStatus(), CommentStatus.ENABLE.getStatus());
+		List<Comment> comments = commentService.readCommentList(articleId, Status.ENABLE.getStatus(), Status.ENABLE.getStatus());
 		if(comments.isEmpty())
 		{
 			headers.put(MESSAGE, "No Comment found.");
@@ -82,7 +80,7 @@ public class CommentControllerImpl implements CommentController{
 			@RequestParam Integer commentStatusId, 
 			@RequestParam Integer userStatusId)
 	{
-		return commentService.readCommentList(articleId, ArticleStatus.ENABLE.getStatus(), CommentStatus.ENABLE.getStatus());
+		return commentService.readCommentList(articleId, Status.ENABLE.getStatus(), Status.ENABLE.getStatus());
 	}
 
 }

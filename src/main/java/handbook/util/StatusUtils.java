@@ -3,10 +3,8 @@ package handbook.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import handbook.constant.ArticleStatus;
+import handbook.constant.Status;
 import handbook.constant.StatusType;
-import handbook.constant.TagStatus;
-import handbook.constant.UserStatus;
 
 public final class StatusUtils {
 	private static StatusUtils uniqueInstance;
@@ -27,44 +25,26 @@ public final class StatusUtils {
 	
 	public Map<Integer, String> buildStatusList(StatusType statusType)
 	{
-		if(StatusType.TAG.equals(statusType))
-		{
-			return buildTagStatusList();
-		}
-		
-		if(StatusType.ARTICLE.equals(statusType))
-		{
-			return buildArticleStatusList();
-		}
-		
 		if(StatusType.USER.equals(statusType))
 		{
 			return buildUserStatusList();
 		}
 		
-		return new HashMap<Integer, String>();
+		return buildStatusList();
 	}
 
 	private Map<Integer, String> buildUserStatusList() {
 		Map<Integer, String> map = new HashMap<>();
-		map.put(UserStatus.ACTIVE.getStatus(), UserStatus.ACTIVE.name());
-		map.put(UserStatus.INACTIVE.getStatus(), UserStatus.INACTIVE.name());
+		map.put(Status.ACTIVE.getStatus(), Status.ACTIVE.name());
+		map.put(Status.INACTIVE.getStatus(), Status.INACTIVE.name());
 		
 		return map;
 	}
 
-	private Map<Integer, String> buildArticleStatusList() {
+	private Map<Integer, String> buildStatusList() {
 		Map<Integer, String> map = new HashMap<>();
-		map.put(ArticleStatus.ENABLE.getStatus(), ArticleStatus.ENABLE.name());
-		map.put(ArticleStatus.DISABLE.getStatus(), ArticleStatus.DISABLE.name());
-		
-		return map;
-	}
-
-	private Map<Integer, String> buildTagStatusList() {
-		Map<Integer, String> map = new HashMap<>();
-		map.put(TagStatus.ENABLE.getStatus(), TagStatus.ENABLE.name());
-		map.put(TagStatus.DISABLE.getStatus(), TagStatus.DISABLE.name());
+		map.put(Status.ENABLE.getStatus(), Status.ENABLE.name());
+		map.put(Status.DISABLE.getStatus(), Status.DISABLE.name());
 		
 		return map;
 	}

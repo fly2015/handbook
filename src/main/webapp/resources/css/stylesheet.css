@@ -7,8 +7,8 @@ Twitter: @rich_clark
 */
 
 html, body, div, span, object, iframe,
-/* h1, h2, h3, h4, h5, h6,*/ p, blockquote, pre,
-abbr, address, cite, code,
+/* h1, h2, h3, h4, h5, h6,*/ p, blockquote, /* pre, */
+abbr, address, cite, /* code, */
 del, dfn, em, img, ins, kbd, q, samp,
 small, strong, sub, sup, var,
 b, i,
@@ -146,6 +146,7 @@ nav a {
     padding: 1px;
     border-radius: 2px;
     font-weight: bold;
+    font-size: 13px;
 }
 
 
