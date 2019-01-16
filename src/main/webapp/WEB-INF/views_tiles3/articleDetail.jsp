@@ -6,20 +6,20 @@
 <div class="main-contain">
 	<div class="article-section">
 		<h3 class="title">Article > Details	</h3>
-		<h3><c:out value="${article.articleTitle}"></c:out></h3>
+		<h3 class="article-title"><c:out value="${article.articleTitle}"></c:out></h3>
 		<p>
 			${article.articleContent}
 		</p>
 	</div>
 	
 	<div id="comment">
-		<h3>Additional information </h3>
+		<h3 class="article-title-additional">Additional information </h3>
 		<c:forEach items="${comments}" var="comment">
 			<p>${comment.commentContent}</p>
 		</c:forEach>
 	</div>
 	
-	<sec:authorize access="hasRole('ADMIN') or hasRole('USER')">
+	<sec:authorize access="hasRole('ADMIN') or hasRole('SUPER-USER')">
 		<div class="comment-section">
 			<form action="" id="commentForm" method="POST">
 				<input id="article-id" name="articleId" type="hidden" value="${article.articleId}"/>

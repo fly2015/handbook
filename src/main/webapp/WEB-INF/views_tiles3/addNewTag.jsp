@@ -15,7 +15,7 @@
 				<td>Name:</td>
 				<td><input class="input-font" type="text" name="tagName" value="" /></td>
 			</tr>
-			<tr>
+			<%-- <tr>
 				<td>Status:</td>
 				<td>
 					<select class="input-font" name="statusId">
@@ -24,7 +24,7 @@
 							</c:forEach>
 					</select>
 				</td>
-			</tr>
+			</tr> --%>
 			<tr>
 				<td colspan="2" align="right">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

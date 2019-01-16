@@ -146,7 +146,7 @@ nav a {
     padding: 1px;
     border-radius: 2px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 
@@ -345,13 +345,21 @@ input{
     padding-bottom: 30px;
 }
 
-
-
 h3.title
 {
 	border-bottom: solid 2px #ccc;
     padding-bottom: 3px;
-    color: #E04;
+    color: darkblue;
+}
+
+h3.article-title
+{
+	font-size: 25px;
+}
+
+h3.article-title-additional
+{
+	font-size: 25px;
 }
 
 h4.title

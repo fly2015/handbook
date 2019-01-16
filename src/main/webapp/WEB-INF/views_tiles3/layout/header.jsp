@@ -31,11 +31,12 @@
 				</sec:authorize>
 
 				<sec:authorize access="hasRole('ADMIN') or hasRole('SUPER-USER') or hasRole('USER')">
-					<li><a class="menu-bookmark" href="user/bookmarks">Bookmarks</a></li>
+					<li><a class="menu-add-bookmark" href="bookmark/add">Bookmarks</a></li>
+					<li><a class="menu-bookmark" href="bookmarks"><i class="far fa-bookmark"></i></a></li>
 				</sec:authorize>
 				
 				<sec:authorize access="isAuthenticated()">
-					<li><a href="logout">Logout</a></li>
+					<li><a href="logout"><i class="fas fa-sign-out-alt"></i></a></li>
 				</sec:authorize>
 				
 				<sec:authorize access="!isAuthenticated()">

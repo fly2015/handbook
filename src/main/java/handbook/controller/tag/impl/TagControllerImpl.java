@@ -97,8 +97,8 @@ public class TagControllerImpl implements TagController{
 		String slug = StringUtils.replaceAll(request.getParameter("tagName"), " ", "-");
 		tag.setTagNameSlug(slug);
 
-		tag.setStatusId(Integer.valueOf(request.getParameter("statusId")));
-		
+		//tag.setStatusId(Integer.valueOf(request.getParameter("statusId")));
+		tag.setStatusId(Status.ACTIVE.getStatus());
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) auth.getPrincipal();

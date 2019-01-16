@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/stylesheet.css">
 <script src="resources/js/jquery/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="resources/js/style.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <title>Let's make life easier</title>
 
 </head>

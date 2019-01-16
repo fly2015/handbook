@@ -151,7 +151,8 @@ public class ArticleControllerImpl implements ArticleController{
 
 		article.setTags(tags);
 		
-		article.setStatusId(Integer.valueOf(request.getParameter("statusId")));
+		//article.setStatusId(Integer.valueOf(request.getParameter("statusId")));
+		article.setStatusId(Status.ACTIVE.getStatus());
 		return article;
 	}
 

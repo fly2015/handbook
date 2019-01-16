@@ -12,7 +12,7 @@ public class Pagination {
 	
 	
 	public final static int START_POSITION_ADD_ARTICLE_PAGE = 0;
-	public final static int NUMBER_OF_ITEM_ADD_ARTICLE_PAGE = 20;
+	public final static int NUMBER_OF_ITEM_ADD_ARTICLE_PAGE = 50;
 	
 	public final static int START_POSITION_ARTICLE_SEARCH_PAGE = 0;
 	public final static int NUMBER_OF_ITEM_ARTICLE_SEARCH_PAGE = 5;

@@ -33,7 +33,7 @@
    			</td>
 		  </tr>
 		  
-		  <tr>
+		  <%-- <tr>
 		    <td>Status: </td>
 		    <td>
 		    	<select class="input-font" name="statusId">
@@ -42,7 +42,7 @@
 		    		</c:forEach>
 		    	</select>
 		    </td>
-		  </tr>
+		  </tr> --%>
 		  
 		  <tr>
 		    <td></td>
