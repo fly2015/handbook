@@ -56,4 +56,8 @@
 	<definition name="newestArticles" extends="base">
 		<put-attribute name="body" value="/WEB-INF/views_tiles3/newestArticles.jsp" />
 	</definition>
+	
+	<definition name="bookmarkList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/bookmark/bookmarkList.jsp" />
+	</definition>
 </tiles-definitions>

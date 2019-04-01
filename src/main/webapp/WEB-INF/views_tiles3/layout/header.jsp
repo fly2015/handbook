@@ -31,8 +31,8 @@
 				</sec:authorize>
 
 				<sec:authorize access="hasRole('ADMIN') or hasRole('SUPER-USER') or hasRole('USER')">
-					<li><a class="menu-add-bookmark" href="bookmark/add">Bookmarks</a></li>
-					<li><a class="menu-bookmark" href="bookmarks"><i class="far fa-bookmark"></i></a></li>
+					<li><a class="menu-add-bookmark" href="bookmarks">Bookmarks</a></li>
+					<li><a class="menu-bookmark" href="bookmark/add"><i class="far fa-bookmark"></i></a></li>
 				</sec:authorize>
 				
 				<sec:authorize access="isAuthenticated()">
