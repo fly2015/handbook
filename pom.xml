@@ -12,7 +12,7 @@
 	<dependency>
 	    <groupId>junit</groupId>
 	    <artifactId>junit</artifactId>
-	    <version>4.12</version>
+	    <version>4.13.1</version>
 	    <scope>test</scope>
 	</dependency>
 	
@@ -43,7 +43,7 @@
 	<dependency>
 	    <groupId>mysql</groupId>
 	    <artifactId>mysql-connector-java</artifactId>
-	    <version>8.0.11</version>
+	    <version>8.0.28</version>
 	</dependency>
 	
 	<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
@@ -93,7 +93,7 @@
 	<dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-web</artifactId>
-	    <version>5.7.2</version>
+	    <version>${spring-security.version}</version>
 	</dependency>
 	
 	
@@ -144,6 +144,7 @@
 		<spring-jdbc.version>5.3.22</spring-jdbc.version>
 		<spring-security-config.version>5.7.2</spring-security-config.version>
 		<spring-security-taglibs.version>5.7.2</spring-security-taglibs.version>
+		<spring-security.version>5.7.2</spring-security.version>
 		
   </properties>
   
