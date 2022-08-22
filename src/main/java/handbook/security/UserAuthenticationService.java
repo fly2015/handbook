@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import handbook.dao.UserDao;
 import handbook.dto.Role;
 import handbook.dto.User;
 
 public class UserAuthenticationService implements UserDetailsService{
-
+    static Logger logger = Logger.getLogger(UserAuthenticationService.class);
 	private final UserDao userDao;
 	
 	public UserAuthenticationService(UserDao userDao) {
@@ -25,6 +27,7 @@ public class UserAuthenticationService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		// todo status Utils
+	    logger.info("Retreving user info " + username);
 		User user = userDao.readUserByUsername(username, 1);
 		if(user != null)
 		{
@@ -37,7 +40,7 @@ public class UserAuthenticationService implements UserDetailsService{
 			}
 
 			org.springframework.security.core.userdetails.User userSercurity = 
-					new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+					new org.springframework.security.core.userdetails.User(user.getUsername(), new BCryptPasswordEncoder().encode(user.getPassword()), authorities);
 			
 			return userSercurity;
 		}

@@ -1,3 +1,14 @@
 /target/
 /.settings
-
+tomcat/logs/catalina.2022-08-19.log
+tomcat/logs/catalina.2022-08-22.log
+tomcat/logs/handbook-app.log
+tomcat/logs/host-manager.2022-08-19.log
+tomcat/logs/host-manager.2022-08-22.log
+tomcat/logs/localhost_access_log.2022-08-19.txt
+tomcat/logs/localhost_access_log.2022-08-22.txt
+tomcat/logs/localhost.2022-08-19.log
+tomcat/logs/localhost.2022-08-22.log
+tomcat/logs/manager.2022-08-19.log
+tomcat/logs/manager.2022-08-22.log
+tomcat/logs/myapp.log

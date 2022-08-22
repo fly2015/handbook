@@ -36,7 +36,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 	@Override
 	public User readUserByUsername(String username, Integer statusId) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("select * from User where username = ?");
+		builder.append("select * from user where username = ?");
 		builder.append(" AND status_id = ?");
 		
 		SqlRowSet queryForRowSet = jdbc.queryForRowSet(builder.toString(), username, statusId);
@@ -56,7 +56,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 	@Override
 	public User readUserByUsername(String username) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("select * from User where username = ?");
+		builder.append("select * from user where username = ?");
 		
 		SqlRowSet queryForRowSet = jdbc.queryForRowSet(builder.toString(), username);
 		User user = null;

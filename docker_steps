@@ -1,0 +1,13 @@
+1. Build image by dockerfile raw 
+    -> done
+2. Connect containers with/without network
+    -> done(handbook)
+3. User named volume to persist database/logs/configuration
+    -> done (mysql-db-datavolume)
+4. Use bind mount to interact directly with containers
+    -> done (logs)
+5. Use argrument and environment param (for security and conveniency)
+    -> doing
+6. Use docker compose
+
+7. Deploy production

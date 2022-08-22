@@ -1,0 +1,9 @@
+FROM mysql
+EXPOSE 3306
+
+
+
+#docker build -t mysql .
+#docker run -it -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=hien123 mysql
+#docker exec -it mysql bash
+#mysql --user=root --password=###

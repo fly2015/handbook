@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  mysql:
+    #image: 'mysql'
+    build: ./db/mysql
+    volumes:
+      - handbook-db:/var/lib/mysql
+    # environment:
+    # MYSQL_ROOT_PASSWORD: hien123
+    # - MYSQL_ROOT_PASSWORD=hien123
+    env_file:
+      - ./env/mysql.env
+    #networks:
+    # - handbook
+    container_name: handbook_mysql
+  phpmyadmin:
+    build: ./db/phpmyadmin
+    # build:
+    #   context: ./phpmyadmin
+    #   dockerfile: Dockerfile
+    #   args:
+    #     some-arg: 1  
+    env_file:
+      - ./env/phpmyadmin.env  
+    ports:
+      - '9100:80'
+    depends_on:
+      - mysql
+    container_name: handbook_phpmyadmin
+  handbook:
+    build: .
+    env_file:
+      - ./env/handbook.env  
+    ports:
+      - '8080:8080'
+      - '8000:8000'
+    volumes:
+      - ./tomcat/logs:/usr/local/tomcat/logs
+      - ./target/handbook.war:/usr/local/tomcat/webapps/handbook.war
+    container_name: handbook_app
+volumes:
+  handbook-db:
+
+#networks:
+#    handbook:
+#        external: true
+
+
+
+#docker-compose up -d
+#docker-compose down
+#docker-compose down -v
+#docker-compose  up --build  
