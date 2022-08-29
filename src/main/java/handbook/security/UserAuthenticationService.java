@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,7 @@ import handbook.dto.Role;
 import handbook.dto.User;
 
 public class UserAuthenticationService implements UserDetailsService{
-    static Logger logger = Logger.getLogger(UserAuthenticationService.class);
+    static Logger logger = LogManager.getLogger(UserAuthenticationService.class);
 	private final UserDao userDao;
 	
 	public UserAuthenticationService(UserDao userDao) {

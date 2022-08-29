@@ -1,6 +1,7 @@
 package handbook.service.impl;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import handbook.service.AccountService;
 
 @Service
 public class AccountServiceImpl implements AccountService{
-	private static final Logger logger = Logger.getLogger(AccountServiceImpl.class);
+	private static final Logger logger = LogManager.getLogger(AccountServiceImpl.class);
 	@Autowired
 	private UserDao userDao;
 	@Override

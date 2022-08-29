@@ -9,7 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,7 +33,7 @@ import handbook.util.StatusUtils;
 import handbook.validation.TagFormValidation;
 @Controller
 public class TagControllerImpl implements TagController{
-	final static Logger logger = Logger.getLogger(TagControllerImpl.class);
+	final static Logger logger = LogManager.getLogger(TagControllerImpl.class);
 	@Autowired
 	private AccountService accountService;
 	@Autowired
