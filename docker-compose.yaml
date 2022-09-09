@@ -36,7 +36,7 @@ services:
       - '8000:8000'
     volumes:
       - ./tomcat/logs:/usr/local/tomcat/logs
-      - ./target/handbook.war:/usr/local/tomcat/webapps/handbook.war
+      #- ./webapps:/usr/local/tomcat/webapps
     container_name: handbook_app
 volumes:
   handbook-db:

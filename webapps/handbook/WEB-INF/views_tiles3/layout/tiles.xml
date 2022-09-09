@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="base" template="/WEB-INF/views_tiles3/layout/page.jsp">
+		<put-attribute name="header" value="/WEB-INF/views_tiles3/layout/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views_tiles3/layout/footer.jsp" />
+	</definition>
+	
+	<definition name="home" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/home.jsp" />
+	</definition>
+	
+	<definition name="login" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/login.jsp" />
+	</definition>
+	
+	<definition name="register" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/register.jsp" />
+	</definition>
+	
+	<definition name="addNewArticle" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/addNewArticle.jsp" />
+	</definition>
+	
+	<definition name="articleByTag" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/articleByTag.jsp" />
+	</definition>
+	
+	<definition name="articleDetail" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/articleDetail.jsp" />
+	</definition>
+	
+	<definition name="addNewTag" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/addNewTag.jsp" />
+	</definition>
+	
+	<definition name="tagList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/tagList.jsp" />
+	</definition>
+	
+	<definition name="searchArticleResult" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/searchArticleResult.jsp" />
+	</definition>
+	
+	<definition name="articleList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/articleList.jsp" />
+	</definition>
+	
+	<definition name="userfulArticles" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/userfulArticles.jsp" />
+	</definition>
+	
+	<definition name="newestArticles" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/newestArticles.jsp" />
+	</definition>
+	
+	<definition name="bookmarkList" extends="base">
+		<put-attribute name="body" value="/WEB-INF/views_tiles3/bookmark/bookmarkList.jsp" />
+	</definition>
+</tiles-definitions>

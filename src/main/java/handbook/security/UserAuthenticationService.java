@@ -29,7 +29,15 @@ public class UserAuthenticationService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) {
 		// todo status Utils
 	    logger.info("Retreving user info " + username);
-		User user = userDao.readUserByUsername(username, 1);
+
+		User user = null;
+		try {
+			user = userDao.readUserByUsername(username, 1);
+		} catch (Exception e) {
+			logger.info(e);
+			throw e;
+		}
+		
 		if(user != null)
 		{
 			// read roles from db

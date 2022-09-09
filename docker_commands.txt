@@ -1,0 +1,52 @@
+#Create war file
+mvn clean
+mvn install
+mvn clean tomcat7:deploy
+mvn tomcat7:undeploy
+mvn tomcat7:redeploy
+
+#Create Image
+docker build -t handbook .
+
+#Docker run container
+docker run --name handbook -p 8080:8080 handbook
+
+#Docker run container with debug port
+docker run --name handbook -p 8080:8080 -p 8000:8000 handbook
+
+#Check app logs
+docker exec -it handbook bash
+
+
+#Docker create mysql
+docker build -t mysql .
+
+docker run -it -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=hien123 mysql
+docker exec -it mysql bash
+mysql --user=root --password=hien123
+show databases;
+
+#Docker create phpmyadmin
+docker build -t phpmyadmin .
+docker run -d --name phpmyadmin -e PMA_HOST=172.17.0.3 -e PMA_PORT=3306 -p 9100:80 phpmyadmin
+
+#Docker connect app to mysql
+- change jdbc.url using IP
+
+#Docker create network
+docker network create handbook-network
+docker run -it --network handbook-network --name mysql -e MYSQL_ROOT_PASSWORD=hien123 mysql
+docker run --network handbook-network --name phpmyadmin -e PMA_HOST=mysql -e PMA_PORT=3306 -p 9100:80 phpmyadmin
+- change jdbc.url using container name
+docker run --network handbook-network --name handbook -p 8080:8080 handbook
+
+#Docker create volume
+docker run -it --network handbook-network -v hanbook-db-volume:/var/lib/mysql  --name mysql -e MYSQL_ROOT_PASSWORD=hien123 mysql
+docker run --network handbook-network --name phpmyadmin -e PMA_HOST=mysql -e PMA_PORT=3306 -p 9100:80 phpmyadmin
+#Docker create bind mount
+docker run --network handbook-network -v D:\Git\handbook\tomcat\logs:/usr/local/tomcat/logs --name handbook -p 8080:8080 handbook
+
+
+##compose
+docker compose down --rmi all
+docker compose up -d --build 

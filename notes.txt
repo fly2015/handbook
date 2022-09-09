@@ -1,0 +1,27 @@
+Create AWS EC2(is a Amazon service allow you manage your own remote machine), VPC
+Configure sercurity to expose all required ports to WWW
+Connect to instance(SSH), install docker and run containers
+
+
+
+#update linux
+sudo yum update -y
+
+#install docker
+sudo amazon-linux-extras install docker
+sudo service docker start
+
+#Option 1: Deploy source code and build image on remote machine
+#Option 2: Deploy build image into into Docker Hub then run on remote machine
+docker build -t quochien109/handbook .
+docker push quochien109/handbook:latest
+docker login (pass: cls/hienbamboo123)
+
+#download image from docker hub and run container 
+
+############Deploy to EC2 #####
+sudo docker run -d --network handbook-network --name handbook -p 8080:8080 quochien109/handbook
+sudo docker run -d --network handbook-network -v hanbook-db-volume:/var/lib/mysql  --name mysql -e MYSQL_ROOT_PASSWORD=hien123 quochien109/mysql
+sudo docker run -d --network handbook-network --name phpmyadmin -e PMA_HOST=mysql -e PMA_PORT=3306 -p 9100:80 quochien109/phpmyadmin
+sudo docker exec -it handbook bash
+

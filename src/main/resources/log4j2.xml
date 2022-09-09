@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuration declaration with some elements implementated from Java packages -->
+<Configuration status="info">
+     <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy.MM.dd-HH:mm:ss.SSS} - %level{length=1} - %-6T - %-45.45c - %-17.-17X{id} %6K{ms}%equals{ | %K{m}}{ | }{ | %m}%n</Property>
+    </Properties>
+    <!-- Configured logger outputs (appenders) -->
+    <Appenders>
+        <!-- Output to log file-->
+        <RollingFile name="InfoFile" filePattern="logs/handbook/handbook-%d{yyyy-MM-dd}.log4j">
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+            <DirectWriteRolloverStrategy/>
+            <Policies>
+                <CronTriggeringPolicy schedule="0 0/5 * * * ?" evaluateOnStartup="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <!-- Configured loggers -->
+    <Loggers>
+        <!-- Default root parent of all other (simple name, package name, class name) loggers -->
+        <Root level="debug">
+            <AppenderRef ref="InfoFile" level="info" />
+            <AppenderRef ref="DebugFile" level="debug" />
+        </Root>
+    </Loggers>
+</Configuration>

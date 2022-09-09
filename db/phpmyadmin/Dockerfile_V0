@@ -1,8 +1,0 @@
-FROM phpmyadmin/phpmyadmin
-EXPOSE 80
-
-
-
-#docker build -t phpmyadmin .
-#docker run -d --name phpmyadmin -e PMA_ARBITRARY=1 -p 9100:80 phpmyadmin
-#docker run -d --name phpmyadmin -e PMA_HOST=172.17.0.2 -e PMA_PORT=3306 -p 9100:80 phpmyadmin

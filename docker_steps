@@ -7,7 +7,7 @@
 4. Use bind mount to interact directly with containers
     -> done (logs)
 5. Use argrument and environment param (for security and conveniency)
-    -> doing
+    -> done
 6. Use docker compose
-
+    -> done
 7. Deploy production
