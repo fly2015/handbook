@@ -15,7 +15,7 @@ sudo service docker start
 #Option 2: Deploy build image into into Docker Hub then run on remote machine
 docker build -t quochien109/handbook .
 docker push quochien109/handbook:latest
-docker login (pass: cls/hienbamboo123)
+docker login 
 
 #download image from docker hub and run container 
 
