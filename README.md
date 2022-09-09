@@ -20,4 +20,5 @@ http://localhost:8080/handbook
 username: admin
 
 password: password
-Can check database to get another one)
+
+Can check database to get another one
