@@ -6,7 +6,9 @@ docker compose up
 
 # Run PHPMyAdmin
 http://localhost:9100
+
 username: root
+
 password: hien123
 
 # Import the database 
@@ -14,6 +16,8 @@ password: hien123
 
 # Open handbook app
 http://localhost:8080/handbook
+
 username: admin
+
 password: password
-(Can check database to get another one)
+Can check database to get another one)
