@@ -1,5 +1,5 @@
 # handbook
-Build 4rum app with Spring MVC and JSP
+Workshop Spring + Tomcat, Mysql with Docker
 
 # Deploy using Docker
 docker compose up
