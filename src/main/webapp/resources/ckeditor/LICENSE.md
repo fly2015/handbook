@@ -2,7 +2,7 @@ Software License Agreement
 ==========================
 
 CKEditor - The text editor for Internet - https://ckeditor.com/
-Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+Copyright
 
 Licensed under the terms of any of the following licenses at your
 choice:
@@ -1266,7 +1266,7 @@ EXHIBIT A -Mozilla Public License.
 
      The Initial Developer of the Original Code is ________________________.
      Portions created by ______________________ are Copyright (C) ______
-     _______________________. All Rights Reserved.
+
 
      Contributor(s): ______________________________________.
 

@@ -41,6 +41,6 @@ Other parts:
 License
 -------
 
-Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+Copyright
 
 For licensing, see LICENSE.md or [https://ckeditor.com/legal/ckeditor-oss-license](https://ckeditor.com/legal/ckeditor-oss-license)
