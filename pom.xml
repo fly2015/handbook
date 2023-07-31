@@ -142,7 +142,7 @@
 		
 		<spring-webmvc.version>5.3.22</spring-webmvc.version>
 		<spring-jdbc.version>5.3.22</spring-jdbc.version>
-		<spring-security-config.version>5.7.2</spring-security-config.version>
+		<spring-security-config.version>5.7.10</spring-security-config.version>
 		<spring-security-taglibs.version>5.7.2</spring-security-taglibs.version>
 		<spring-security.version>5.7.2</spring-security.version>
 		
